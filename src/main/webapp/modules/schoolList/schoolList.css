@@ -1,0 +1,28 @@
+.schoolList .page-heading a{
+  font-size: 20px;
+    padding-top: 8px;
+}
+.schoolList .page-heading a:hover{
+  font-size: 22px;
+}
+.schoolList .page-heading {
+    background: rgba(0, 0, 0, 0.04);
+}
+.schoolList .page-heading {
+    height: 75px;
+    padding: 8px 24px;
+}
+.schoolList md-content {
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.04);
+}
+.schoolList .md-nav-bar {
+    border: none;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    width: 75%;
+    margin: 0 auto;
+}
+.schoolList .fh5co-section-gray {
+    padding-top: 4em !important;
+}

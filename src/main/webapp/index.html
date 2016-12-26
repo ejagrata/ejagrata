@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <title>E-Jag</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
+
+    <!-- Scripts -->
+    <script src="build/script.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="build/style.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" a>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+    <script type="text/javascript">
+        angular.element(document).ready(function() {
+            angular.bootstrap(document.body, ['eJag']);
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <ui-view></ui-view>
+
+    <div id="myModal" class="pop-up">
+        <!-- Modal content -->
+        <div class="pop-up-container">
+            <div class="pop-up-header clearfix">
+                <span class="pull-left">{{popHeading}}</span>
+                <span class="pop-up-close pull-right">&times;</span>
+            </div>
+            <div class="pop-up-body">
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

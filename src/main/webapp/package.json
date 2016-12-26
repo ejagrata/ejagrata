@@ -1,0 +1,31 @@
+{
+  "name": "e-jagratha",
+  "version": "1.0.0",
+  "description": "Portal for e-jagratha activity",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "e-jagratha"
+  ],
+  "author": "tcs-kochi",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-concat": "latest",
+    "gulp-connect": "latest",
+    "gulp-uglify": "latest"
+  },
+  "dependencies": {
+    "angular": "latest",
+    "angular-animate": "latest",
+    "angular-aria": "^1.6.0",
+    "angular-material": "latest",
+    "angular-ui-bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "bootstrap": "latest",
+    "font-awesome": "^4.7.0",
+    "scrollreveal": "^3.3.2"
+  }
+}
