@@ -40241,13 +40241,79 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         init();
 
         function init() {
-          
+
         }
         /**
-        *
-        **/
-        vm.login = function (){
+         *
+         **/
+        vm.login = function () {
             $state.go('adminHome');
+        }
+    }
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('schoolDetailsController', schoolDetailsController);
+
+    /* ngInject */
+    function schoolDetailsController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {
+            console.log($stateParams.schoolId);
+            
+            $scope.myInterval = 3000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+            var slides = $scope.slides = [];
+            var currIndex = 0;
+
+            $scope.addSlide = function () {
+                slides.push({
+                    image: 'http://www.gstatic.com/webp/gallery/1.jpg',
+                    text: ['Nice image', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
+                    id: currIndex++
+                });
+            };
+
+
+            for (var i = 0; i < 4; i++) {
+                $scope.addSlide();
+            }
+        }
+
+    }
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('schoolListController', schoolListController);
+
+    /* ngInject */
+    function schoolListController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {   
+            vm.currentDist = $stateParams.distId;
+            if ($state.current.name == "app.schoolList.aided") {
+                vm.currentNavItem = "app.schoolList.aided";
+                $state.go("app.schoolList.aided");
+            } else if ($state.current.name == "app.schoolList.unaided") {
+                vm.currentNavItem = "app.schoolList.unaided";
+                $state.go("app.schoolList.unaided");
+            } else {
+                vm.currentNavItem = "app.schoolList.govt";
+                $state.go("app.schoolList.govt");
+            }
         }
 
     }
@@ -40314,73 +40380,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
     angular
         .module('eJag')
-        .controller('schoolListController', schoolListController);
-
-    /* ngInject */
-    function schoolListController($scope, $state, $stateParams) {
-        var vm = this;
-        init();
-
-        function init() {   
-            vm.currentDist = $stateParams.distId;
-            if ($state.current.name == "app.schoolList.aided") {
-                vm.currentNavItem = "app.schoolList.aided";
-                $state.go("app.schoolList.aided");
-            } else if ($state.current.name == "app.schoolList.unaided") {
-                vm.currentNavItem = "app.schoolList.unaided";
-                $state.go("app.schoolList.unaided");
-            } else {
-                vm.currentNavItem = "app.schoolList.govt";
-                $state.go("app.schoolList.govt");
-            }
-        }
-
-    }
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('schoolDetailsController', schoolDetailsController);
-
-    /* ngInject */
-    function schoolDetailsController($scope, $state, $stateParams) {
-        var vm = this;
-        init();
-
-        function init() {
-            console.log($stateParams.schoolId);
-            
-            $scope.myInterval = 3000;
-            $scope.noWrapSlides = false;
-            $scope.active = 0;
-            var slides = $scope.slides = [];
-            var currIndex = 0;
-
-            $scope.addSlide = function () {
-                slides.push({
-                    image: 'http://www.gstatic.com/webp/gallery/1.jpg',
-                    text: ['Nice image', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
-                    id: currIndex++
-                });
-            };
-
-
-            for (var i = 0; i < 4; i++) {
-                $scope.addSlide();
-            }
-        }
-
-    }
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
         .controller('adminHomeController', adminHomeController);
 
     /* ngInject */
@@ -40388,7 +40387,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         var vm = this;
         init();
 
-        function init() {            
+        function init() {
             if ($state.current.name == "adminHome.schoolUpload") {
                 vm.currentNavItem = "adminHome.schoolUpload";
                 $state.go("adminHome.schoolUpload");
@@ -40396,6 +40395,12 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 vm.currentNavItem = "adminHome.schoolStatus";
                 $state.go("adminHome.schoolStatus");
             }
+        }
+        /**
+         *
+         **/
+        vm.logout = function () {            
+            $state.go('admin');
         }
 
     }
@@ -40497,6 +40502,11 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 id: 2,
                 value: "Pending"
              }];
+            // district
+            vm.district = [{
+                id : "ernakulam",
+                value : "Ernakulam"
+            }];
             // educational District List
             vm.educationDist = [{
                 id: 1,

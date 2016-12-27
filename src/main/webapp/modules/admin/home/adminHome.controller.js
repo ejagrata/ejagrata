@@ -10,7 +10,7 @@
         var vm = this;
         init();
 
-        function init() {            
+        function init() {
             if ($state.current.name == "adminHome.schoolUpload") {
                 vm.currentNavItem = "adminHome.schoolUpload";
                 $state.go("adminHome.schoolUpload");
@@ -18,6 +18,12 @@
                 vm.currentNavItem = "adminHome.schoolStatus";
                 $state.go("adminHome.schoolStatus");
             }
+        }
+        /**
+         *
+         **/
+        vm.logout = function () {            
+            $state.go('admin');
         }
 
     }

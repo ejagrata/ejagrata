@@ -11,15 +11,14 @@
         init();
 
         function init() {
-          
+
         }
         /**
-        *
-        **/
-        vm.login = function (){
+         *
+         **/
+        vm.login = function () {
             $state.go('adminHome');
         }
-
     }
 
 })();

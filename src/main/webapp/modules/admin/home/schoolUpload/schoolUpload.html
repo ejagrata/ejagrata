@@ -32,12 +32,6 @@
                 </label>
                 <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.schoolCode" required maxlength="10" placeholder="Enter School Code" />
             </div>
-            <div class="input-box col-xs-12">
-                <label>Address
-                    <req>*</req>
-                </label>
-                <input type="text" ng-model="vm.formData.schoolAddress" required maxlength="100" placeholder="Enter School Address" />
-            </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>School Contact Number
                     <req>*</req>
@@ -53,6 +47,30 @@
                     <option value="{{item.id}}" ng-repeat="item in vm.schoolType">{{item.value}}</option>
                 </select>
             </div>
+            <div class="input-box col-xs-12">
+                <label>Address
+                    <req>*</req>
+                </label>
+                <input type="text" ng-model="vm.formData.schoolAddress" required maxlength="100" placeholder="Enter School Address" />
+            </div>
+            <div class="input-box col-xs-12 col-md-6">
+                <label>District
+                    <req>*</req>
+                </label>
+                <select class="form-control" data-ng-model="vm.formData.district" required>
+                    <option value="">Select District</option>
+                    <option value="{{item.id}}" ng-repeat="item in vm.district">{{item.value}}</option>
+                </select>
+            </div>
+            <div class="input-box col-xs-12 col-md-6">
+                <label>Educational District
+                    <req>*</req>
+                </label>
+                <select class="form-control" data-ng-model="vm.formData.eduDistrict" required>
+                    <option value="">Select Educational District</option>
+                    <option value="{{item.id}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
+                </select>
+            </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Teacher Name
                     <req>*</req>
@@ -64,12 +82,6 @@
                     <req>*</req>
                 </label>
                 <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.teacherPhone" required maxlength="10" placeholder="Enter Teacher Contact" />
-            </div>
-            <div class="input-box col-xs-12 col-md-6">
-                <label>Student Representative Name
-                    <req>*</req>
-                </label>
-                <input type="text" ng-model="vm.formData.studentRep" required maxlength="10" placeholder="Enter Student Name" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Session Date
@@ -86,21 +98,13 @@
                     <option value="{{item.id}}" ng-repeat="item in vm.sessionStatus">{{item.value}}</option>
                 </select>
             </div>
-            <div class="input-box col-xs-12 col-md-6">
-                <label>Educational District
+            <div class="input-box col-xs-12 col-md-6 speclMargin">
+                <label>Student Representative Name
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.district" required>
-                    <option value="">Select Educational District</option>
-                    <option value="{{item.id}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
-                </select>
+                <input type="text" ng-model="vm.formData.studentRep" required maxlength="10" placeholder="Enter Student Name" />
             </div>
-            <div class="input-box col-xs-12">
-                <label>Additional Comments
-                </label>
-                <input type="text" ng-model="vm.formData.comments" maxlength="100" placeholder="Enter Comments, if any" />
-            </div>
-            <div class="input-box col-xs-12">
+            <div class="input-box col-xs-12 col-md-6">
                 <label style="line-height: normal;margin: 0;">Upload Photos
                 </label>
                 <div class="req-indicator" style="margin-bottom:5px;">
@@ -108,6 +112,12 @@
                 </div>
                 <input type="file" multiple/>
             </div>
+            <div class="input-box col-xs-12">
+                <label>Additional Comments
+                </label>
+                <input type="text" ng-model="vm.formData.comments" maxlength="100" placeholder="Enter Comments, if any" />
+            </div>
+
             <div class="col-xs-12 text-center">
                 <button type="submit" class="btn btn-success" style="margin-right: 8px;">
                     Save

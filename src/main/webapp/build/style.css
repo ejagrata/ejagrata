@@ -8611,7 +8611,7 @@ figure {
     padding: 8px 24px;
 }
 .adminLogin header span {
-    text-shadow: 1px 1px 14px #a9a9a9;
+    text-shadow: 1px 1px 14px #d8d8d8;
     font-size: 32px;
 }
 .adminLogin .loginForm {
@@ -8762,6 +8762,9 @@ img {
     font-weight: 500;
     line-height: normal;
 }
+.adminPage .schoolUpload .speclMargin {
+    margin-top: 14px;
+}
 .adminPage footer {
     text-align: center;
     line-height: normal;
@@ -8776,5 +8779,8 @@ img {
     }
     .adminPage .md-nav-bar {
         width: 95%;
+    }
+    .adminPage .schoolUpload .speclMargin {
+        margin-top: 0;
     }
 }

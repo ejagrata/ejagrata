@@ -41,6 +41,11 @@
                 id: 2,
                 value: "Pending"
              }];
+            // district
+            vm.district = [{
+                id : "ernakulam",
+                value : "Ernakulam"
+            }];
             // educational District List
             vm.educationDist = [{
                 id: 1,

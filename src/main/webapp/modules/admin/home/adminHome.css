@@ -29,6 +29,9 @@
     font-weight: 500;
     line-height: normal;
 }
+.adminPage .schoolUpload .speclMargin {
+    margin-top: 14px;
+}
 .adminPage footer {
     text-align: center;
     line-height: normal;
@@ -43,5 +46,8 @@
     }
     .adminPage .md-nav-bar {
         width: 95%;
+    }
+    .adminPage .schoolUpload .speclMargin {
+        margin-top: 0;
     }
 }
