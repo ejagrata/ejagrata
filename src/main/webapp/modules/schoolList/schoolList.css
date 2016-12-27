@@ -1,9 +1,9 @@
-.schoolList .page-heading a{
-  font-size: 20px;
+.schoolList .page-heading a {
+    font-size: 20px;
     padding-top: 8px;
 }
-.schoolList .page-heading a:hover{
-  font-size: 22px;
+.schoolList .page-heading a:hover {
+    font-size: 22px;
 }
 .schoolList .page-heading {
     background: rgba(0, 0, 0, 0.04);
@@ -25,4 +25,9 @@
 }
 .schoolList .fh5co-section-gray {
     padding-top: 4em !important;
+}
+@media screen and (max-width: 768px) {
+    .schoolList .md-nav-bar {
+        width: 95%;
+    }
 }

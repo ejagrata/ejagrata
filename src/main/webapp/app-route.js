@@ -41,7 +41,7 @@
             })
             .state('app.schoolList.unaided', {
                 url: '/unaided',
-                templateUrl: 'modules/schoolList/aidedSchool/aidedSchool.html',
+                templateUrl: 'modules/schoolList/unAidedSchool/unAidedSchool.html',
                 controller: '',
                 controllerAs: 'vm'
             })
@@ -50,11 +50,23 @@
                 templateUrl: 'modules/schoolDetail/schoolDetail.html',
                 controller: 'schoolDetailsController',
                 controllerAs: 'vm'
-            }) 
-            .state('app.admin', {
-                url: 'admin',
-                templateUrl: 'modules/test/test.html',
-                controller: 'testCtrl',
+            })
+            .state('admin', {
+                url: '/admin',
+                templateUrl: 'modules/admin/admin.html',
+                controller: 'adminController',
+                controllerAs: 'vm'
+            })
+            .state('admin.schoolStatus', {
+                url: '/schoolStatus',
+                templateUrl: 'modules/admin/schoolStatus/schoolStatus.html',
+                controller: 'schoolStatusController',
+                controllerAs: 'vm'
+            })
+            .state('admin.schoolUpload', {
+                url: '/schoolUpload',
+                templateUrl: 'modules/admin/schoolUpload/schoolUpload.html',
+                controller: 'schoolUploadController',
                 controllerAs: 'vm'
             });
 

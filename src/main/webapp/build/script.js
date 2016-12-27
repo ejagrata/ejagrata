@@ -40188,7 +40188,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
             })
             .state('app.schoolList.unaided', {
                 url: '/unaided',
-                templateUrl: 'modules/schoolList/aidedSchool/aidedSchool.html',
+                templateUrl: 'modules/schoolList/unAidedSchool/unAidedSchool.html',
                 controller: '',
                 controllerAs: 'vm'
             })
@@ -40197,16 +40197,53 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 templateUrl: 'modules/schoolDetail/schoolDetail.html',
                 controller: 'schoolDetailsController',
                 controllerAs: 'vm'
-            }) 
-            .state('app.admin', {
-                url: 'admin',
-                templateUrl: 'modules/test/test.html',
-                controller: 'testCtrl',
+            })
+            .state('admin', {
+                url: '/admin',
+                templateUrl: 'modules/admin/admin.html',
+                controller: 'adminController',
+                controllerAs: 'vm'
+            })
+            .state('admin.schoolStatus', {
+                url: '/schoolStatus',
+                templateUrl: 'modules/admin/schoolStatus/schoolStatus.html',
+                controller: 'schoolStatusController',
+                controllerAs: 'vm'
+            })
+            .state('admin.schoolUpload', {
+                url: '/schoolUpload',
+                templateUrl: 'modules/admin/schoolUpload/schoolUpload.html',
+                controller: 'schoolUploadController',
                 controllerAs: 'vm'
             });
 
 
         $urlRouterProvider.otherwise('home');
+    }
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('adminController', adminController);
+
+    /* ngInject */
+    function adminController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {
+            if ($state.current.name == "admin.schoolUpload") {
+                vm.currentNavItem = "admin.schoolUpload";
+                $state.go("admin.schoolUpload");
+            } else {
+                vm.currentNavItem = "admin.schoolStatus";
+                $state.go("admin.schoolStatus");
+            }
+        }
+
     }
 
 })();
@@ -40316,11 +40353,19 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         var vm = this;
         init();
 
-        function init() {
-            vm.currentNavItem = "app.schoolList.govt";
+        function init() {   
             vm.currentDist = $stateParams.distId;
-            $state.go("app.schoolList.govt");
-        }      
+            if ($state.current.name == "app.schoolList.aided") {
+                vm.currentNavItem = "app.schoolList.aided";
+                $state.go("app.schoolList.aided");
+            } else if ($state.current.name == "app.schoolList.unaided") {
+                vm.currentNavItem = "app.schoolList.unaided";
+                $state.go("app.schoolList.unaided");
+            } else {
+                vm.currentNavItem = "app.schoolList.govt";
+                $state.go("app.schoolList.govt");
+            }
+        }
 
     }
 
@@ -40330,23 +40375,89 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
     angular
         .module('eJag')
-        .controller('testCtrl', testCtrl);
+        .controller('schoolStatusController', schoolStatusController);
 
     /* ngInject */
-    function testCtrl($scope, apiService) {
+    function schoolStatusController($scope) {
         var vm = this;
         init();
 
-        function init() {            
-           apiService.serviceRequest({
-               URL : 'ejag.json'
-           }, function (response){
-           vm.schoolList = response;
-           }, function (){
+        function init() {
            
-           });
-        }      
+        }
 
+    }
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('schoolUploadController', schoolUploadController);
+
+    /* ngInject */
+    function schoolUploadController($scope, apiService) {
+        var vm = this;
+        init();
+
+        /**
+         * init function kicks starts the page execution
+         **/
+        function init() {
+            varInit();
+        };
+
+        /**
+         * initialize page variables
+         **/
+        function varInit() {
+            vm.formData = {};
+            // school type list
+            vm.schoolType = [{
+                id: 1,
+                value: "Aided"
+             }, {
+                id: 2,
+                value: "Government"
+             }, {
+                id: 3,
+                value: "UnAided"
+             }];
+            // session status list
+            vm.sessionStatus = [{
+                id: 1,
+                value: "Completed"
+             }, {
+                id: 2,
+                value: "Pending"
+             }];
+            // educational District List
+            vm.educationDist = [{
+                id: 1,
+                value: "Aluva"
+             }, {
+                id: 2,
+                value: "Ernakulam"
+             }, {
+                id: 3,
+                value: "Kothamangalam"
+             }, {
+                id: 4,
+                value: "Muvattupuzha"
+             }];
+        };
+
+        /**
+         * on save logic
+         **/
+        vm.onSave = function () {
+            apiService.showAlert({
+                text: "Request Placed Successfully !!"
+            }, function () {
+                varInit();
+            });
+        }
     }
 
 })();
@@ -40389,7 +40500,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         .module('eJag')
         .service('apiService', apiService);
 
-    function apiService($rootScope, $http, $q, $state, appConfig) {
+    function apiService($rootScope, $http, $q, $state, appConfig, $mdDialog) {
 
         /**
          * function to place http request
@@ -40440,21 +40551,38 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
             $rootScope.popHeading = popHeading;
             // sets the content
             $('.pop-up-body')[0].innerHeight = popBody;
-            
+
             // When the user clicks on <span> (x), close the modal
             $('.pop-up-close')[0].onclick = function () {
-                $('#myModal').fadeOut();
-            }
-            // sets the content
+                    $('#myModal').fadeOut();
+                }
+                // sets the content
             $('.pop-up-body')[0].innerHTML = popBody;
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
-                if (event.target == $('#myModal')[0]) {
-                    $('#myModal').fadeOut();
+                    if (event.target == $('#myModal')[0]) {
+                        $('#myModal').fadeOut();
+                    }
                 }
-            }
-            // shows the pop up
+                // shows the pop up
             $('#myModal').fadeIn();
+        };
+        /**
+         *  function to show alert messages
+         */
+        this.showAlert = function (param, callback) {
+            alert = $mdDialog.alert({
+                title: param.title || 'E-Jagrata Alert !',
+                textContent: param.text,
+                ok: param.title || 'Ok'
+            });
+
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    if (callback)
+                        callback();
+                });
         };
     }
 })();

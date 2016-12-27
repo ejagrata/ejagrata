@@ -1,0 +1,16 @@
+<div class="adminPage">
+    <div class="page-heading">
+        <a ui-sref="app.home"> <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Take me home</a>
+    </div>
+    <md-content class="md-padding">
+        <md-nav-bar md-selected-nav-item="vm.currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-sref="admin.schoolStatus" name="admin.schoolStatus">School Status</md-nav-item>
+            <md-nav-item md-nav-sref="admin.schoolUpload" name="admin.schoolUpload">School Upload</md-nav-item>
+        </md-nav-bar>
+    </md-content>
+
+    <ui-view></ui-view>
+    <footer>
+        &copy; 2016. All Rights Reserved.
+    </footer>
+</div>
