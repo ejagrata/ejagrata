@@ -21,8 +21,13 @@ body {
     color: #848484;
     font-weight: 300;
     overflow-x: hidden;
+    background-image: url(../images/RepeatBG.png);
+    background-color: #ffffff;
 }
-body.fh5co-offcanvas {
+html {
+    background-color: transparent;
+}
+body .fh5co-offcanvas {
     overflow: hidden;
 }
 a {

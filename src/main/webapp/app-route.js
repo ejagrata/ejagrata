@@ -57,15 +57,21 @@
                 controller: 'adminController',
                 controllerAs: 'vm'
             })
-            .state('admin.schoolStatus', {
+            .state('adminHome', {
+                url: '/adminHome',
+                templateUrl: 'modules/admin/home/adminHome.html',
+                controller: 'adminHomeController',
+                controllerAs: 'vm'
+            })
+            .state('adminHome.schoolStatus', {
                 url: '/schoolStatus',
-                templateUrl: 'modules/admin/schoolStatus/schoolStatus.html',
+                templateUrl: 'modules/admin/home/schoolStatus/schoolStatus.html',
                 controller: 'schoolStatusController',
                 controllerAs: 'vm'
             })
-            .state('admin.schoolUpload', {
+            .state('adminHome.schoolUpload', {
                 url: '/schoolUpload',
-                templateUrl: 'modules/admin/schoolUpload/schoolUpload.html',
+                templateUrl: 'modules/admin/home/schoolUpload/schoolUpload.html',
                 controller: 'schoolUploadController',
                 controllerAs: 'vm'
             });

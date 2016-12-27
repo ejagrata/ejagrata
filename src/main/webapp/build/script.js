@@ -40204,15 +40204,21 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 controller: 'adminController',
                 controllerAs: 'vm'
             })
-            .state('admin.schoolStatus', {
+            .state('adminHome', {
+                url: '/adminHome',
+                templateUrl: 'modules/admin/home/adminHome.html',
+                controller: 'adminHomeController',
+                controllerAs: 'vm'
+            })
+            .state('adminHome.schoolStatus', {
                 url: '/schoolStatus',
-                templateUrl: 'modules/admin/schoolStatus/schoolStatus.html',
+                templateUrl: 'modules/admin/home/schoolStatus/schoolStatus.html',
                 controller: 'schoolStatusController',
                 controllerAs: 'vm'
             })
-            .state('admin.schoolUpload', {
+            .state('adminHome.schoolUpload', {
                 url: '/schoolUpload',
-                templateUrl: 'modules/admin/schoolUpload/schoolUpload.html',
+                templateUrl: 'modules/admin/home/schoolUpload/schoolUpload.html',
                 controller: 'schoolUploadController',
                 controllerAs: 'vm'
             });
@@ -40235,13 +40241,13 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         init();
 
         function init() {
-            if ($state.current.name == "admin.schoolUpload") {
-                vm.currentNavItem = "admin.schoolUpload";
-                $state.go("admin.schoolUpload");
-            } else {
-                vm.currentNavItem = "admin.schoolStatus";
-                $state.go("admin.schoolStatus");
-            }
+          
+        }
+        /**
+        *
+        **/
+        vm.login = function (){
+            $state.go('adminHome');
         }
 
     }
@@ -40308,6 +40314,35 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
     angular
         .module('eJag')
+        .controller('schoolListController', schoolListController);
+
+    /* ngInject */
+    function schoolListController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {   
+            vm.currentDist = $stateParams.distId;
+            if ($state.current.name == "app.schoolList.aided") {
+                vm.currentNavItem = "app.schoolList.aided";
+                $state.go("app.schoolList.aided");
+            } else if ($state.current.name == "app.schoolList.unaided") {
+                vm.currentNavItem = "app.schoolList.unaided";
+                $state.go("app.schoolList.unaided");
+            } else {
+                vm.currentNavItem = "app.schoolList.govt";
+                $state.go("app.schoolList.govt");
+            }
+        }
+
+    }
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
         .controller('schoolDetailsController', schoolDetailsController);
 
     /* ngInject */
@@ -40346,25 +40381,55 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
     angular
         .module('eJag')
-        .controller('schoolListController', schoolListController);
+        .controller('adminHomeController', adminHomeController);
 
     /* ngInject */
-    function schoolListController($scope, $state, $stateParams) {
+    function adminHomeController($scope, $state) {
         var vm = this;
         init();
 
-        function init() {   
-            vm.currentDist = $stateParams.distId;
-            if ($state.current.name == "app.schoolList.aided") {
-                vm.currentNavItem = "app.schoolList.aided";
-                $state.go("app.schoolList.aided");
-            } else if ($state.current.name == "app.schoolList.unaided") {
-                vm.currentNavItem = "app.schoolList.unaided";
-                $state.go("app.schoolList.unaided");
+        function init() {            
+            if ($state.current.name == "adminHome.schoolUpload") {
+                vm.currentNavItem = "adminHome.schoolUpload";
+                $state.go("adminHome.schoolUpload");
             } else {
-                vm.currentNavItem = "app.schoolList.govt";
-                $state.go("app.schoolList.govt");
+                vm.currentNavItem = "adminHome.schoolStatus";
+                $state.go("adminHome.schoolStatus");
             }
+        }
+
+    }
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('govtSchoolController', govtSchoolController);
+
+    /* ngInject */
+    function govtSchoolController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {
+            var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
+            // reaveal these elements when scoll happens
+            
+            window.sr = ScrollReveal();
+            // for app title
+            sr.reveal('.sr-listImg', {
+                duration: 1000,
+                scale: 0.3,
+                distance: '20px'
+            });
+        }
+
+        vm.gotoSchool = function () {
+            $state.go('app.schoolDetail', {
+                schoolId: 1
+            });
         }
 
     }
@@ -40458,40 +40523,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 varInit();
             });
         }
-    }
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('govtSchoolController', govtSchoolController);
-
-    /* ngInject */
-    function govtSchoolController($scope, $state, $stateParams) {
-        var vm = this;
-        init();
-
-        function init() {
-            var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
-            // reaveal these elements when scoll happens
-            
-            window.sr = ScrollReveal();
-            // for app title
-            sr.reveal('.sr-listImg', {
-                duration: 1000,
-                scale: 0.3,
-                distance: '20px'
-            });
-        }
-
-        vm.gotoSchool = function () {
-            $state.go('app.schoolDetail', {
-                schoolId: 1
-            });
-        }
-
     }
 
 })();

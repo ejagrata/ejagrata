@@ -11,13 +11,13 @@
         init();
 
         function init() {
-            if ($state.current.name == "admin.schoolUpload") {
-                vm.currentNavItem = "admin.schoolUpload";
-                $state.go("admin.schoolUpload");
-            } else {
-                vm.currentNavItem = "admin.schoolStatus";
-                $state.go("admin.schoolStatus");
-            }
+          
+        }
+        /**
+        *
+        **/
+        vm.login = function (){
+            $state.go('adminHome');
         }
 
     }
