@@ -1,0 +1,17 @@
+<div class="adminPage">
+    <div class="page-heading">
+        <span class="pull-left">E-Jagratha</span>
+        <span class="pull-right" ng-click="vm.logout();">Logout</span>
+    </div>
+    <md-content class="md-padding">
+        <md-nav-bar md-selected-nav-item="vm.currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-sref="adminHome.schoolStatus" name="adminHome.schoolStatus">School Status</md-nav-item>
+            <md-nav-item md-nav-sref="adminHome.schoolUpload" name="adminHome.schoolUpload">School Upload</md-nav-item>
+        </md-nav-bar>
+    </md-content>
+
+    <ui-view></ui-view>
+    <footer>
+        &copy; 2016. All Rights Reserved.
+    </footer>
+</div>

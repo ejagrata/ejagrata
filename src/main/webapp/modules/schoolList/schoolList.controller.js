@@ -10,11 +10,19 @@
         var vm = this;
         init();
 
-        function init() {
-            vm.currentNavItem = "app.schoolList.govt";
+        function init() {   
             vm.currentDist = $stateParams.distId;
-            $state.go("app.schoolList.govt");
-        }      
+            if ($state.current.name == "app.schoolList.aided") {
+                vm.currentNavItem = "app.schoolList.aided";
+                $state.go("app.schoolList.aided");
+            } else if ($state.current.name == "app.schoolList.unaided") {
+                vm.currentNavItem = "app.schoolList.unaided";
+                $state.go("app.schoolList.unaided");
+            } else {
+                vm.currentNavItem = "app.schoolList.govt";
+                $state.go("app.schoolList.govt");
+            }
+        }
 
     }
 

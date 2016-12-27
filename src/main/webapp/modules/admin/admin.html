@@ -1,0 +1,33 @@
+<div class="adminLogin">
+    <header>
+        <span>E-Jagratha</span>
+    </header>
+    <section>
+        <form class="loginForm row" ng-submit="vm.login();">
+            <div class="text-center" style="font-size: 24px;">
+                Admin Login
+            </div>
+            <div class="input-box col-xs-12">
+                <label>Username
+                    <req>*</req>
+                </label>
+                <input type="text" ng-model="vm.formData.username" required maxlength="50" placeholder="Enter username" />
+            </div>
+            <div class="input-box col-xs-12">
+                <label>Password
+                    <req>*</req>
+                </label>
+                <input type="password" ng-model="vm.formData.password" required maxlength="10" placeholder="Enter password" />
+            </div>
+            <div class="col-xs-12 text-center">
+                <button type="submit" class="btn btn-success" style="margin-right: 8px;">
+                    Login
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2016. All Rights Reserved.
+    </footer>
+</div>

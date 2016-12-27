@@ -1,4 +1,4 @@
-<div id="fh5co-wrapper">
+<div id="fh5co-wrapper" class="homePage">
     <div id="fh5co-page">
         <div id="fh5co-header">
             <header id="fh5co-header-section">
@@ -11,13 +11,12 @@
             </header>
         </div>
 
-
         <div class="fh5co-hero">
             <div class="fh5co-overlay"></div>
             <div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(images/ejabg.jpg);">
                 <div class="desc animate-box sr-appTitle">
                     <h2><strong>{{vm.appName}}</strong> </h2>
-                    <span>{{vm.subTitle}}</span>                    
+                    <span>{{vm.subTitle}}</span>
                 </div>
             </div>
 
@@ -70,24 +69,31 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 animate-box" ng-click="vm.test();">
+                    <div class="col-md-3 col-xs-12 edu-dist animate-box" ng-click="vm.test();">
                         <div class="testimony">
                             <blockquote>
-                                &ldquo;Educational District 1&rdquo;
+                                Aluva
                             </blockquote>
                         </div>
                     </div>
-                    <div class="col-md-4 animate-box">
+                    <div class="col-md-3 col-xs-12 edu-dist animate-box">
                         <div class="testimony">
                             <blockquote>
-                                &ldquo;Educational District 2&rdquo;
+                                Ernakulam
                             </blockquote>
                         </div>
                     </div>
-                    <div class="col-md-4 animate-box">
+                    <div class="col-md-3 col-xs-12 edu-dist animate-box">
                         <div class="testimony">
                             <blockquote>
-                                &ldquo;Educational District 3&rdquo;
+                                Kothamangalam
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12 edu-dist animate-box">
+                        <div class="testimony">
+                            <blockquote>
+                                Muvattupuzha
                             </blockquote>
                         </div>
                     </div>
@@ -95,4 +101,17 @@
             </div>
         </div>
     </div>
+</div>
+<div id="myModal" class="pop-up">
+    <!-- Modal content -->
+    <div class="pop-up-container">
+        <div class="pop-up-header clearfix">
+            <span class="pull-left">{{popHeading}}</span>
+            <span class="pop-up-close pull-right">&times;</span>
+        </div>
+        <div class="pop-up-body">
+
+        </div>
+    </div>
+
 </div>

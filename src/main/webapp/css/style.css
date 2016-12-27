@@ -21,8 +21,13 @@ body {
     color: #848484;
     font-weight: 300;
     overflow-x: hidden;
+    background-image: url(../images/RepeatBG.png);
+    background-color: #ffffff;
 }
-body.fh5co-offcanvas {
+html {
+    background-color: transparent;
+}
+body .fh5co-offcanvas {
     overflow: hidden;
 }
 a {
@@ -114,7 +119,7 @@ figure {
     position: relative;
     background-repeat: no-repeat;
     background-size: contain;
-    background-color: #2da1c6;
+    background-color: #2ea2c7;
     background-position: 50% 50%;
 }
 @media screen and (max-width: 768px) {
@@ -1390,6 +1395,8 @@ figure {
 #fh5co-wrapper {
     overflow-x: hidden;
     position: relative;
+    background-image: url(../images/RepeatBG.png);
+    background-color: #ffffff;
 }
 .fh5co-offcanvas {
     overflow: hidden;

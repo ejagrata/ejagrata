@@ -3,7 +3,7 @@
         .module('eJag')
         .service('apiService', apiService);
 
-    function apiService($rootScope, $http, $q, $state, appConfig) {
+    function apiService($rootScope, $http, $q, $state, appConfig, $mdDialog) {
 
         /**
          * function to place http request
@@ -54,21 +54,38 @@
             $rootScope.popHeading = popHeading;
             // sets the content
             $('.pop-up-body')[0].innerHeight = popBody;
-            
+
             // When the user clicks on <span> (x), close the modal
             $('.pop-up-close')[0].onclick = function () {
-                $('#myModal').fadeOut();
-            }
-            // sets the content
+                    $('#myModal').fadeOut();
+                }
+                // sets the content
             $('.pop-up-body')[0].innerHTML = popBody;
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
-                if (event.target == $('#myModal')[0]) {
-                    $('#myModal').fadeOut();
+                    if (event.target == $('#myModal')[0]) {
+                        $('#myModal').fadeOut();
+                    }
                 }
-            }
-            // shows the pop up
+                // shows the pop up
             $('#myModal').fadeIn();
+        };
+        /**
+         *  function to show alert messages
+         */
+        this.showAlert = function (param, callback) {
+            alert = $mdDialog.alert({
+                title: param.title || 'E-Jagrata Alert !',
+                textContent: param.text,
+                ok: param.title || 'Ok'
+            });
+
+            $mdDialog
+                .show(alert)
+                .finally(function () {
+                    if (callback)
+                        callback();
+                });
         };
     }
 })();
