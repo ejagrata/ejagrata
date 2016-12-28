@@ -1,127 +1,146 @@
 package org.ejagrata.beans;
 
 import java.util.Date;
+import java.util.List;
 
-import org.ejagrata.entity.District;
+import javax.persistence.Column;
 
 public class SchoolBean {
- 	
-	private Integer id;
-	private String schoolCode;
-	private String name;
-	private String address;
-	private String phone;
-	private String schoolType;
-	private String teacherName;
-	private String teacherPhone;
-	private String studentRepName;
-	private Date sessionDate;
-	private String sessionStatus;
-	private Boolean enabled;
-	private DistrictBean district;
 
-	public Integer getId() {
-		return id;
-	}
+    private Integer id;
+    private String schoolCode;
+    private String name;
+    private String address;
+    private String phone;
+    private String schoolType;
+    private String teacherName;
+    private String teacherPhone;
+    private String studentRepName;
+    private Date sessionDate;
+    private String sessionStatus;
+    private Boolean enabled;
+    private Integer districtId;
+    private Integer edDistrictId;
+    private List<SchoolDocumentBean> schoolDocumentBean;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getSchoolCode() {
-		return schoolCode;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setSchoolCode(String schoolCode) {
-		this.schoolCode = schoolCode;
-	}
+    public String getSchoolCode() {
+        return schoolCode;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setSchoolCode(String schoolCode) {
+        this.schoolCode = schoolCode;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public String getSchoolType() {
-		return schoolType;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setSchoolType(String schoolType) {
-		this.schoolType = schoolType;
-	}
+    public String getSchoolType() {
+        return schoolType;
+    }
 
-	public String getTeacherName() {
-		return teacherName;
-	}
+    public void setSchoolType(String schoolType) {
+        this.schoolType = schoolType;
+    }
 
-	public void setTeacherName(String teacherName) {
-		this.teacherName = teacherName;
-	}
+    public String getTeacherName() {
+        return teacherName;
+    }
 
-	public String getTeacherPhone() {
-		return teacherPhone;
-	}
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
-	public void setTeacherPhone(String teacherPhone) {
-		this.teacherPhone = teacherPhone;
-	}
+    public String getTeacherPhone() {
+        return teacherPhone;
+    }
 
-	public String getStudentRepName() {
-		return studentRepName;
-	}
+    public void setTeacherPhone(String teacherPhone) {
+        this.teacherPhone = teacherPhone;
+    }
 
-	public void setStudentRepName(String studentRepName) {
-		this.studentRepName = studentRepName;
-	}
+    public String getStudentRepName() {
+        return studentRepName;
+    }
 
-	public Date getSessionDate() {
-		return sessionDate;
-	}
+    public void setStudentRepName(String studentRepName) {
+        this.studentRepName = studentRepName;
+    }
 
-	public void setSessionDate(Date sessionDate) {
-		this.sessionDate = sessionDate;
-	}
+    public Date getSessionDate() {
+        return sessionDate;
+    }
 
-	public String getSessionStatus() {
-		return sessionStatus;
-	}
+    public void setSessionDate(Date sessionDate) {
+        this.sessionDate = sessionDate;
+    }
 
-	public void setSessionStatus(String sessionStatus) {
-		this.sessionStatus = sessionStatus;
-	}
+    public String getSessionStatus() {
+        return sessionStatus;
+    }
 
-	public Boolean getEnabled() {
-		return enabled;
-	}
+    public void setSessionStatus(String sessionStatus) {
+        this.sessionStatus = sessionStatus;
+    }
 
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+    public Boolean getEnabled() {
+        return enabled;
+    }
 
-	public DistrictBean getDistrict() {
-		return district;
-	}
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public void setDistrict(DistrictBean district) {
-		this.district = district;
-	}
-	
+    public List<SchoolDocumentBean> getSchoolDocumentBean() {
+        return schoolDocumentBean;
+    }
+
+    public void setSchoolDocumentBean(List<SchoolDocumentBean> schoolDocumentBean) {
+        this.schoolDocumentBean = schoolDocumentBean;
+    }
+
+    public Integer getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
+
+    public Integer getEdDistrictId() {
+        return edDistrictId;
+    }
+
+    public void setEdDistrictId(Integer edDistrictId) {
+        this.edDistrictId = edDistrictId;
+    }
+
 }

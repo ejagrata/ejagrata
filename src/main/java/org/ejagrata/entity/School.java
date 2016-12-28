@@ -53,9 +53,11 @@ public class School {
 	@Column(name="enabled")
 	private Boolean enabled;
 	
-	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name="district_id")
-	private District district;
+	@Column(name="district_id")
+	private Integer districtId;
+	
+	@Column(name="educational_district_id")
+	private Integer edDistrictId;
 
 	public Integer getId() {
 		return id;
@@ -153,12 +155,20 @@ public class School {
 		this.enabled = enabled;
 	}
 
-	public District getDistrict() {
-		return district;
-	}
+    public Integer getDistrictId() {
+        return districtId;
+    }
 
-	public void setDistrict(District district) {
-		this.district = district;
-	}
-	
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
+
+    public Integer getEdDistrictId() {
+        return edDistrictId;
+    }
+
+    public void setEdDistrictId(Integer edDistrictId) {
+        this.edDistrictId = edDistrictId;
+    }
+
 }

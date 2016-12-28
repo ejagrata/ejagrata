@@ -89,6 +89,12 @@ create table user_role (
  	id number(5) primary key auto_increment,
  	name varchar(100)
  );
+ 
+ create table educational_district (
+    id number(5) primary key auto_increment,
+    name varchar(100),
+    district_id number(5) references district(id)
+ );
 
  create table school (
  	id number(10) primary key auto_increment,
@@ -102,7 +108,13 @@ create table user_role (
 	student_rep_name varchar(100),
 	session_date date,
 	session_status varchar(20),
- 	district_id number(5) references district(id),
+    district_id number(5) references district(id),
+ 	educational_district_id number(5) references educational_district(id), 
  	enabled boolean
  );
  
+ create table school_document (
+	doc_id number(10) primary key auto_increment,
+	doc_path varchar(250),
+	school_id number(10) references school(id)
+);
