@@ -75,7 +75,7 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public List<SchoolBean> getSchoolByEdDistrict(Integer districtId, Integer edDistrictId) {
-        List<School> schoolList = schoolRepository.searchByEdDistrictId(districtId, edDistrictId);
+        List<School> schoolList = schoolRepository.findByDistrictIdAndEdDistrictId(districtId, edDistrictId);
         List<SchoolBean> schoolBeanList = new ArrayList<>();
         for( School school : schoolList){
             SchoolBean schoolBean =new SchoolBean();

@@ -10,8 +10,7 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
 
     List<School> findByDistrictId(Integer districtId);
     
-    @Query("select u from school u where u.districtId = ?1 and u.edDistrictId = ?2" )
-    List<School> searchByEdDistrictId(Integer districtId , Integer id);
+    List<School> findByDistrictIdAndEdDistrictId(Integer districtId , Integer id);
 
     
 }
