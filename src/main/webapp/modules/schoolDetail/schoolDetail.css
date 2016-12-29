@@ -1,14 +1,15 @@
-#slides_control > div {
-    height: 200px;
+.schoolDetails .carousel-holder {
+	height: 300px;
 }
-img {
-    margin: auto;
-    width: 400px;
+
+.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
+	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
+	{
+	height: 100%;
 }
-#slides_control {
-    position: absolute;
-    width: 400px;
-    left: 50%;
-    top: 20px;
-    margin-left: -200px;
+
+.schoolDetails .carousel-holder .item .text-center img {
+	max-height: 275px;
+	margin: 5px 0px !important;
+	height: 100%;
 }

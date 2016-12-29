@@ -1,53 +1,100 @@
 .adminPage .page-heading {
-    height: 75px;
-    padding: 8px 24px;
+	height: 75px;
+	padding: 8px 24px;
 }
+
 .adminPage md-content {
-    padding: 12px;
-    background: transparent;
+	padding: 12px;
+	background: transparent;
 }
+
 .adminPage .md-nav-bar {
-    border: none;
-    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
-    background: #fff;
-    width: 75%;
-    margin: 0 auto;
+	border: none;
+	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+	background: #fff;
+	width: 75%;
+	margin: 0 auto;
 }
+
 .adminPage .schoolUpload .uploadForm {
-    width: 75%;
-    margin: 0 auto;
-    background: #fff;
-    padding: 15px;
-    border: solid 1px #dcdcdc;
-    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
-    margin-bottom: 4em;
+	width: 75%;
+	margin: 0 auto;
+	background: #fff;
+	padding: 15px;
+	border: solid 1px #dcdcdc;
+	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+	margin-bottom: 4em;
 }
+
 .adminPage .schoolUpload .pageHead {
-    padding: 2em 0em 1em 0em;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: normal;
+	padding: 2em 0em 1em 0em;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: normal;
 }
+
 .adminPage .schoolUpload .speclMargin {
-    margin-top: 14px;
+	margin-top: 14px;
 }
+
 .adminPage footer {
-    text-align: center;
-    line-height: normal;
-    color: #fff;
-    padding: 24px;
-    background: #2F3032;
-    color: #848484;
+	text-align: center;
+	line-height: normal;
+	color: #fff;
+	padding: 24px;
+	background: #2F3032;
+	color: #848484;
 }
+
+.schoolStatus {
+	margin-bottom: 2em;
+}
+
+.schoolStatus .filter .filterText {
+	font-size: 18px;
+}
+
+.schoolStatus .filter .pull-right {
+	background: #fff;
+	padding: 1px 6px;
+	border: 1px solid #ef6249;
+	line-height: normal;
+	margin-top: 5px;
+	border-radius: 12px;
+	font-size: 12px;
+	outline : none;
+}
+
+.schoolStatus table {
+	width: 75%;
+	background: #fff;
+	margin: 0 auto;
+	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+.schoolStatus .pageHead {
+	padding: 2em 0em 1em 0em;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: normal;
+	border-bottom: 1px solid #848484;
+	padding-bottom: 5px;
+}
+
 @media screen and (max-width: 768px) {
-    .adminPage .schoolUpload .uploadForm {
-        width: 95%;
-    }
-    .adminPage .md-nav-bar {
-        width: 95%;
-    }
-    .adminPage .schoolUpload .speclMargin {
-        margin-top: 0;
-    }
+	.adminPage .schoolUpload .uploadForm {
+		width: 95%;
+	}
+	.adminPage .md-nav-bar {
+		width: 95%;
+	}
+	.schoolStatus table {
+		width: 95%;
+		;
+	}
+	.adminPage .schoolUpload .speclMargin {
+		margin-top: 0;
+	}
 }

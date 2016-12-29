@@ -38,11 +38,6 @@ public class User {
 	@NotEmpty
 	private String email;
 	
-	private String phone;
-	
-	@NotNull
-	@Column(name="first_log")
-	private Boolean firstLog;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
@@ -59,16 +54,7 @@ public class User {
 		this.password = user.getPassword();
 		this.roles = user.getRoles();
 		this.email = user.getEmail();
-		this.phone = user.getPhone();
 		this.enabled = user.getEnabled();
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public Integer getId() {
@@ -126,13 +112,4 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-    public Boolean getFirstLog() {
-        return firstLog;
-    }
-
-    public void setFirstLog(Boolean firstLog) {
-        this.firstLog = firstLog;
-    }
-
 }

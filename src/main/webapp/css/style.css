@@ -20,7 +20,6 @@ body {
     background: #fff;
     color: #848484;
     font-weight: 300;
-    overflow-x: hidden;
     background-image: url(../images/RepeatBG.png);
     background-color: #ffffff;
 }
@@ -1642,6 +1641,24 @@ figure {
     height: 100%;
     z-index: 9999;
     background: url(../images/hourglass.svg) center no-repeat #222222;
+}
+.loader {
+    margin-top: 5em;
+    font-size: 24px;
+    line-height: normal;
+}
+.width_app {
+    width: 75%;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .loader {
+        margin-top: 3em;
+        font-size: 18px;
+    }
+    .width_app {
+        width: 95%;
+    }
 }
 
 /*# sourceMappingURL=style.css.map */

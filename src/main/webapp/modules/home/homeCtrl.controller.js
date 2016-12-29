@@ -36,9 +36,10 @@
             }, 200);
         }
 
-        vm.test = function () {
+        vm.viewSchool = function (edDistId) {
             $state.go('app.schoolList', {
-                distId: 2
+                distId: 1,
+                edDistId : edDistId
             });
         }
 

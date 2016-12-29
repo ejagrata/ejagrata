@@ -3,6 +3,7 @@ package org.ejagrata.controller;
 import java.util.List;
 
 import org.ejagrata.beans.SchoolBean;
+import org.ejagrata.entity.School;
 import org.ejagrata.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +17,10 @@ public class SchoolController {
     @Autowired
     private SchoolService schoolService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/school")
-    public SchoolBean saveSchool(SchoolBean schoolBean) throws Exception {
-        return schoolService.saveSchool(schoolBean);
+    @RequestMapping(method = RequestMethod.POST, value = "/school/save")
+    public void saveSchool(SchoolBean schoolBean) throws Exception {
+    	schoolService.saveSchool(schoolBean);
+    	//return  "{success: 'success'}";
     }
 
     @RequestMapping("/school/{schoolId}")
@@ -35,4 +37,16 @@ public class SchoolController {
     public List<SchoolBean> getSchoolByEdDistrict(@PathVariable("districtId") Integer districtId, @PathVariable("edDistrictId") Integer edDistrictId ) {
         return schoolService.getSchoolByEdDistrict(districtId, edDistrictId);
     }
+    
+    @RequestMapping("/school/listAll")
+    public Iterable<School> getAllSchool() {
+        return schoolService.getAllSchool();
+    }
+    
+    @RequestMapping("/school/district/{districtId}/{edDistrictId}/{schoolType}")
+    public List<SchoolBean> getSchoolByType(@PathVariable("districtId") Integer districtId , @PathVariable("edDistrictId") Integer edDistrictId 
+    		,@PathVariable("schoolType") String schoolType) {
+        return schoolService.getSchoolByType(districtId, edDistrictId, schoolType);
+    }
+    
 }

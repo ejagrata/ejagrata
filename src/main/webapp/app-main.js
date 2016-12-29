@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('eJag', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial'])
+        .module('eJag', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ngCookies'])
         .controller('mainController', mainController);
 
     /* ngInject */

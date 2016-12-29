@@ -11,26 +11,24 @@
         init();
 
         function init() {
-            console.log($stateParams.schoolId);
+        	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
+            console.log(vm.schoolDetails);
+            vm.slides = [];
+            if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
+            	var imageList = vm.schoolDetails.schoolDocumentBean;
+            	for (var i=0; i < imageList.length; i++){
+            		vm.slides.push({
+                        image: 'files/' + imageList[i].docId,
+                        id : i
+                    });
+            	}
+            }
             
-            $scope.myInterval = 3000;
+            vm.myInterval = 3000;
             $scope.noWrapSlides = false;
             $scope.active = 0;
-            var slides = $scope.slides = [];
-            var currIndex = 0;
+ 
 
-            $scope.addSlide = function () {
-                slides.push({
-                    image: 'http://www.gstatic.com/webp/gallery/1.jpg',
-                    text: ['Nice image', 'Awesome photograph', 'That is so cool', 'I love that'][slides.length % 4],
-                    id: currIndex++
-                });
-            };
-
-
-            for (var i = 0; i < 4; i++) {
-                $scope.addSlide();
-            }
         }
 
     }

@@ -22,7 +22,7 @@
                 controllerAs: 'vm'
             })
             .state('app.schoolList', {
-                url: 'schoolList/:distId',
+                url: 'schoolList/:distId/:edDistId',
                 templateUrl: 'modules/schoolList/schoolList.html',
                 controller: 'schoolListController',
                 controllerAs: 'vm'
@@ -46,7 +46,7 @@
                 controllerAs: 'vm'
             })
             .state('app.schoolDetail', {
-                url: 'schoolDetail/:schoolId',
+                url: 'schoolDetail/:schoolDetails',
                 templateUrl: 'modules/schoolDetail/schoolDetail.html',
                 controller: 'schoolDetailsController',
                 controllerAs: 'vm'

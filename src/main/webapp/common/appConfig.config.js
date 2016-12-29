@@ -10,7 +10,11 @@
             lang: "en", // app default locale format
             baseURL: '', // app service URL
             requestURL: {
-
+            	authRequest: 'oauth/token', // oauth request
+                schoolSave : 'school/save', // save a school
+                schoolAllList : 'school/listAll',
+                schoolDistList : 'school/district/',
+                schoolDetails : '/school/'
             }
 
         });

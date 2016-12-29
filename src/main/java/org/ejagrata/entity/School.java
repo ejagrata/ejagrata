@@ -50,14 +50,22 @@ public class School {
 	@Column(name="session_status")
 	private String sessionStatus;
 	
+	private String comments;
+	
 	@Column(name="enabled")
 	private Boolean enabled;
 	
 	@Column(name="district_id")
 	private Integer districtId;
 	
+	@Column(name="district_name")
+	private String districtName;
+	
 	@Column(name="educational_district_id")
 	private Integer edDistrictId;
+	
+	@Column(name="educational_district_name")
+	private String edDistrictName;
 
 	public Integer getId() {
 		return id;
@@ -170,5 +178,29 @@ public class School {
     public void setEdDistrictId(Integer edDistrictId) {
         this.edDistrictId = edDistrictId;
     }
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getDistrictName() {
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName;
+	}
+
+	public String getEdDistrictName() {
+		return edDistrictName;
+	}
+
+	public void setEdDistrictName(String edDistrictName) {
+		this.edDistrictName = edDistrictName;
+	}
 
 }
