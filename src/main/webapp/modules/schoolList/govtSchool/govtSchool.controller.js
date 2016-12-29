@@ -11,9 +11,12 @@
 		init();
 
 		function init() {
+			vm.loading = true;
 			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
 			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
-			var schoolType = 2;
+		
+			vm.district = "Ernakulam";
+			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
 			
 			apiService.serviceRequest({
 				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Government',

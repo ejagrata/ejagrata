@@ -1,16 +1,25 @@
+.adminPage {
+	overflow-x:hidden;
+}
 .adminPage .page-heading {
 	height: 75px;
 	padding: 8px 24px;
+	background: rgba(255, 255, 255, 0.64);
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
+.adminPage .page-heading .appName {    
+    font-size: 32px;
+}
 .adminPage md-content {
 	padding: 12px;
+	padding-top: 18px;
 	background: transparent;
 }
 
 .adminPage .md-nav-bar {
 	border: none;
-	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
 	background: #fff;
 	width: 75%;
 	margin: 0 auto;
@@ -27,7 +36,7 @@
 }
 
 .adminPage .schoolUpload .pageHead {
-	padding: 2em 0em 1em 0em;
+	padding: 1em 0em 1em 0em;
 	text-align: center;
 	font-size: 24px;
 	font-weight: 500;
@@ -52,35 +61,30 @@
 }
 
 .schoolStatus .filter .filterText {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .schoolStatus .filter .pull-right {
 	background: #fff;
 	padding: 1px 6px;
 	border: 1px solid #ef6249;
+	color: #ef6249;
 	line-height: normal;
-	margin-top: 5px;
 	border-radius: 12px;
 	font-size: 12px;
-	outline : none;
+	outline: none;
 }
 
-.schoolStatus table {
+.schoolStatus .content-holder {
 	width: 75%;
 	background: #fff;
 	margin: 0 auto;
+	padding: 15px;
 	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
 }
 
-.schoolStatus .pageHead {
-	padding: 2em 0em 1em 0em;
-	text-align: center;
-	font-size: 24px;
-	font-weight: 500;
-	line-height: normal;
-	border-bottom: 1px solid #848484;
-	padding-bottom: 5px;
+.schoolStatus .content-holder table th {
+	background-color: rgba(230, 230, 230, 0.50)
 }
 
 @media screen and (max-width: 768px) {

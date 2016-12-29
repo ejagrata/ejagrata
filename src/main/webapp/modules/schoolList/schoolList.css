@@ -1,14 +1,11 @@
 .schoolList .page-heading a {
 	font-size: 20px;
-	padding-top: 8px;
+	display: inline-block;
+	padding-top: 18px;
 }
 
 .schoolList .page-heading a:hover {
 	font-size: 22px;
-}
-
-.schoolList .page-heading {
-	background: rgba(0, 0, 0, 0.04);
 }
 
 .schoolList .page-heading {
@@ -18,7 +15,7 @@
 
 .schoolList md-content {
 	padding: 12px;
-	background: rgba(0, 0, 0, 0.04);
+	background: transparent;
 }
 
 .schoolList .md-nav-bar {
@@ -35,6 +32,26 @@
 
 .schoolList .schoolImage {
 	height: 240px;
+}
+
+.schoolList .government-school {
+	padding-top: 1em;
+}
+
+.schoolList .props {
+	margin-bottom: 5px;
+	line-height: 20px;
+}
+
+.schoolList .props .category {
+	color: rgba(0, 0, 0, 0.5);
+	display: inline-block;
+	font-size: 12px;	
+    font-weight: 500;
+}
+
+.schoolList .props .value {
+	
 }
 
 @media screen and (max-width: 768px) {

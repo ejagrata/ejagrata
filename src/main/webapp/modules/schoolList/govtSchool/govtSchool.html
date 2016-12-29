@@ -1,30 +1,40 @@
-<div id="fh5co-wrapper">
-    <div id="fh5co-page">    
-        <div id="fh5co-blog-section" class="fh5co-section-gray">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                        <h3>Recent From Blog</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
-                    </div>
-                </div>
+<div class="government-school">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>Government Schools</h3>
+                <p>These are government schools from {{vm.eduDistrict}} in {{vm.district}} District.</p>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool">
-                        <div class="clearfix fh5co-blog animate-box">
-                            <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" alt="">
-                            <div class="blog-text">
-                                <div class="prod-title">
-                                    <h3 style="height: 60px;">{{item.name}}</h3>
-                                    <span class="posted_by">{{item.sessionDate || '--' | date}}</span>
-                                    <!-- <span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span> -->
-                                    <p>Description text goes here Description text goes here Description text goes here Description text goes here.</p>
-                                    <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);">View School</a></div>
-                                </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool">
+                <div class="clearfix fh5co-blog animate-box">
+                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" alt="">
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <h4 style="height: 40px;margin: 0px;">{{item.name}}</h4>
+                            <div class="props">
+                            	<div class="category">Session Date</div>
+                            	<div class="value">{{item.sessionDate || '--' | date}}</div>
                             </div>
+                            <div class="props">
+                            	<div class="category">Teacher Name</div>
+                            	<div class="value">{{item.teacherName}} ({{item.teacherPhone}})</div>
+                            </div>
+                            <div class="props">
+                            	<div class="category">Student Representative</div>
+                            	<div class="value">{{item.studentRepName}}</div>
+                            </div>
+                            <div class="props">
+                            	<div class="category">Session Status</div>
+                            	<div class="value">{{item.sessionStatus}}</div>
+                            </div>
+                            <!-- <span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span> -->                            
+                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);">View School Details</a></div>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>

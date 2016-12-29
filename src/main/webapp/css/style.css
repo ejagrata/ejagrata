@@ -21,7 +21,7 @@ body {
     color: #848484;
     font-weight: 300;
     background-image: url(../images/RepeatBG.png);
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.01);
 }
 html {
     background-color: transparent;
@@ -56,7 +56,6 @@ h6 {
     color: #5a5a5a;
     font-family: "Open Sans", Arial, sans-serif;
     font-weight: 400;
-    margin: 0 0 30px 0;
 }
 figure {
     margin-bottom: 2em;
@@ -294,9 +293,9 @@ figure {
     border: 5px solid transparent;
     border-top-color: #ccc;
 }
-.sf-arrows > li > .sf-with-ul:focus:after,
-.sf-arrows > li:hover > .sf-with-ul:after,
-.sf-arrows > .sfHover > .sf-with-ul:after {
+.sf-arrows>li>.sf-with-ul:focus:after,
+.sf-arrows>li:hover>.sf-with-ul:after,
+.sf-arrows>.sfHover>.sf-with-ul:after {
     border-top-color: #ccc;
 }
 .sf-arrows ul .sf-with-ul:after {
@@ -305,9 +304,9 @@ figure {
     border-color: transparent;
     border-left-color: #ccc;
 }
-.sf-arrows ul li > .sf-with-ul:focus:after,
-.sf-arrows ul li:hover > .sf-with-ul:after,
-.sf-arrows ul .sfHover > .sf-with-ul:after {
+.sf-arrows ul li>.sf-with-ul:focus:after,
+.sf-arrows ul li:hover>.sf-with-ul:after,
+.sf-arrows ul .sfHover>.sf-with-ul:after {
     border-left-color: #ccc;
 }
 #fh5co-header-section {
@@ -359,10 +358,10 @@ figure {
 #fh5co-menu-wrap .sf-menu a {
     padding: 1em .75em;
 }
-#fh5co-primary-menu > li > ul li.active > a {
+#fh5co-primary-menu>li>ul li.active>a {
     color: #ef6249 !important;
 }
-#fh5co-primary-menu > li > .sf-with-ul:after {
+#fh5co-primary-menu>li>.sf-with-ul:after {
     border: none !important;
     font-family: 'icomoon';
     speak: none;
@@ -382,10 +381,10 @@ figure {
     content: "\e922";
     color: rgba(255, 255, 255, 0.5);
 }
-#fh5co-primary-menu > li > ul li {
+#fh5co-primary-menu>li>ul li {
     position: relative;
 }
-#fh5co-primary-menu > li > ul li > .sf-with-ul:after {
+#fh5co-primary-menu>li>ul li>.sf-with-ul:after {
     border: none !important;
     font-family: 'icomoon';
     speak: none;
@@ -419,7 +418,7 @@ figure {
     -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
-#fh5co-primary-menu .fh5co-sub-menu > li > .fh5co-sub-menu {
+#fh5co-primary-menu .fh5co-sub-menu>li>.fh5co-sub-menu {
     left: 100%;
 }
 #fh5co-primary-menu .fh5co-sub-menu:before {
@@ -497,7 +496,7 @@ figure {
 }
 .heading-section {
     padding-bottom: 1em;
-    margin-bottom: 5em;
+    margin-bottom: 1em;
 }
 .heading-section:after {
     position: absolute;
@@ -515,7 +514,10 @@ figure {
     position: relative;
 }
 .heading-section p {
-    font-size: 20px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 0px;
 }
 .services {
     padding: 40px 20px 20px 20px;
@@ -1040,7 +1042,7 @@ figure {
     font-weight: 400;
 }
 .fh5co-blog {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 .fh5co-blog a img {
     width: 100%;
@@ -1055,7 +1057,7 @@ figure {
     position: relative;
     background: #fff;
     width: 100%;
-    padding: 30px;
+    padding: 15px;
     float: right;
     -webkit-box-shadow: 0px 6px 62px -6px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0px 6px 62px -6px rgba(0, 0, 0, 0.3);
@@ -1064,8 +1066,7 @@ figure {
     box-shadow: 0px 6px 62px -6px rgba(0, 0, 0, 0.3);
 }
 .fh5co-blog .blog-text span {
-    display: inline-block;
-    margin-bottom: 20px;
+    display: inline-block;    
 }
 .fh5co-blog .blog-text span.posted_by {
     color: rgba(0, 0, 0, 0.3);
@@ -1083,7 +1084,7 @@ figure {
 }
 .fh5co-blog .blog-text h3 {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-weight: 300;
     line-height: 1.5;
 }
@@ -1120,16 +1121,16 @@ figure {
         height: 200px;
     }
 }
-.fh5co-social-icons > a {
+.fh5co-social-icons>a {
     padding: 4px 10px;
     color: #ef6249;
 }
-.fh5co-social-icons > a i {
+.fh5co-social-icons>a i {
     font-size: 26px;
 }
-.fh5co-social-icons > a:hover,
-.fh5co-social-icons > a:focus,
-.fh5co-social-icons > a:active {
+.fh5co-social-icons>a:hover,
+.fh5co-social-icons>a:focus,
+.fh5co-social-icons>a:active {
     text-decoration: none;
     color: #5a5a5a;
 }
@@ -1394,8 +1395,6 @@ figure {
 #fh5co-wrapper {
     overflow-x: hidden;
     position: relative;
-    background-image: url(../images/RepeatBG.png);
-    background-color: #ffffff;
 }
 .fh5co-offcanvas {
     overflow: hidden;
@@ -1448,11 +1447,11 @@ figure {
 #offcanvas-menu ul li a:hover {
     color: #ef6249;
 }
-#offcanvas-menu ul li > .fh5co-sub-menu {
+#offcanvas-menu ul li>.fh5co-sub-menu {
     margin-top: 9px;
     padding-left: 20px;
 }
-#offcanvas-menu ul li.active > a {
+#offcanvas-menu ul li.active>a {
     color: #ef6249;
 }
 #offcanvas-menu ul .fh5co-sub-menu {
@@ -1643,8 +1642,8 @@ figure {
     background: url(../images/hourglass.svg) center no-repeat #222222;
 }
 .loader {
-    margin-top: 5em;
-    font-size: 24px;
+    margin-top: 10em;
+    font-size: 18px;
     line-height: normal;
 }
 .width_app {
