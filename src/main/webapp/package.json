@@ -21,6 +21,7 @@
     "angular": "latest",
     "angular-animate": "latest",
     "angular-aria": "^1.6.0",
+    "angular-cookies": "^1.6.1",
     "angular-material": "latest",
     "angular-ui-bootstrap": "latest",
     "angular-ui-router": "latest",

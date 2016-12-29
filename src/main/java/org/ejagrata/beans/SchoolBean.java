@@ -18,9 +18,12 @@ public class SchoolBean {
     private String studentRepName;
     private Date sessionDate;
     private String sessionStatus;
+    private String comments;
     private Boolean enabled;
     private Integer districtId;
     private Integer edDistrictId;
+    private String districtName;
+    private String edDistrictName;
     private List<SchoolDocumentBean> schoolDocumentBean;
 
     public Integer getId() {
@@ -142,5 +145,29 @@ public class SchoolBean {
     public void setEdDistrictId(Integer edDistrictId) {
         this.edDistrictId = edDistrictId;
     }
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getDistrictName() {
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName;
+	}
+
+	public String getEdDistrictName() {
+		return edDistrictName;
+	}
+
+	public void setEdDistrictName(String edDistrictName) {
+		this.edDistrictName = edDistrictName;
+	}
 
 }
