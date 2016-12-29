@@ -10,15 +10,18 @@
         return true;
     }
 </script>
-<div class="schoolUpload">
-    <div class="pageHead">
-        School Details Upload
-        <div class="req-indicator">
-            (All fields marked
-            <req>*</req> are mandatory.)
-        </div>
+<div class="schoolUpload row">
+
+    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+        <h3>School Details Upload</h3>
+        <p>
+            <div class="req-indicator">
+                (All fields marked
+                <req>*</req> are mandatory.)
+            </div>
+        </p>
     </div>
-    <form ng-submit="vm.onSave();">
+    <form ng-submit="vm.onSave();" class="col-xs-12">
         <div class="row uploadForm">
             <div class="input-box col-xs-12 col-md-6">
                 <label>School Name
@@ -57,7 +60,7 @@
                 <label>District
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.districtId" required>
+                <select class="form-control" data-ng-model="vm.formData.districtName" required>
                     <option value="">Select District</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.district">{{item.value}}</option>
                 </select>
@@ -66,7 +69,7 @@
                 <label>Educational District
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.edDistrictId" required>
+                <select class="form-control" data-ng-model="vm.formData.educationalDistrictName" required>
                     <option value="">Select Educational District</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
                 </select>
@@ -110,7 +113,7 @@
                 <div class="req-indicator" style="margin-bottom:5px;">
                     (hold <kbd>ctrl</kbd> or <kbd>shift</kbd> to select multiple files)
                 </div>
-                <input type="file" multiple onchange="angular.element(this).scope().vm.FilesSelection(this);"/>
+                <input type="file" multiple onchange="angular.element(this).scope().vm.FilesSelection(this);" />
             </div>
             <div class="input-box col-xs-12">
                 <label>Additional Comments

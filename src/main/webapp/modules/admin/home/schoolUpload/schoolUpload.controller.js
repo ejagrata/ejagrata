@@ -86,8 +86,10 @@
 			fd.append("sessionDate", vm.formData.sessionDate);
 			fd.append("sessionStatus", vm.formData.sessionStatus);
 			fd.append("comments", vm.formData.comments);
-			fd.append("districtId", parseInt(vm.formData.districtId));
-			fd.append("edDistrictId", parseInt(vm.formData.edDistrictId));
+			fd.append("districtId", 1);
+			fd.append("districtName", vm.formData.districtName);
+			fd.append("edDistrictName", vm.formData.educationalDistrictName);
+			fd.append("edDistrictId", vm.formData.educationalDistrictName == "Aluva" ? 1 : (vm.formData.educationalDistrictName == "Ernakulam" ? 2 : (vm.formData.educationalDistrictName == "Kothamangalam" ? 3 : 4)));
 
 			for(var i=0; i < vm.file.length; i++){
 				fd.append("schoolDocumentBean[" + i + "].schoolDocs", vm.file[i]);
