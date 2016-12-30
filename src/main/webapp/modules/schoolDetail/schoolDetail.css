@@ -10,6 +10,48 @@
 
 .schoolDetails .carousel-holder .item .text-center img {
 	max-height: 275px;
-	margin: 5px 0px !important;
+	margin: 15px 0px !important;
 	height: 100%;
+}
+
+.schoolDetails .page-heading {
+	display: table;
+	width: 100%;
+}
+
+.schoolDetails .page-heading .navigation {
+	font-size: 20px;
+	text-decoration: none;
+	color: #ef6249;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+	cursor: pointer;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	outline: none;
+}
+
+.schoolDetails .page-heading .navigation:hover {
+	font-size: 22px;
+}
+
+.schoolDetails .page-heading {
+	height: 75px;
+	padding: 8px 24px;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.2);
+}
+
+.schoolDetails .page-heading .appName {
+	font-size: 32px;
+}
+
+.schoolDetails .schoolInfo {
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
+	margin: 15px auto 30px auto !important;
+	padding: 15px;
+	background-color: #fff;
+	text-align : center;
 }

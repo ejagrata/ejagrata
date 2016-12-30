@@ -8647,27 +8647,12 @@ figure {
     text-align: center;
     color: #fff;
 }
-.adminLogin .loginErr{
-	position: absolute;
+.adminLogin .loginErr {
+    position: absolute;
     right: 0;
     top: 12px;
     color: #ff0000;
     font-weight: bold;
-}
-.schoolDetails .carousel-holder {
-	height: 300px;
-}
-
-.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
-	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
-	{
-	height: 100%;
-}
-
-.schoolDetails .carousel-holder .item .text-center img {
-	max-height: 275px;
-	margin: 5px 0px !important;
-	height: 100%;
 }
 .pop-up {
     display: none;
@@ -8722,169 +8707,216 @@ figure {
     box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, .5);
 }
 
-.schoolList .page-heading a {
-	font-size: 20px;
-	display: inline-block;
-	padding-top: 18px;
-}
-
-.schoolList .page-heading a:hover {
-	font-size: 22px;
-}
-
 .schoolList .page-heading {
-	height: 75px;
-	padding: 8px 24px;
+    display: table;
+    width: 100%;
 }
-
-.schoolList md-content {
-	padding: 12px;
-	background: transparent;
+.schoolList .page-heading a {
+    font-size: 20px;
+    display: inline-block;
+    text-decoration: none;
 }
-
-.schoolList .md-nav-bar {
-	border: none;
-	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
-	background: #fff;
-	width: 75%;
-	margin: 0 auto;
+.schoolList .page-heading a:hover {
+    font-size: 22px;
 }
-
-.schoolList .fh5co-section-gray {
-	padding-top: 4em !important;
+.schoolList .page-heading {
+    height: 75px;
+    padding: 8px 24px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
 }
-
-.schoolList .schoolImage {
-	height: 240px;
-	width : 100%;
-}
-
-.schoolList .government-school {
-	padding-top: 1em;
-}
-
-.schoolList .props {
-	margin-bottom: 5px;
-	line-height: 20px;
-}
-
-.schoolList .props .category {
-	color: rgba(0, 0, 0, 0.5);
-	display: inline-block;
-	font-size: 12px;	
-    font-weight: 500;
-}
-
-.schoolList .props .value {
-	
-}
-
-@media screen and (max-width: 768px) {
-	.schoolList .md-nav-bar {
-		width: 95%;
-	}
-}
-.adminPage {
-	overflow-x:hidden;
-}
-.adminPage .page-heading {
-	height: 75px;
-	padding: 8px 24px;
-	background: rgba(255, 255, 255, 0.64);
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.3);
-}
-
-.adminPage .page-heading .appName {    
+.schoolList .page-heading .appName {
     font-size: 32px;
 }
-.adminPage md-content {
-	padding: 12px;
-	padding-top: 18px;
-	background: transparent;
+.schoolList .page-heading .navigation {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    outline: none;
+}
+.schoolList md-content {
+    padding: 12px;
+    background: transparent;
+}
+.schoolList .md-nav-bar {
+    border: none;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    width: 75%;
+    margin: 0 auto;
+}
+.schoolList .fh5co-section-gray {
+    padding-top: 4em !important;
+}
+.schoolList .schoolImage {
+    height: 240px;
+    width: 100%;
+}
+.schoolList .government-school {
+    padding-top: 1em;
+}
+.schoolList .props {
+    margin-bottom: 5px;
+    line-height: 20px;
+}
+.schoolList .props .category {
+    color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+}
+.schoolList .props .value {}
+@media screen and (max-width: 768px) {
+    .schoolList .md-nav-bar {
+        width: 95%;
+    }
+}
+.schoolDetails .carousel-holder {
+	height: 300px;
 }
 
-.adminPage .md-nav-bar {
-	border: none;
-	box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
-	background: #fff;
-	width: 75%;
-	margin: 0 auto;
+.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
+	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
+	{
+	height: 100%;
 }
 
-.adminPage .schoolUpload .uploadForm {
-	width: 75%;
-	margin: 0 auto;
-	background: #fff;
-	padding: 15px;
-	border: solid 1px #dcdcdc;
-	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
-	margin-bottom: 4em;
+.schoolDetails .carousel-holder .item .text-center img {
+	max-height: 275px;
+	margin: 15px 0px !important;
+	height: 100%;
 }
 
-.adminPage .schoolUpload .pageHead {
-	padding: 1em 0em 1em 0em;
-	text-align: center;
-	font-size: 24px;
-	font-weight: 500;
-	line-height: normal;
+.schoolDetails .page-heading {
+	display: table;
+	width: 100%;
 }
 
-.adminPage .schoolUpload .speclMargin {
-	margin-top: 14px;
-}
-
-.adminPage footer {
-	text-align: center;
-	line-height: normal;
-	color: #fff;
-	padding: 24px;
-	background: #2F3032;
-	color: #848484;
-}
-
-.schoolStatus {
-	margin-bottom: 2em;
-}
-
-.schoolStatus .filter .filterText {
-	font-size: 16px;
-}
-
-.schoolStatus .filter .pull-right {
-	background: #fff;
-	padding: 1px 6px;
-	border: 1px solid #ef6249;
+.schoolDetails .page-heading .navigation {
+	font-size: 20px;
+	text-decoration: none;
 	color: #ef6249;
-	line-height: normal;
-	border-radius: 12px;
-	font-size: 12px;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+	cursor: pointer;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
 	outline: none;
 }
 
-.schoolStatus .content-holder {
-	width: 75%;
-	background: #fff;
-	margin: 0 auto;
+.schoolDetails .page-heading .navigation:hover {
+	font-size: 22px;
+}
+
+.schoolDetails .page-heading {
+	height: 75px;
+	padding: 8px 24px;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.2);
+}
+
+.schoolDetails .page-heading .appName {
+	font-size: 32px;
+}
+
+.schoolDetails .schoolInfo {
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
+	margin: 15px auto 30px auto !important;
 	padding: 15px;
-	box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+	background-color: #fff;
+	text-align : center;
 }
-
+.adminPage {
+    overflow-x: hidden;
+}
+.adminPage .page-heading {
+    height: 75px;
+    padding: 8px 24px;
+    background: rgba(255, 255, 255, 0.64);
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.3);
+}
+.adminPage .page-heading .appName {
+    font-size: 32px;
+}
+.adminPage md-content {
+    padding: 12px;
+    padding-top: 18px;
+    background: transparent;
+}
+.adminPage .md-nav-bar {
+    border: none;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    width: 75%;
+    margin: 0 auto;
+}
+.adminPage .schoolUpload .uploadForm {
+    width: 75%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 15px;
+    border: solid 1px #dcdcdc;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+    margin-bottom: 4em;
+}
+.adminPage .schoolUpload .pageHead {
+    padding: 1em 0em 1em 0em;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+}
+.adminPage .schoolUpload .speclMargin {
+    margin-top: 14px;
+}
+.adminPage footer {
+    text-align: center;
+    line-height: normal;
+    color: #fff;
+    padding: 24px;
+    background: #2F3032;
+    color: #848484;
+}
+.schoolStatus {
+    margin-bottom: 2em;
+}
+.schoolStatus .filter .filterText {
+    font-size: 16px;
+}
+.schoolStatus .filter .pull-right {
+    background: #fff;
+    padding: 1px 6px;
+    border: 1px solid #ef6249;
+    color: #ef6249;
+    line-height: normal;
+    border-radius: 12px;
+    font-size: 12px;
+    outline: none;
+}
+.schoolStatus .content-holder {
+    width: 75%;
+    background: #fff;
+    margin: 0 auto;
+    padding: 15px;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+}
 .schoolStatus .content-holder table th {
-	background-color: rgba(230, 230, 230, 0.50)
+    background-color: rgba(230, 230, 230, 0.50)
 }
-
 @media screen and (max-width: 768px) {
-	.adminPage .schoolUpload .uploadForm {
-		width: 95%;
-	}
-	.adminPage .md-nav-bar {
-		width: 95%;
-	}
-	.schoolStatus table {
-		width: 95%;
-		;
-	}
-	.adminPage .schoolUpload .speclMargin {
-		margin-top: 0;
-	}
+    .adminPage .schoolUpload .uploadForm {
+        width: 95%;
+    }
+    .adminPage .md-nav-bar {
+        width: 95%;
+    }
+    .schoolStatus table {
+        width: 95%;
+        ;
+    }
+    .adminPage .schoolUpload .speclMargin {
+        margin-top: 0;
+    }
 }

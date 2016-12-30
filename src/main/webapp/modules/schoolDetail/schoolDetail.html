@@ -1,9 +1,16 @@
 <div class="schoolDetails">
-	<div class="carousel-holder">
-    <div uib-carousel active="active" interval="vm.myInterval" no-wrap="noWrapSlides">
-        <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="slide.id">
-            <img ng-src="{{slide.image}}" style="margin:auto;">            
-        </div>
+    <div class="page-heading">
+        <span class="pull-left appName">E-Jagratha</span>
+        <span class="navigation" ng-click="vm.goBack();" style="width: 100px;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></i> Back</a> </span>
     </div>
-</div>
+     <div class="schoolInfo width_app">
+    	<h2 style="margin: 0;">{{vm.schoolDetails.name}}</h2>
+    </div>
+    <div class="carousel-holder" ng-hide="vm.noSlide">    	
+        <div uib-carousel active="active" interval="vm.myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="slide.id">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+            </div>
+        </div>
+    </div>       
 </div>

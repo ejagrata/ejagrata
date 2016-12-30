@@ -12,7 +12,7 @@
 
         function init() {
         	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
-            console.log(vm.schoolDetails);
+        	console.log(vm.schoolDetails);
             vm.slides = [];
             if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
             	var imageList = vm.schoolDetails.schoolDocumentBean;
@@ -22,14 +22,19 @@
                         id : i
                     });
             	}
-            }
-            
+            }  else {
+            	vm.noSlide = true;
+            }          
             vm.myInterval = 3000;
             $scope.noWrapSlides = false;
-            $scope.active = 0;
- 
-
-        }
+            $scope.active = 0; 
+        };
+        /**
+         * 
+         */
+        vm.goBack = function (){
+        	window.history.back();
+        };
 
     }
 

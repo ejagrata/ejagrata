@@ -40364,7 +40364,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
         function init() {
         	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
-            console.log(vm.schoolDetails);
+        	console.log(vm.schoolDetails);
             vm.slides = [];
             if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
             	var imageList = vm.schoolDetails.schoolDocumentBean;
@@ -40374,14 +40374,19 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                         id : i
                     });
             	}
-            }
-            
+            }  else {
+            	vm.noSlide = true;
+            }          
             vm.myInterval = 3000;
             $scope.noWrapSlides = false;
-            $scope.active = 0;
- 
-
-        }
+            $scope.active = 0; 
+        };
+        /**
+         * 
+         */
+        vm.goBack = function (){
+        	window.history.back();
+        };
 
     }
 
@@ -40468,6 +40473,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 		function init() {
 			vm.loading = true;
+			vm.loadMsg = "Fetching data... Please wait..";
 			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
 			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
 		
@@ -40493,6 +40499,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 						scale: 0.3,
 						distance: '20px'
 					});
+					vm.loading = false;
 				}, 100);
 				
 			}, function (response) {
@@ -40603,6 +40610,10 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 			vm.formData = {};
 			vm.file = [];
 			vm.fileNames = [];
+			vm.saving = false;
+			
+			if(document.getElementById('file-upload'))
+				document.getElementById('file-upload').value="";
 			// school type list
 			vm.schoolType = [{
 				value: "Aided"
@@ -40651,7 +40662,8 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		 * on save logic
 		 **/
 		vm.onSave = function () {
-
+			vm.saving = true;
+		
 			var fd = new FormData();
 
 			fd.append("name", vm.formData.name);
@@ -40690,7 +40702,11 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 					varInit();
 				});           	
 			}, function (response) {
-
+				apiService.showAlert({
+					text: "Error occured while saving. Try again!!"
+				}, function () {
+					vm.saving = false;
+				}); 				
 			});
 		}
 	}

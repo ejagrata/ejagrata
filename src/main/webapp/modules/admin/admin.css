@@ -65,8 +65,8 @@
     text-align: center;
     color: #fff;
 }
-.adminLogin .loginErr{
-	position: absolute;
+.adminLogin .loginErr {
+    position: absolute;
     right: 0;
     top: 12px;
     color: #ff0000;
