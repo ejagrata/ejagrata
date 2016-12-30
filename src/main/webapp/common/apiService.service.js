@@ -3,7 +3,7 @@
         .module('eJag')
         .service('apiService', apiService);
 
-    function apiService($rootScope, $http, $q, $state, appConfig, $mdDialog) {
+    function apiService($rootScope, $http, $q, $state, appConfig, $mdDialog, $cookies) {
 
         /**
          * function to place http request
@@ -87,5 +87,26 @@
                         callback();
                 });
         };
+        /**
+         * 
+         */
+        this.logoutAction = function (redirectTo){    		
+    		this.serviceRequest({
+    			URL: appConfig.requestURL.logout    		
+    		}, function (response) {
+    			cleanupLoginSettings();
+    		}, function (response) {
+    			cleanupLoginSettings();
+    		});    	
+    		function cleanupLoginSettings(){
+    			// removes all cookies
+    			var cookies = $cookies.getAll();
+    			angular.forEach(cookies, function (value, key) {
+    				$cookies.remove(key);
+    			});    			
+    			delete $http.defaults.headers.common.Authorization;  // clears Authorization header    			
+    			$state.go('admin'); // route to the specified page    		
+    		}
+    	};
     }
 })();

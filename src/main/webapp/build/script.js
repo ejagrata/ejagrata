@@ -40239,57 +40239,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
-	"use strict";
-
-	angular
-	.module('eJag')
-	.controller('adminController', adminController);
-
-	/* ngInject */
-	function adminController($scope, $state, $stateParams, appConfig, apiService, $http, $cookies) {
-		var vm = this;
-		init();
-
-		function init() {
-			vm.logging = false;
-		}
-		/**
-		 *
-		 **/
-		 vm.login = function () {
-			// $state.go('adminHome'); // route to the home page
-			// return;
-			 vm.logging = true;
-			 apiService.serviceRequest({
-				 method : 'POST',
-				 URL : appConfig.requestURL.authRequest + '?password='+ vm.formData.password +'&username='+ vm.formData.username +'&grant_type=password&scope=read%20write&client_secret=ejagrata123456&client_id=ejagrataapp',
-				 headers : {
-					 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
-					 'Authorization' : 'Basic ZWphZ3JhdGFhcHA6ZWphZ3JhdGExMjM0NTY='
-				 },
-				 errorMsg : 'Unable to Authenticate. Try Again!'
-			 }, function (success){					 
-				 $http.defaults.headers.common.Authorization = 'Bearer ' + success.access_token; // sets the access token for all http request
-				 $cookies.put('access_token', success.access_token); // sets the access_token values to the cookies
-				 // login service
-				 apiService.serviceRequest({
-					 URL : 'user/whoami'
-				 }, function (userData) {
-					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
-					 $state.go('adminHome'); // route to the home page
-				 }, function fail(fail){
-					 vm.formData = {}; // clears the login form data
-					 vm.logging = false; // turns the flag off for logginIn
-				 });			
-			 }, function fail(fail){
-				 vm.logging = false; // turns the flag off for logginIn
-				 vm.formData = {}; // clears the login form data							
-			 });			 
-		 }
-	}
-
-})();
-(function () {
     "use strict";
 
     angular
@@ -40347,6 +40296,88 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('schoolListController', schoolListController);
+
+	/* ngInject */
+	function schoolListController($scope, $state, $stateParams) {
+		var vm = this;
+		init();
+
+		function init() {          	
+			vm.currentDist = $stateParams.distId;
+			vm.currentEdDist = $stateParams.edDistId; 
+			
+			if ($state.current.name == "app.schoolList.aided") {
+				vm.currentNavItem = "app.schoolList.aided";
+				$state.go("app.schoolList.aided");
+			} else if ($state.current.name == "app.schoolList.unaided") {
+				vm.currentNavItem = "app.schoolList.unaided";
+				$state.go("app.schoolList.unaided");
+			} else {
+				vm.currentNavItem = "app.schoolList.govt";
+				$state.go("app.schoolList.govt", true);
+			} 
+		}
+
+	}
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('adminController', adminController);
+
+	/* ngInject */
+	function adminController($scope, $state, $stateParams, appConfig, apiService, $http, $cookies) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.logging = false;
+		}
+		/**
+		 *
+		 **/
+		 vm.login = function () {
+			// $state.go('adminHome'); // route to the home page
+			// return;
+			 vm.logging = true;
+			 apiService.serviceRequest({
+				 method : 'POST',
+				 URL : appConfig.requestURL.authRequest + '?password='+ vm.formData.password +'&username='+ vm.formData.username +'&grant_type=password&scope=read%20write&client_secret=ejagrata123456&client_id=ejagrataapp',
+				 headers : {
+					 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
+					 'Authorization' : 'Basic ZWphZ3JhdGFhcHA6ZWphZ3JhdGExMjM0NTY='
+				 },
+				 errorMsg : 'Unable to Authenticate. Try Again!'
+			 }, function (success){					 
+				 $http.defaults.headers.common.Authorization = 'Bearer ' + success.access_token; // sets the access token for all http request
+				 $cookies.put('access_token', success.access_token); // sets the access_token values to the cookies
+				 // login service
+				 apiService.serviceRequest({
+					 URL : 'user/whoami'
+				 }, function (userData) {
+					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
+					 $state.go('adminHome'); // route to the home page
+				 }, function fail(fail){
+					 vm.formData = {}; // clears the login form data
+					 vm.logging = false; // turns the flag off for logginIn
+				 });			
+			 }, function fail(fail){
+				 vm.logging = false; // turns the flag off for logginIn
+				 vm.formData = {}; // clears the login form data							
+			 });			 
+		 }
+	}
+
+})();
+(function () {
     "use strict";
 
     angular
@@ -40387,68 +40418,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 	angular
 	.module('eJag')
-	.controller('schoolListController', schoolListController);
-
-	/* ngInject */
-	function schoolListController($scope, $state, $stateParams) {
-		var vm = this;
-		init();
-
-		function init() {          	
-			vm.currentDist = $stateParams.distId;
-			vm.currentEdDist = $stateParams.edDistId; 
-			
-			if ($state.current.name == "app.schoolList.aided") {
-				vm.currentNavItem = "app.schoolList.aided";
-				$state.go("app.schoolList.aided");
-			} else if ($state.current.name == "app.schoolList.unaided") {
-				vm.currentNavItem = "app.schoolList.unaided";
-				$state.go("app.schoolList.unaided");
-			} else {
-				vm.currentNavItem = "app.schoolList.govt";
-				$state.go("app.schoolList.govt", true);
-			} 
-		}
-
-	}
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('adminHomeController', adminHomeController);
-
-    /* ngInject */
-    function adminHomeController($scope, $state) {
-        var vm = this;
-        init();
-
-        function init() {
-            if ($state.current.name == "adminHome.schoolUpload") {
-                vm.currentNavItem = "adminHome.schoolUpload";
-                $state.go("adminHome.schoolUpload");
-            } else {
-                vm.currentNavItem = "adminHome.schoolStatus";
-                $state.go("adminHome.schoolStatus");
-            }
-        }
-        /**
-         *
-         **/
-        vm.logout = function () {            
-            $state.go('admin');
-        }
-
-    }
-
-})();
-(function () {
-	"use strict";
-
-	angular
-	.module('eJag')
 	.controller('govtSchoolController', govtSchoolController);
 
 	/* ngInject */
@@ -40472,8 +40441,8 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 				for (var i=0; i<vm.govtSchool.length; i++){
 					vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
 					'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
-				}
-				
+				};
+		
 				$timeout(function (){
 					// reaveal these elements when scoll happens            
 					window.sr = ScrollReveal();
@@ -40499,6 +40468,43 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		}
 
 	}
+
+})();
+(function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('adminHomeController', adminHomeController);
+
+    /* ngInject */
+    function adminHomeController($scope, $state, apiService, $cookies, $http) {
+        var vm = this;
+        init();
+
+        function init() {
+        	if ($cookies.get('userName')) {			
+				 $http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get('access_token'); // sets the access	token for all http request
+			 } else {
+				 $state.go('admin');
+				 return;
+			 }
+            if ($state.current.name == "adminHome.schoolUpload") {
+                vm.currentNavItem = "adminHome.schoolUpload";
+                $state.go("adminHome.schoolUpload");
+            } else {
+                vm.currentNavItem = "adminHome.schoolStatus";
+                $state.go("adminHome.schoolStatus");
+            }
+        }
+        /**
+         *
+         **/
+        vm.logout = function () {            
+        	apiService.logoutAction();
+        }
+
+    }
 
 })();
 (function () {
@@ -40691,7 +40697,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         .module('eJag')
         .service('apiService', apiService);
 
-    function apiService($rootScope, $http, $q, $state, appConfig, $mdDialog) {
+    function apiService($rootScope, $http, $q, $state, appConfig, $mdDialog, $cookies) {
 
         /**
          * function to place http request
@@ -40775,6 +40781,27 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                         callback();
                 });
         };
+        /**
+         * 
+         */
+        this.logoutAction = function (redirectTo){    		
+    		this.serviceRequest({
+    			URL: appConfig.requestURL.logout    		
+    		}, function (response) {
+    			cleanupLoginSettings();
+    		}, function (response) {
+    			cleanupLoginSettings();
+    		});    	
+    		function cleanupLoginSettings(){
+    			// removes all cookies
+    			var cookies = $cookies.getAll();
+    			angular.forEach(cookies, function (value, key) {
+    				$cookies.remove(key);
+    			});    			
+    			delete $http.defaults.headers.common.Authorization;  // clears Authorization header    			
+    			$state.go('admin'); // route to the specified page    		
+    		}
+    	};
     }
 })();
 //set global configuration of application and it can be accessed by injecting appConstants in any modules
@@ -40793,7 +40820,8 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 schoolSave : 'school/save', // save a school
                 schoolAllList : 'school/listAll',
                 schoolDistList : 'school/district/',
-                schoolDetails : '/school/'
+                schoolDetails : '/school/',
+                logout : 'logout' // logout service
             }
 
         });
