@@ -40239,6 +40239,61 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('adminController', adminController);
+
+	/* ngInject */
+	function adminController($scope, $state, $stateParams, appConfig, apiService, $http, $cookies) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.logging = false;
+			vm.loginErr = false;
+		}
+		/**
+		 *
+		 **/
+		 vm.login = function () {
+			// $state.go('adminHome'); // route to the home page
+			// return;
+			 vm.logging = true;
+			 apiService.serviceRequest({
+				 method : 'POST',
+				 URL : appConfig.requestURL.authRequest + '?password='+ vm.formData.password +'&username='+ vm.formData.username +'&grant_type=password&scope=read%20write&client_secret=ejagrata123456&client_id=ejagrataapp',
+				 headers : {
+					 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
+					 'Authorization' : 'Basic ZWphZ3JhdGFhcHA6ZWphZ3JhdGExMjM0NTY='
+				 },
+				 errorMsg : 'Unable to Authenticate. Try Again!'
+			 }, function (success){					 
+				 $http.defaults.headers.common.Authorization = 'Bearer ' + success.access_token; // sets the access token for all http request
+				 $cookies.put('access_token', success.access_token); // sets the access_token values to the cookies
+				 // login service
+				 apiService.serviceRequest({
+					 URL : 'user/whoami'
+				 }, function (userData) {
+					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
+					 $state.go('adminHome'); // route to the home page
+					 vm.loginErr = false;
+				 }, function fail(fail){
+					 vm.formData = {}; // clears the login form data
+					 vm.logging = false; // turns the flag off for logginIn
+					 vm.loginErr = true;
+				 });			
+			 }, function fail(fail){
+				 vm.logging = false; // turns the flag off for logginIn
+				 vm.loginErr = true;
+				 vm.formData = {}; // clears the login form data							
+			 });			 
+		 }
+	}
+
+})();
+(function () {
     "use strict";
 
     angular
@@ -40296,6 +40351,42 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('schoolDetailsController', schoolDetailsController);
+
+    /* ngInject */
+    function schoolDetailsController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {
+        	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
+            console.log(vm.schoolDetails);
+            vm.slides = [];
+            if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
+            	var imageList = vm.schoolDetails.schoolDocumentBean;
+            	for (var i=0; i < imageList.length; i++){
+            		vm.slides.push({
+                        image: 'files/' + imageList[i].docId,
+                        id : i
+                    });
+            	}
+            }
+            
+            vm.myInterval = 3000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0;
+ 
+
+        }
+
+    }
+
+})();
+(function () {
 	"use strict";
 
 	angular
@@ -40327,87 +40418,37 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
-	"use strict";
-
-	angular
-	.module('eJag')
-	.controller('adminController', adminController);
-
-	/* ngInject */
-	function adminController($scope, $state, $stateParams, appConfig, apiService, $http, $cookies) {
-		var vm = this;
-		init();
-
-		function init() {
-			vm.logging = false;
-		}
-		/**
-		 *
-		 **/
-		 vm.login = function () {
-			// $state.go('adminHome'); // route to the home page
-			// return;
-			 vm.logging = true;
-			 apiService.serviceRequest({
-				 method : 'POST',
-				 URL : appConfig.requestURL.authRequest + '?password='+ vm.formData.password +'&username='+ vm.formData.username +'&grant_type=password&scope=read%20write&client_secret=ejagrata123456&client_id=ejagrataapp',
-				 headers : {
-					 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
-					 'Authorization' : 'Basic ZWphZ3JhdGFhcHA6ZWphZ3JhdGExMjM0NTY='
-				 },
-				 errorMsg : 'Unable to Authenticate. Try Again!'
-			 }, function (success){					 
-				 $http.defaults.headers.common.Authorization = 'Bearer ' + success.access_token; // sets the access token for all http request
-				 $cookies.put('access_token', success.access_token); // sets the access_token values to the cookies
-				 // login service
-				 apiService.serviceRequest({
-					 URL : 'user/whoami'
-				 }, function (userData) {
-					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
-					 $state.go('adminHome'); // route to the home page
-				 }, function fail(fail){
-					 vm.formData = {}; // clears the login form data
-					 vm.logging = false; // turns the flag off for logginIn
-				 });			
-			 }, function fail(fail){
-				 vm.logging = false; // turns the flag off for logginIn
-				 vm.formData = {}; // clears the login form data							
-			 });			 
-		 }
-	}
-
-})();
-(function () {
     "use strict";
 
     angular
         .module('eJag')
-        .controller('schoolDetailsController', schoolDetailsController);
+        .controller('adminHomeController', adminHomeController);
 
     /* ngInject */
-    function schoolDetailsController($scope, $state, $stateParams) {
+    function adminHomeController($scope, $state, apiService, $cookies, $http) {
         var vm = this;
         init();
 
         function init() {
-        	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
-            console.log(vm.schoolDetails);
-            vm.slides = [];
-            if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
-            	var imageList = vm.schoolDetails.schoolDocumentBean;
-            	for (var i=0; i < imageList.length; i++){
-            		vm.slides.push({
-                        image: 'files/' + imageList[i].docId,
-                        id : i
-                    });
-            	}
+        	if ($cookies.get('userName')) {			
+				 $http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get('access_token'); // sets the access	token for all http request
+			 } else {
+				 $state.go('admin');
+				 return;
+			 }
+            if ($state.current.name == "adminHome.schoolUpload") {
+                vm.currentNavItem = "adminHome.schoolUpload";
+                $state.go("adminHome.schoolUpload");
+            } else {
+                vm.currentNavItem = "adminHome.schoolStatus";
+                $state.go("adminHome.schoolStatus");
             }
-            
-            vm.myInterval = 3000;
-            $scope.noWrapSlides = false;
-            $scope.active = 0;
- 
-
+        }
+        /**
+         *
+         **/
+        vm.logout = function () {            
+        	apiService.logoutAction();
         }
 
     }
@@ -40468,43 +40509,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		}
 
 	}
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('adminHomeController', adminHomeController);
-
-    /* ngInject */
-    function adminHomeController($scope, $state, apiService, $cookies, $http) {
-        var vm = this;
-        init();
-
-        function init() {
-        	if ($cookies.get('userName')) {			
-				 $http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get('access_token'); // sets the access	token for all http request
-			 } else {
-				 $state.go('admin');
-				 return;
-			 }
-            if ($state.current.name == "adminHome.schoolUpload") {
-                vm.currentNavItem = "adminHome.schoolUpload";
-                $state.go("adminHome.schoolUpload");
-            } else {
-                vm.currentNavItem = "adminHome.schoolStatus";
-                $state.go("adminHome.schoolStatus");
-            }
-        }
-        /**
-         *
-         **/
-        vm.logout = function () {            
-        	apiService.logoutAction();
-        }
-
-    }
 
 })();
 (function () {

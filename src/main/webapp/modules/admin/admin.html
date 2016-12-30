@@ -20,12 +20,17 @@
                 <input type="password" ng-model="vm.formData.password" required maxlength="10" placeholder="Enter password" />
             </div>
             <div class="col-xs-12 text-center">
-                <button type="submit" class="btn btn-success" style="margin-right: 8px;" ng-hide="vm.logging">
+                <span data-ng-hide="vm.logging">
+                	<button type="submit" class="btn btn-success" style="margin-right: 8px;">
                     Login
-                </button>
+                	</button>                	
+                </span>
+                <span class="loginErr" ng-show="vm.loginErr">
+                	Login Error. Try again!
+                </span>
                 <span data-ng-show="vm.logging">
                     <i class="fa fa-refresh fa-spin" aria-hidden="true" style="font-size: 28px;" data-ng-show="vm.logging"></i>
-                </span>
+                </span>                
             </div>
         </form>
     </section>

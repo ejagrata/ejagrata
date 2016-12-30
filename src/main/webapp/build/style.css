@@ -8647,6 +8647,28 @@ figure {
     text-align: center;
     color: #fff;
 }
+.adminLogin .loginErr{
+	position: absolute;
+    right: 0;
+    top: 12px;
+    color: #ff0000;
+    font-weight: bold;
+}
+.schoolDetails .carousel-holder {
+	height: 300px;
+}
+
+.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
+	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
+	{
+	height: 100%;
+}
+
+.schoolDetails .carousel-holder .item .text-center img {
+	max-height: 275px;
+	margin: 5px 0px !important;
+	height: 100%;
+}
 .pop-up {
     display: none;
     position: fixed;
@@ -8761,21 +8783,6 @@ figure {
 	.schoolList .md-nav-bar {
 		width: 95%;
 	}
-}
-.schoolDetails .carousel-holder {
-	height: 300px;
-}
-
-.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
-	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
-	{
-	height: 100%;
-}
-
-.schoolDetails .carousel-holder .item .text-center img {
-	max-height: 275px;
-	margin: 5px 0px !important;
-	height: 100%;
 }
 .adminPage {
 	overflow-x:hidden;
