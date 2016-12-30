@@ -12,6 +12,7 @@
 
 		function init() {
 			vm.logging = false;
+			vm.loginErr = false;
 		}
 		/**
 		 *
@@ -37,12 +38,15 @@
 				 }, function (userData) {
 					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
 					 $state.go('adminHome'); // route to the home page
+					 vm.loginErr = false;
 				 }, function fail(fail){
 					 vm.formData = {}; // clears the login form data
 					 vm.logging = false; // turns the flag off for logginIn
+					 vm.loginErr = true;
 				 });			
 			 }, function fail(fail){
 				 vm.logging = false; // turns the flag off for logginIn
+				 vm.loginErr = true;
 				 vm.formData = {}; // clears the login form data							
 			 });			 
 		 }

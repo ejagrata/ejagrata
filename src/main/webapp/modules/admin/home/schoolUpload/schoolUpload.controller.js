@@ -24,6 +24,10 @@
 			vm.formData = {};
 			vm.file = [];
 			vm.fileNames = [];
+			vm.saving = false;
+			
+			if(document.getElementById('file-upload'))
+				document.getElementById('file-upload').value="";
 			// school type list
 			vm.schoolType = [{
 				value: "Aided"
@@ -72,7 +76,8 @@
 		 * on save logic
 		 **/
 		vm.onSave = function () {
-
+			vm.saving = true;
+		
 			var fd = new FormData();
 
 			fd.append("name", vm.formData.name);
@@ -111,7 +116,11 @@
 					varInit();
 				});           	
 			}, function (response) {
-
+				apiService.showAlert({
+					text: "Error occured while saving. Try again!!"
+				}, function () {
+					vm.saving = false;
+				}); 				
 			});
 		}
 	}

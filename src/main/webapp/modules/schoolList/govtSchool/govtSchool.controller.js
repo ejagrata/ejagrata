@@ -12,6 +12,7 @@
 
 		function init() {
 			vm.loading = true;
+			vm.loadMsg = "Fetching data... Please wait..";
 			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
 			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
 		
@@ -37,6 +38,7 @@
 						scale: 0.3,
 						distance: '20px'
 					});
+					vm.loading = false;
 				}, 100);
 				
 			}, function (response) {

@@ -71,15 +71,16 @@ public class OAuth2ServerConfiguration {
 
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
+			// @formatter:off			
 			http
 				.authorizeRequests()
-					//.antMatchers("/shcool").hasRole("ADMIN")
-					.antMatchers("/shcool").permitAll()
-					.antMatchers("/user/login").permitAll()
-					
-					.and().logout().logoutSuccessHandler(customLogoutSuccessHandler)
-					.permitAll();
+				.antMatchers("/school/save").hasRole("ADMIN")
+				.antMatchers("/school/**").permitAll()
+				.antMatchers("/user/login").permitAll()
+				.antMatchers("/user/whoami").authenticated()
+				.antMatchers("/files/**").permitAll()
+				.and().logout().logoutSuccessHandler(customLogoutSuccessHandler)
+				.permitAll();
 			// @formatter:on
 			
 			http.csrf().disable();

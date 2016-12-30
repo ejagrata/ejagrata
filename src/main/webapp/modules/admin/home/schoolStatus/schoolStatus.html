@@ -29,6 +29,7 @@
             </div>
             <div class="col-xs-12 filter" style="padding: 6px 0px;    font-size: 12px;">
                 <i class="pull-left">(apply filters to sort the list.)</i>
+                <span style="padding-left: 5px;font-weight: bold;">List count : {{(vm.schoolList|filter:search).length}}</span>
                 <span class="pull-right" ng-click="search = {};" ng-show="search.districtName || search.name || search.edDistrictName || search.sessionStatus"> Clear Filters</span>
             </div>
             <table class="table table-bordered" style="margin-bottom: 0px;margin-top: 10px;">
@@ -41,7 +42,7 @@
                     <td class="col-xs-3">{{school.name}}</td>
                     <td class="col-xs-2">{{school.districtName}}</td>
                     <td class="col-xs-3">{{school.edDistrictName}}</td>
-                    <td class="col-xs-2">{{school.sessionDate | date}}</td>
+                    <td class="col-xs-2">{{school.sessionDate || '--' | date}}</td>
                     <td class="col-xs-2">{{school.sessionStatus}}</td>
                 </tr>
                 <tr ng-show="(vm.schoolList | filter:search).length == 0">

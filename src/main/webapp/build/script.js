@@ -40239,6 +40239,61 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('adminController', adminController);
+
+	/* ngInject */
+	function adminController($scope, $state, $stateParams, appConfig, apiService, $http, $cookies) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.logging = false;
+			vm.loginErr = false;
+		}
+		/**
+		 *
+		 **/
+		 vm.login = function () {
+			// $state.go('adminHome'); // route to the home page
+			// return;
+			 vm.logging = true;
+			 apiService.serviceRequest({
+				 method : 'POST',
+				 URL : appConfig.requestURL.authRequest + '?password='+ vm.formData.password +'&username='+ vm.formData.username +'&grant_type=password&scope=read%20write&client_secret=ejagrata123456&client_id=ejagrataapp',
+				 headers : {
+					 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
+					 'Authorization' : 'Basic ZWphZ3JhdGFhcHA6ZWphZ3JhdGExMjM0NTY='
+				 },
+				 errorMsg : 'Unable to Authenticate. Try Again!'
+			 }, function (success){					 
+				 $http.defaults.headers.common.Authorization = 'Bearer ' + success.access_token; // sets the access token for all http request
+				 $cookies.put('access_token', success.access_token); // sets the access_token values to the cookies
+				 // login service
+				 apiService.serviceRequest({
+					 URL : 'user/whoami'
+				 }, function (userData) {
+					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
+					 $state.go('adminHome'); // route to the home page
+					 vm.loginErr = false;
+				 }, function fail(fail){
+					 vm.formData = {}; // clears the login form data
+					 vm.logging = false; // turns the flag off for logginIn
+					 vm.loginErr = true;
+				 });			
+			 }, function fail(fail){
+				 vm.logging = false; // turns the flag off for logginIn
+				 vm.loginErr = true;
+				 vm.formData = {}; // clears the login form data							
+			 });			 
+		 }
+	}
+
+})();
+(function () {
     "use strict";
 
     angular
@@ -40296,6 +40351,47 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
+    "use strict";
+
+    angular
+        .module('eJag')
+        .controller('schoolDetailsController', schoolDetailsController);
+
+    /* ngInject */
+    function schoolDetailsController($scope, $state, $stateParams) {
+        var vm = this;
+        init();
+
+        function init() {
+        	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
+        	console.log(vm.schoolDetails);
+            vm.slides = [];
+            if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
+            	var imageList = vm.schoolDetails.schoolDocumentBean;
+            	for (var i=0; i < imageList.length; i++){
+            		vm.slides.push({
+                        image: 'files/' + imageList[i].docId,
+                        id : i
+                    });
+            	}
+            }  else {
+            	vm.noSlide = true;
+            }          
+            vm.myInterval = 3000;
+            $scope.noWrapSlides = false;
+            $scope.active = 0; 
+        };
+        /**
+         * 
+         */
+        vm.goBack = function (){
+        	window.history.back();
+        };
+
+    }
+
+})();
+(function () {
 	"use strict";
 
 	angular
@@ -40321,150 +40417,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 				vm.currentNavItem = "app.schoolList.govt";
 				$state.go("app.schoolList.govt", true);
 			} 
-		}
-
-	}
-
-})();
-(function () {
-	"use strict";
-
-	angular
-	.module('eJag')
-	.controller('adminController', adminController);
-
-	/* ngInject */
-	function adminController($scope, $state, $stateParams, appConfig, apiService, $http, $cookies) {
-		var vm = this;
-		init();
-
-		function init() {
-			vm.logging = false;
-		}
-		/**
-		 *
-		 **/
-		 vm.login = function () {
-			// $state.go('adminHome'); // route to the home page
-			// return;
-			 vm.logging = true;
-			 apiService.serviceRequest({
-				 method : 'POST',
-				 URL : appConfig.requestURL.authRequest + '?password='+ vm.formData.password +'&username='+ vm.formData.username +'&grant_type=password&scope=read%20write&client_secret=ejagrata123456&client_id=ejagrataapp',
-				 headers : {
-					 'Content-Type' : 'application/x-www-form-urlencoded; charset=utf-8',
-					 'Authorization' : 'Basic ZWphZ3JhdGFhcHA6ZWphZ3JhdGExMjM0NTY='
-				 },
-				 errorMsg : 'Unable to Authenticate. Try Again!'
-			 }, function (success){					 
-				 $http.defaults.headers.common.Authorization = 'Bearer ' + success.access_token; // sets the access token for all http request
-				 $cookies.put('access_token', success.access_token); // sets the access_token values to the cookies
-				 // login service
-				 apiService.serviceRequest({
-					 URL : 'user/whoami'
-				 }, function (userData) {
-					 $cookies.put('userName', vm.formData.username);  // sets the userName values to the cookies				
-					 $state.go('adminHome'); // route to the home page
-				 }, function fail(fail){
-					 vm.formData = {}; // clears the login form data
-					 vm.logging = false; // turns the flag off for logginIn
-				 });			
-			 }, function fail(fail){
-				 vm.logging = false; // turns the flag off for logginIn
-				 vm.formData = {}; // clears the login form data							
-			 });			 
-		 }
-	}
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('schoolDetailsController', schoolDetailsController);
-
-    /* ngInject */
-    function schoolDetailsController($scope, $state, $stateParams) {
-        var vm = this;
-        init();
-
-        function init() {
-        	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
-            console.log(vm.schoolDetails);
-            vm.slides = [];
-            if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
-            	var imageList = vm.schoolDetails.schoolDocumentBean;
-            	for (var i=0; i < imageList.length; i++){
-            		vm.slides.push({
-                        image: 'files/' + imageList[i].docId,
-                        id : i
-                    });
-            	}
-            }
-            
-            vm.myInterval = 3000;
-            $scope.noWrapSlides = false;
-            $scope.active = 0;
- 
-
-        }
-
-    }
-
-})();
-(function () {
-	"use strict";
-
-	angular
-	.module('eJag')
-	.controller('govtSchoolController', govtSchoolController);
-
-	/* ngInject */
-	function govtSchoolController($scope, $state, appConfig, apiService, $timeout) {
-		var vm = this;
-		init();
-
-		function init() {
-			vm.loading = true;
-			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
-			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
-		
-			vm.district = "Ernakulam";
-			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
-			
-			apiService.serviceRequest({
-				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Government',
-				hideErrMsg: true				
-			}, function (response) {							
-				vm.govtSchool = response;
-				for (var i=0; i<vm.govtSchool.length; i++){
-					vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
-					'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
-				};
-		
-				$timeout(function (){
-					// reaveal these elements when scoll happens            
-					window.sr = ScrollReveal();
-					// for app title
-					sr.reveal('.sr-listImg', {
-						duration: 1000,
-						scale: 0.3,
-						distance: '20px'
-					});
-				}, 100);
-				
-			}, function (response) {
-
-			});             
-		}
-		/**
-		 * 
-		 */
-		vm.gotoSchool = function (item) {			
-			$state.go('app.schoolDetail', {
-				schoolDetails: JSON.stringify(item)
-			});
 		}
 
 	}
@@ -40505,6 +40457,65 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         }
 
     }
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('govtSchoolController', govtSchoolController);
+
+	/* ngInject */
+	function govtSchoolController($scope, $state, appConfig, apiService, $timeout) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.loading = true;
+			vm.loadMsg = "Fetching data... Please wait..";
+			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
+			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
+		
+			vm.district = "Ernakulam";
+			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
+			
+			apiService.serviceRequest({
+				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Government',
+				hideErrMsg: true				
+			}, function (response) {							
+				vm.govtSchool = response;
+				for (var i=0; i<vm.govtSchool.length; i++){
+					vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
+					'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
+				};
+		
+				$timeout(function (){
+					// reaveal these elements when scoll happens            
+					window.sr = ScrollReveal();
+					// for app title
+					sr.reveal('.sr-listImg', {
+						duration: 1000,
+						scale: 0.3,
+						distance: '20px'
+					});
+					vm.loading = false;
+				}, 100);
+				
+			}, function (response) {
+
+			});             
+		}
+		/**
+		 * 
+		 */
+		vm.gotoSchool = function (item) {			
+			$state.go('app.schoolDetail', {
+				schoolDetails: JSON.stringify(item)
+			});
+		}
+
+	}
 
 })();
 (function () {
@@ -40599,6 +40610,10 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 			vm.formData = {};
 			vm.file = [];
 			vm.fileNames = [];
+			vm.saving = false;
+			
+			if(document.getElementById('file-upload'))
+				document.getElementById('file-upload').value="";
 			// school type list
 			vm.schoolType = [{
 				value: "Aided"
@@ -40647,7 +40662,8 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		 * on save logic
 		 **/
 		vm.onSave = function () {
-
+			vm.saving = true;
+		
 			var fd = new FormData();
 
 			fd.append("name", vm.formData.name);
@@ -40686,7 +40702,11 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 					varInit();
 				});           	
 			}, function (response) {
-
+				apiService.showAlert({
+					text: "Error occured while saving. Try again!!"
+				}, function () {
+					vm.saving = false;
+				}); 				
 			});
 		}
 	}

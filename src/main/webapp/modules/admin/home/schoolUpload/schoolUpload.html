@@ -27,25 +27,25 @@
                 <label>School Name
                     <req>*</req>
                 </label>
-                <input type="text" ng-model="vm.formData.name" required maxlength="50" placeholder="Enter School Name" />
+                <input type="text" ng-model="vm.formData.name" required maxlength="50" placeholder="Enter School Name" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>School Code
                     <req>*</req>
                 </label>
-                <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.schoolCode" required maxlength="10" placeholder="Enter School Code" />
+                <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.schoolCode" required maxlength="10" placeholder="Enter School Code" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>School Contact Number
                     <req>*</req>
                 </label>
-                <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.phone" required maxlength="10" placeholder="Enter School Contact" />
+                <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.phone" required maxlength="10" placeholder="Enter School Contact" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>School Type
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.schoolType" required>
+                <select class="form-control" data-ng-model="vm.formData.schoolType" required ng-disabled="vm.saving">
                     <option value="">Select School Type</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.schoolType">{{item.value}}</option>
                 </select>
@@ -54,13 +54,13 @@
                 <label>Address
                     <req>*</req>
                 </label>
-                <input type="text" ng-model="vm.formData.address" required maxlength="100" placeholder="Enter School Address" />
+                <input type="text" ng-model="vm.formData.address" required maxlength="100" placeholder="Enter School Address" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>District
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.districtName" required>
+                <select class="form-control" data-ng-model="vm.formData.districtName" required ng-disabled="vm.saving">
                     <option value="">Select District</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.district">{{item.value}}</option>
                 </select>
@@ -69,7 +69,7 @@
                 <label>Educational District
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.educationalDistrictName" required>
+                <select class="form-control" data-ng-model="vm.formData.educationalDistrictName" required ng-disabled="vm.saving">
                     <option value="">Select Educational District</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
                 </select>
@@ -78,25 +78,25 @@
                 <label>Teacher Name
                     <req>*</req>
                 </label>
-                <input type="text" ng-model="vm.formData.teacherName" required maxlength="25" placeholder="Enter Teacher Name" />
+                <input type="text" ng-model="vm.formData.teacherName" required maxlength="25" placeholder="Enter Teacher Name" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Teacher Contact Number
                     <req>*</req>
                 </label>
-                <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.teacherPhone" required maxlength="10" placeholder="Enter Teacher Contact" />
+                <input type="text" onkeypress="return validNumber(event);" ng-model="vm.formData.teacherPhone" required maxlength="10" placeholder="Enter Teacher Contact" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Session Date
                     <req>*</req>
                 </label>
-                <input type="date" id="sessionDate" ng-model="vm.formData.sessionDate" required onkeydown="return false;" />
+                <input type="date" id="sessionDate" ng-model="vm.formData.sessionDate" required onkeydown="return false;" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Session Status
                     <req>*</req>
                 </label>
-                <select class="form-control" data-ng-model="vm.formData.sessionStatus" required>
+                <select class="form-control" data-ng-model="vm.formData.sessionStatus" required ng-disabled="vm.saving">
                     <option value="">Select Session Status</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.sessionStatus">{{item.value}}</option>
                 </select>
@@ -105,7 +105,7 @@
                 <label>Student Representative Name
                     <req>*</req>
                 </label>
-                <input type="text" ng-model="vm.formData.studentRepName" required maxlength="10" placeholder="Enter Student Name" />
+                <input type="text" ng-model="vm.formData.studentRepName" required maxlength="10" placeholder="Enter Student Name" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label style="line-height: normal;margin: 0;">Upload Photos
@@ -113,18 +113,24 @@
                 <div class="req-indicator" style="margin-bottom:5px;">
                     (hold <kbd>ctrl</kbd> or <kbd>shift</kbd> to select multiple files)
                 </div>
-                <input type="file" multiple onchange="angular.element(this).scope().vm.FilesSelection(this);" />
+                <input id="file-upload" type="file" multiple onchange="angular.element(this).scope().vm.FilesSelection(this);" ng-disabled="vm.saving" />
             </div>
             <div class="input-box col-xs-12">
                 <label>Additional Comments
                 </label>
-                <input type="text" ng-model="vm.formData.comments" maxlength="100" placeholder="Enter Comments, if any" />
+                <input type="text" ng-model="vm.formData.comments" maxlength="100" placeholder="Enter Comments, if any" ng-disabled="vm.saving" />
             </div>
 
             <div class="col-xs-12 text-center">
-                <button type="submit" class="btn btn-success" style="margin-right: 8px;">
-                    Save
-                </button>
+                <span data-ng-hide="vm.saving">
+	                <button type="submit" class="btn btn-success" style="margin-right: 8px;">
+	                    Save
+	                </button>
+                </span>
+                <span data-ng-show="vm.saving">
+                    <i class="fa fa-refresh fa-spin" aria-hidden="true" style="font-size: 28px;" data-ng-show="vm.saving"></i> <br>
+                    Saving Data... Please wait..
+                </span>
             </div>
         </div>
     </form>
