@@ -7955,7 +7955,7 @@ figure {
     font-weight: 400;
 }
 .fh5co-blog {
-    margin-bottom: 40px;
+   /*  margin-bottom: 40px; */
 }
 .fh5co-blog a img {
     width: 100%;
@@ -8700,21 +8700,6 @@ figure {
     box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, .5);
 }
 
-.schoolDetails .carousel-holder {
-	height: 300px;
-}
-
-.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
-	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
-	{
-	height: 100%;
-}
-
-.schoolDetails .carousel-holder .item .text-center img {
-	max-height: 275px;
-	margin: 5px 0px !important;
-	height: 100%;
-}
 .schoolList .page-heading a {
 	font-size: 20px;
 	display: inline-block;
@@ -8749,6 +8734,7 @@ figure {
 
 .schoolList .schoolImage {
 	height: 240px;
+	width : 100%;
 }
 
 .schoolList .government-school {
@@ -8775,6 +8761,21 @@ figure {
 	.schoolList .md-nav-bar {
 		width: 95%;
 	}
+}
+.schoolDetails .carousel-holder {
+	height: 300px;
+}
+
+.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
+	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
+	{
+	height: 100%;
+}
+
+.schoolDetails .carousel-holder .item .text-center img {
+	max-height: 275px;
+	margin: 5px 0px !important;
+	height: 100%;
 }
 .adminPage {
 	overflow-x:hidden;

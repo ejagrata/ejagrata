@@ -21,7 +21,11 @@
                             </div>
                             <div class="props">
                             	<div class="category">Teacher Name</div>
-                            	<div class="value">{{item.teacherName}} ({{item.teacherPhone}})</div>
+                            	<div class="value">{{item.teacherName}}</div>
+                            </div>
+                            <div class="props">
+                            	<div class="category">Teacher Phone</div>
+                            	<div class="value">{{item.teacherPhone}}</div>
                             </div>
                             <div class="props">
                             	<div class="category">Student Representative</div>
@@ -32,7 +36,7 @@
                             	<div class="value">{{item.sessionStatus}}</div>
                             </div>
                             <!-- <span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span> -->                            
-                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);">View School Details</a></div>
+                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);" style="padding: 4px 12px; font-size: 14px;">View Details</a></div>
                         </div>
                     </div>
                 </div>
