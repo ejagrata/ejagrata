@@ -8,7 +8,7 @@ insert into role(id, name, display_name) values (2,'ROLE_GUEST', 'Guest');
 
 insert into user_role (user_id, role_id) values (1, 1);
 
-insert into OAUTH_CLIENT_DETAILS values('ejagrataapp', 'restservice', 'ejagrata123456', 'read,write', 'password,refresh_token', null, 'USER', null,null, '{}', null);
+insert into oauth_client_details values('ejagrataapp', 'restservice', 'ejagrata123456', 'read,write', 'password,refresh_token', null, 'USER', null,null, '{}', null);
 
 insert into district values (1, 'Ernakulam');
 
