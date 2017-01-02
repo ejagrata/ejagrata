@@ -114,7 +114,7 @@ create table user_role (
 	comments varchar(2000),
  	district_id int(5) references district(id),
  	district_name varchar(100),
- 	educational_district_id number(5) references educational_district(id), 
+ 	educational_district_id int(5) references educational_district(id), 
  	educational_district_name varchar(100),
  	enabled boolean
  );
