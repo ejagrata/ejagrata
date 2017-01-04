@@ -62,10 +62,10 @@ public class School {
 	private String districtName;
 	
 	@Column(name="educational_district_id")
-	private Integer edDistrictId;
+	private Integer educationalDistrictId;
 	
 	@Column(name="educational_district_name")
-	private String edDistrictName;
+	private String educationalDistrictName;
 
 	public Integer getId() {
 		return id;
@@ -171,12 +171,12 @@ public class School {
         this.districtId = districtId;
     }
 
-    public Integer getEdDistrictId() {
-        return edDistrictId;
+    public Integer getEducationalDistrictId() {
+        return educationalDistrictId;
     }
 
-    public void setEdDistrictId(Integer edDistrictId) {
-        this.edDistrictId = edDistrictId;
+    public void setEducationalDistrictId(Integer educationalDistrictId) {
+        this.educationalDistrictId = educationalDistrictId;
     }
 
 	public String getComments() {
@@ -195,12 +195,12 @@ public class School {
 		this.districtName = districtName;
 	}
 
-	public String getEdDistrictName() {
-		return edDistrictName;
+	public String getEducationalDistrictName() {
+		return educationalDistrictName;
 	}
 
-	public void setEdDistrictName(String edDistrictName) {
-		this.edDistrictName = edDistrictName;
+	public void setEducationalDistrictName(String educationalDistrictName) {
+		this.educationalDistrictName = educationalDistrictName;
 	}
 
 }

@@ -21,10 +21,11 @@ public class SchoolBean {
     private String comments;
     private Boolean enabled;
     private Integer districtId;
-    private Integer edDistrictId;
+    private Integer educationalDistrictId;
     private String districtName;
-    private String edDistrictName;
+    private String educationalDistrictName;
     private List<SchoolDocumentBean> schoolDocumentBean;
+    private List<Integer> deleteList;
 
     public Integer getId() {
         return id;
@@ -138,14 +139,6 @@ public class SchoolBean {
         this.districtId = districtId;
     }
 
-    public Integer getEdDistrictId() {
-        return edDistrictId;
-    }
-
-    public void setEdDistrictId(Integer edDistrictId) {
-        this.edDistrictId = edDistrictId;
-    }
-
 	public String getComments() {
 		return comments;
 	}
@@ -162,12 +155,28 @@ public class SchoolBean {
 		this.districtName = districtName;
 	}
 
-	public String getEdDistrictName() {
-		return edDistrictName;
+	public Integer getEducationalDistrictId() {
+		return educationalDistrictId;
 	}
 
-	public void setEdDistrictName(String edDistrictName) {
-		this.edDistrictName = edDistrictName;
+	public void setEducationalDistrictId(Integer educationalDistrictId) {
+		this.educationalDistrictId = educationalDistrictId;
+	}
+
+	public String getEducationalDistrictName() {
+		return educationalDistrictName;
+	}
+
+	public void setEducationalDistrictName(String educationalDistrictName) {
+		this.educationalDistrictName = educationalDistrictName;
+	}
+
+	public List<Integer> getDeleteList() {
+		return deleteList;
+	}
+
+	public void setDeleteList(List<Integer> deleteList) {
+		this.deleteList = deleteList;
 	}
 
 }

@@ -22,11 +22,13 @@
             var request = $http(requestParams);
             // success function
             request.success(function (response) {
-                success(response);
+            	if (success)
+            		success(response);
             });
             // error function
             request.error(function (response) {
-                fail(response);
+            	if (fail)
+            		fail(response);
             });
 
         };
@@ -49,9 +51,9 @@
         /**
          * function to place async service request
          */
-        this.showPopUp = function (popHeading, popBody) {
+        this.showPopUp = function (popHeading, popBody) {        	
             // sets the heading
-            $rootScope.popHeading = popHeading;
+        	$('.pop-up-heading')[0].innerHTML = popHeading;
             // sets the content
             $('.pop-up-body')[0].innerHeight = popBody;
 
@@ -88,16 +90,15 @@
                 });
         };
         /**
-         * 
+         *  logout actions
          */
-        this.logoutAction = function (redirectTo){    		
+        this.logoutAction = function (redirectTo){    
+        	cleanupLoginSettings();
+        	
     		this.serviceRequest({
     			URL: appConfig.requestURL.logout    		
-    		}, function (response) {
-    			cleanupLoginSettings();
-    		}, function (response) {
-    			cleanupLoginSettings();
     		});    	
+    		
     		function cleanupLoginSettings(){
     			// removes all cookies
     			var cookies = $cookies.getAll();

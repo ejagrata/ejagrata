@@ -16,7 +16,7 @@
                 </select>
             </div>
             <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
-                <select class="form-control" data-ng-model="search.edDistrictName" required>
+                <select class="form-control" data-ng-model="search.educationalDistrictName" required>
                     <option value="">Select Educational District</option>
                     <option value="{{item.value}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
                 </select>
@@ -30,7 +30,7 @@
             <div class="col-xs-12 filter" style="padding: 6px 0px;    font-size: 12px;">
                 <i class="pull-left">(apply filters to sort the list.)</i>
                 <span style="padding-left: 5px;font-weight: bold;">List count : {{(vm.schoolList|filter:search).length}}</span>
-                <span class="pull-right" ng-click="search = {};" ng-show="search.districtName || search.name || search.edDistrictName || search.sessionStatus"> Clear Filters</span>
+                <span class="pull-right" ng-click="search = {};" ng-show="search.districtName || search.name || search.educationalDistrictName || search.sessionStatus"> Clear Filters</span>
             </div>
             <table class="table table-bordered" style="margin-bottom: 0px;margin-top: 10px;">
                 <th class="col-xs-3">School Name</th>
@@ -39,12 +39,12 @@
                 <th class="col-xs-2">Session Date</th>
                 <th class="col-xs-2">Session Status</th>
                 <tr ng-repeat="school in vm.schoolList | filter:search | orderBy : 'id'" ng-animate="'animate'">
-                    <td class="col-xs-3">{{school.name}}</td>
+                    <td class="col-xs-3"><span ng-click="vm.getDetails(school);" style="outline:none;">{{school.name}}</span></td>
                     <td class="col-xs-2">{{school.districtName}}</td>
-                    <td class="col-xs-3">{{school.edDistrictName}}</td>
+                    <td class="col-xs-3">{{school.educationalDistrictName}}</td>
                     <td class="col-xs-2">{{school.sessionDate || '--' | date}}</td>
                     <td class="col-xs-2">{{school.sessionStatus}}</td>
-                </tr>
+                </tr>               
                 <tr ng-show="(vm.schoolList | filter:search).length == 0">
                     <td colspan="5" class="text-center"> Your query does not match any item <i class="fa fa-frown-o" aria-hidden="true"></i></td>
                 </tr>

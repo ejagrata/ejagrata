@@ -8707,63 +8707,6 @@ figure {
     box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, .5);
 }
 
-.schoolDetails .carousel-holder {
-	height: 300px;
-}
-
-.schoolDetails .carousel-holder .carousel, .schoolDetails .carousel-holder .carousel-inner,
-	.schoolDetails .carousel-holder .item, .schoolDetails .carousel-holder .item .text-center
-	{
-	height: 100%;
-}
-
-.schoolDetails .carousel-holder .item .text-center img {
-	max-height: 275px;
-	margin: 15px 0px !important;
-	height: 100%;
-}
-
-.schoolDetails .page-heading {
-	display: table;
-	width: 100%;
-}
-
-.schoolDetails .page-heading .navigation {
-	font-size: 20px;
-	text-decoration: none;
-	color: #ef6249;
-	-webkit-transition: 0.5s;
-	-o-transition: 0.5s;
-	transition: 0.5s;
-	cursor: pointer;
-	display: table-cell;
-	vertical-align: middle;
-	text-align: right;
-	outline: none;
-}
-
-.schoolDetails .page-heading .navigation:hover {
-	font-size: 22px;
-}
-
-.schoolDetails .page-heading {
-	height: 75px;
-	padding: 8px 24px;
-	background: rgba(255, 255, 255, 0.5);
-	box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.2);
-}
-
-.schoolDetails .page-heading .appName {
-	font-size: 32px;
-}
-
-.schoolDetails .schoolInfo {
-	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.5);
-	margin: 15px auto 30px auto !important;
-	padding: 15px;
-	background-color: #fff;
-	text-align : center;
-}
 .schoolList .page-heading {
     display: table;
     width: 100%;
@@ -8871,6 +8814,26 @@ figure {
 .adminPage .schoolUpload .speclMargin {
     margin-top: 14px;
 }
+.adminPage .schoolUpload .uploadedDocs * {
+    outline: none;
+}
+.adminPage .schoolUpload .uploadedDocs table {
+    max-width: 50%;
+}
+.adminPage .schoolUpload .uploadedDoc i {
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.adminPage .schoolUpload .uploadedDocs .deleted {
+    color: #ff0000 !important;
+    font-weight: bold;
+}
+.adminPage .schoolUpload .uploadedDocs .fa-arrow-circle-down {
+    color: #5cb85c;
+    font-weight: bold;
+    margin-right: 2px;
+}
 .adminPage footer {
     text-align: center;
     line-height: normal;
@@ -8918,5 +8881,8 @@ figure {
     }
     .adminPage .schoolUpload .speclMargin {
         margin-top: 0;
+    }
+    .adminPage .schoolUpload .uploadedDocs table {
+        max-width: 100%;
     }
 }

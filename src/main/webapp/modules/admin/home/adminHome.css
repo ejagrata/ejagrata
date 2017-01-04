@@ -41,6 +41,26 @@
 .adminPage .schoolUpload .speclMargin {
     margin-top: 14px;
 }
+.adminPage .schoolUpload .uploadedDocs * {
+    outline: none;
+}
+.adminPage .schoolUpload .uploadedDocs table {
+    max-width: 50%;
+}
+.adminPage .schoolUpload .uploadedDoc i {
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.adminPage .schoolUpload .uploadedDocs .deleted {
+    color: #ff0000 !important;
+    font-weight: bold;
+}
+.adminPage .schoolUpload .uploadedDocs .fa-arrow-circle-down {
+    color: #5cb85c;
+    font-weight: bold;
+    margin-right: 2px;
+}
 .adminPage footer {
     text-align: center;
     line-height: normal;
@@ -88,5 +108,8 @@
     }
     .adminPage .schoolUpload .speclMargin {
         margin-top: 0;
+    }
+    .adminPage .schoolUpload .uploadedDocs table {
+        max-width: 100%;
     }
 }

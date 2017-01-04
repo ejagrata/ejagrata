@@ -69,8 +69,13 @@ public class SchoolServiceImpl implements SchoolService {
                    schoolDocRepo.save(schoolDoc);               
                }
            }
+    	   
         }
-       
+        if(schoolBean.getDeleteList() != null ){
+     	   for(Integer docId: schoolBean.getDeleteList()){
+     		   schoolDocRepo.delete(docId);
+     	   }
+ 	   }
         return "success";
     }
 
@@ -98,7 +103,7 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public List<SchoolBean> getSchoolByEdDistrict(Integer districtId, Integer edDistrictId) {
-        List<School> schoolList = schoolRepository.findByDistrictIdAndEdDistrictId(districtId, edDistrictId);
+        List<School> schoolList = schoolRepository.findByDistrictIdAndEducationalDistrictId(districtId, edDistrictId);
         List<SchoolBean> schoolBeanList = new ArrayList<>();
         for( School school : schoolList){
             SchoolBean schoolBean =new SchoolBean();
@@ -127,7 +132,7 @@ public class SchoolServiceImpl implements SchoolService {
 	@Override
 	public List<SchoolBean> getSchoolByType(Integer districtId, Integer edDistrictId, String schoolType){
 		
-		List<School> schoolList = schoolRepository.findByDistrictIdAndEdDistrictIdAndSchoolType(districtId, edDistrictId, schoolType);
+		List<School> schoolList = schoolRepository.findByDistrictIdAndEducationalDistrictIdAndSchoolType(districtId, edDistrictId, schoolType);
         List<SchoolBean> schoolBeanList = new ArrayList<>();
         for( School school : schoolList){
             SchoolBean schoolBean =new SchoolBean();

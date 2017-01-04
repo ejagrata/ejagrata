@@ -11,13 +11,13 @@
                 <label>Username
                     <req>*</req>
                 </label>
-                <input type="text" ng-model="vm.formData.username" required maxlength="50" placeholder="Enter username" />
+                <input type="text" ng-model="vm.formData.username" required maxlength="50" placeholder="Enter username" ng-disabled="vm.logging"/>
             </div>
             <div class="input-box col-xs-12">
                 <label>Password
                     <req>*</req>
                 </label>
-                <input type="password" ng-model="vm.formData.password" required maxlength="10" placeholder="Enter password" />
+                <input type="password" ng-model="vm.formData.password" required maxlength="10" placeholder="Enter password" ng-disabled="vm.logging"/>
             </div>
             <div class="col-xs-12 text-center">
                 <span data-ng-hide="vm.logging">

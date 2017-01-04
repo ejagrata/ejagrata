@@ -40201,13 +40201,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 templateUrl: 'modules/schoolList/unAidedSchool/unAidedSchool.html',
                 controller: '',
                 controllerAs: 'vm'
-            })
-            .state('app.schoolDetail', {
-                url: 'schoolDetail/:schoolDetails',
-                templateUrl: 'modules/schoolDetail/schoolDetail.html',
-                controller: 'schoolDetailsController',
-                controllerAs: 'vm'
-            })
+            })            
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'modules/admin/admin.html',
@@ -40227,7 +40221,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 controllerAs: 'vm'
             })
             .state('adminHome.schoolUpload', {
-                url: '/schoolUpload',
+                url: '/schoolUpload/:schoolId',
                 templateUrl: 'modules/admin/home/schoolUpload/schoolUpload.html',
                 controller: 'schoolUploadController',
                 controllerAs: 'vm'
@@ -40347,47 +40341,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 apiService.showPopUp("E-Jagratha : A Glance", body);
             }
         }
-    }
-
-})();
-(function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('schoolDetailsController', schoolDetailsController);
-
-    /* ngInject */
-    function schoolDetailsController($scope, $state, $stateParams) {
-        var vm = this;
-        init();
-
-        function init() {
-        	vm.schoolDetails = JSON.parse($stateParams.schoolDetails);
-        	console.log(vm.schoolDetails);
-            vm.slides = [];
-            if (vm.schoolDetails.schoolDocumentBean && vm.schoolDetails.schoolDocumentBean.length > 0){
-            	var imageList = vm.schoolDetails.schoolDocumentBean;
-            	for (var i=0; i < imageList.length; i++){
-            		vm.slides.push({
-                        image: 'files/' + imageList[i].docId,
-                        id : i
-                    });
-            	}
-            }  else {
-            	vm.noSlide = true;
-            }          
-            vm.myInterval = 3000;
-            $scope.noWrapSlides = false;
-            $scope.active = 0; 
-        };
-        /**
-         * 
-         */
-        vm.goBack = function (){
-        	window.history.back();
-        };
-
     }
 
 })();
@@ -40519,72 +40472,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 })();
 (function () {
-    "use strict";
-
-    angular
-        .module('eJag')
-        .controller('schoolStatusController', schoolStatusController);
-
-    /* ngInject */
-    function schoolStatusController($scope, apiService, appConfig) {
-        var vm = this;
-        init();
-
-        function init() {
-            vm.loading = true;
-            vm.loadMsg = "Fetching list... Please wait..";
-
-            var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            document.getElementById('fh5co-wrapper').style.minHeight = (windowHeight - 225) + 'px';
-            // school type list			
-            vm.schoolType = [{
-                value: "Aided"
-			}, {
-                value: "Government"
-			}, {
-                value: "UnAided"
-			}];
-            // session status list
-            vm.sessionStatus = [{
-                value: "Completed"
-			}, {
-                value: "Pending"
-			}, {
-                value: "Date to be decided"
-			}, {
-                value: "Not Attended"
-			}, {
-                value: "Planned"
-			}];
-            // district
-            vm.district = [{
-                value: "Ernakulam"
-			}];
-            // educational District List
-            vm.educationDist = [{
-                value: "Aluva"
-			}, {
-                value: "Ernakulam"
-			}, {
-                value: "Kothamangalam"
-			}, {
-                value: "Muvattupuzha"
-			}];
-            apiService.serviceRequest({
-                URL: appConfig.requestURL.schoolAllList,
-                hideErrMsg: true
-            }, function (response) {
-                vm.schoolList = response;
-                vm.loading = false;
-            }, function (response) {
-
-            });
-        };
-    };
-
-
-})();
-(function () {
 	"use strict";
 
 	angular
@@ -40592,7 +40479,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 	.controller('schoolUploadController', schoolUploadController);
 
 	/* ngInject */
-	function schoolUploadController($scope, apiService, appConfig, $timeout) {
+	function schoolUploadController($scope, apiService, appConfig, $timeout, $stateParams) {
 		var vm = this;
 		init();
 
@@ -40600,6 +40487,27 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		 * init function kicks starts the page execution
 		 **/
 		function init() {
+			if ($stateParams.schoolId){
+				$('#myModal').fadeOut(); // to fade out the overlay
+				$scope.$parent.vm.currentNavItem = "adminHome.schoolUpload"; // to change tab selection				
+				vm.editMode = true; // flag to indicate edit mode
+				vm.saving = true;
+				// service request to fetch data for the requested school
+				apiService.serviceRequest({
+					URL: appConfig.requestURL.schoolDetails + $stateParams.schoolId
+				}, function (response) {
+					vm.formData = response;
+					vm.formData.sessionDate = new Date(response.sessionDate);
+					for (var i=0; i<response.schoolDocumentBean.length; i++){
+						response.schoolDocumentBean[i].docPath = response.schoolDocumentBean[i].docPath.split('/').pop();
+					}
+					vm.uploadedDocs = response.schoolDocumentBean;
+					console.log(vm.uploadedDocs)
+					vm.saving = false;
+				}, function (response) {
+
+				});
+			}			
 			varInit();
 		};
 
@@ -40607,10 +40515,13 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		 * initialize page variables
 		 **/
 		function varInit() {
+			document.body.scrollTop = 0; // to scroll top
 			vm.formData = {};
 			vm.file = [];
 			vm.fileNames = [];
 			vm.saving = false;
+			vm.deleteList = [];
+			vm.uploadedDocs = [];			
 			
 			if(document.getElementById('file-upload'))
 				document.getElementById('file-upload').value="";
@@ -40624,11 +40535,15 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 			}];
 			// session status list
 			vm.sessionStatus = [{
-				value: "Completed"
+				value: "Planned"
 			}, {
 				value: "Pending"
 			}, {
-				value: "TBD"
+				value: "Date to be decided"
+			}, {
+				value: "Completed"
+			}, {
+				value: "Not Attended"
 			}];
 			// district
 			vm.district = [{
@@ -40663,9 +40578,12 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		 **/
 		vm.onSave = function () {
 			vm.saving = true;
-		
+
 			var fd = new FormData();
 
+			if (vm.deleteList.length > 0){
+				fd.append("deleteList", vm.deleteList);
+			}
 			fd.append("name", vm.formData.name);
 			fd.append("schoolCode", vm.formData.schoolCode);
 			fd.append("address", vm.formData.address);
@@ -40679,13 +40597,16 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 			fd.append("comments", vm.formData.comments);
 			fd.append("districtId", 1);
 			fd.append("districtName", vm.formData.districtName);
-			fd.append("edDistrictName", vm.formData.educationalDistrictName);
-			fd.append("edDistrictId", vm.formData.educationalDistrictName == "Aluva" ? 1 : (vm.formData.educationalDistrictName == "Ernakulam" ? 2 : (vm.formData.educationalDistrictName == "Kothamangalam" ? 3 : 4)));
+			fd.append("educationalDistrictName", vm.formData.educationalDistrictName);
+			fd.append("educationalDistrictId", vm.formData.educationalDistrictName == "Aluva" ? 1 : (vm.formData.educationalDistrictName == "Ernakulam" ? 2 : (vm.formData.educationalDistrictName == "Kothamangalam" ? 3 : 4)));
 
 			for(var i=0; i < vm.file.length; i++){
 				fd.append("schoolDocumentBean[" + i + "].schoolDocs", vm.file[i]);
 			}
 
+			if (vm.editMode){
+				fd.append("id", vm.formData.id);
+			}
 			apiService.serviceRequest({
 				URL: appConfig.requestURL.schoolSave,
 				hideErrMsg: true,
@@ -40699,6 +40620,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 				apiService.showAlert({
 					text: "School Saved Successfully !!"
 				}, function () {
+					vm.editMode = false; // flag to indicate edit mode
 					varInit();
 				});           	
 			}, function (response) {
@@ -40708,8 +40630,114 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 					vm.saving = false;
 				}); 				
 			});
-		}
+		};
+		/**
+		 *  function to add file to delete list []
+		 */
+		vm.deleteFile = function (doc){
+			doc.deleted= true;
+			vm.deleteList.push(doc.docId); // inserts the file id to deleteList []
+		};
+		/**
+		 *  function to undo file delete
+		 */
+		vm.undoDelete = function (doc){
+			doc.deleted= false;
+			var index = vm.deleteList.indexOf(doc.docId);
+			vm.deleteList.splice(index,1);
+		};
 	}
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('schoolStatusController', schoolStatusController);
+
+	/* ngInject */
+	function schoolStatusController($scope, apiService, appConfig) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.loading = true;
+			vm.loadMsg = "Fetching list... Please wait..";
+
+			var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+			document.getElementById('fh5co-wrapper').style.minHeight = (windowHeight - 225) + 'px';
+			// school type list			
+			vm.schoolType = [{
+				value: "Aided"
+			}, {
+				value: "Government"
+			}, {
+				value: "UnAided"
+			}];
+			// session status list
+			vm.sessionStatus = [{
+				value: "Planned"
+			}, {
+				value: "Pending"
+			}, {
+				value: "Date to be decided"
+			}, {
+				value: "Completed"
+			}, {
+				value: "Not Attended"
+			}];
+			// district
+			vm.district = [{
+				value: "Ernakulam"
+			}];
+			// educational District List
+			vm.educationDist = [{
+				value: "Aluva"
+			}, {
+				value: "Ernakulam"
+			}, {
+				value: "Kothamangalam"
+			}, {
+				value: "Muvattupuzha"
+			}];
+			apiService.serviceRequest({
+				URL: appConfig.requestURL.schoolAllList,
+				hideErrMsg: true
+			}, function (response) {
+				vm.schoolList = response;
+				vm.loading = false;
+			}, function (response) {
+
+			});
+		};
+		/**
+		 * 
+		 */
+		vm.getDetails = function (school){
+			console.log(school)
+			var defalultTxt = 'NA';
+			school.sessionDate = new Date(school.sessionDate) ? new Date(school.sessionDate).toDateString() : null;
+			
+			var body = "<div class='row'>"
+				+ "<div class='col-xs-12 col-md-4'> <b>School Type : </b> " + (school.schoolType || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>District : </b> " + (school.districtName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Educational District : </b> " + (school.educationalDistrictName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Address : </b> " + (school.address || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-8'> <b>Phone : </b> " + (school.phone || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Session Date : </b> " + (school.sessionDate || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-8'> <b>Session Status : </b> " + (school.sessionStatus || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Teacher Name : </b> " + (school.teacherName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Teacher Phone : </b> " + (school.teacherPhone || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Student Representative : </b> " + (school.studentRepName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12'> <b>Session Comments : </b> " + (school.comments || defalultTxt) + "</div>"
+				+"</div>";
+			var head = school.name + " (Code : " + school.schoolCode + ") " + '<a style="font-size: 14px;text-decoration:underline !important;" href="#/adminHome/schoolUpload/'+school.id+'")><b>edit</></a>';
+			
+			apiService.showPopUp(head, body);
+		};
+	};
+
 
 })();
 (function () {
@@ -40736,11 +40764,13 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
             var request = $http(requestParams);
             // success function
             request.success(function (response) {
-                success(response);
+            	if (success)
+            		success(response);
             });
             // error function
             request.error(function (response) {
-                fail(response);
+            	if (fail)
+            		fail(response);
             });
 
         };
@@ -40763,9 +40793,9 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
         /**
          * function to place async service request
          */
-        this.showPopUp = function (popHeading, popBody) {
+        this.showPopUp = function (popHeading, popBody) {        	
             // sets the heading
-            $rootScope.popHeading = popHeading;
+        	$('.pop-up-heading')[0].innerHTML = popHeading;
             // sets the content
             $('.pop-up-body')[0].innerHeight = popBody;
 
@@ -40802,16 +40832,15 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 });
         };
         /**
-         * 
+         *  logout actions
          */
-        this.logoutAction = function (redirectTo){    		
+        this.logoutAction = function (redirectTo){    
+        	cleanupLoginSettings();
+        	
     		this.serviceRequest({
     			URL: appConfig.requestURL.logout    		
-    		}, function (response) {
-    			cleanupLoginSettings();
-    		}, function (response) {
-    			cleanupLoginSettings();
     		});    	
+    		
     		function cleanupLoginSettings(){
     			// removes all cookies
     			var cookies = $cookies.getAll();
@@ -40840,7 +40869,7 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
                 schoolSave : 'school/save', // save a school
                 schoolAllList : 'school/listAll',
                 schoolDistList : 'school/district/',
-                schoolDetails : '/school/',
+                schoolDetails : 'school/',
                 logout : 'logout' // logout service
             }
 

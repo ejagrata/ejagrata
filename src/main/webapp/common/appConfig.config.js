@@ -14,7 +14,7 @@
                 schoolSave : 'school/save', // save a school
                 schoolAllList : 'school/listAll',
                 schoolDistList : 'school/district/',
-                schoolDetails : '/school/',
+                schoolDetails : 'school/',
                 logout : 'logout' // logout service
             }
 
