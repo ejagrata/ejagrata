@@ -10,9 +10,9 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
 
     List<School> findByDistrictId(Integer districtId);
     
-    List<School> findByDistrictIdAndEdDistrictId(Integer districtId , Integer id);
+    List<School> findByDistrictIdAndEducationalDistrictId(Integer districtId , Integer id);
     
-    List<School> findByDistrictIdAndEdDistrictIdAndSchoolType(Integer districtId , Integer id, String schoolType);
+    List<School> findByDistrictIdAndEducationalDistrictIdAndSchoolType(Integer districtId , Integer id, String schoolType);
 
     
 }

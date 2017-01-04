@@ -44,13 +44,7 @@
                 templateUrl: 'modules/schoolList/unAidedSchool/unAidedSchool.html',
                 controller: '',
                 controllerAs: 'vm'
-            })
-            .state('app.schoolDetail', {
-                url: 'schoolDetail/:schoolDetails',
-                templateUrl: 'modules/schoolDetail/schoolDetail.html',
-                controller: 'schoolDetailsController',
-                controllerAs: 'vm'
-            })
+            })            
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'modules/admin/admin.html',
@@ -70,7 +64,7 @@
                 controllerAs: 'vm'
             })
             .state('adminHome.schoolUpload', {
-                url: '/schoolUpload',
+                url: '/schoolUpload/:schoolId',
                 templateUrl: 'modules/admin/home/schoolUpload/schoolUpload.html',
                 controller: 'schoolUploadController',
                 controllerAs: 'vm'

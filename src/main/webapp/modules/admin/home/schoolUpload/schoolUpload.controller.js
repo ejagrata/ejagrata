@@ -6,7 +6,7 @@
 	.controller('schoolUploadController', schoolUploadController);
 
 	/* ngInject */
-	function schoolUploadController($scope, apiService, appConfig, $timeout) {
+	function schoolUploadController($scope, apiService, appConfig, $timeout, $stateParams) {
 		var vm = this;
 		init();
 
@@ -14,6 +14,27 @@
 		 * init function kicks starts the page execution
 		 **/
 		function init() {
+			if ($stateParams.schoolId){
+				$('#myModal').fadeOut(); // to fade out the overlay
+				$scope.$parent.vm.currentNavItem = "adminHome.schoolUpload"; // to change tab selection				
+				vm.editMode = true; // flag to indicate edit mode
+				vm.saving = true;
+				// service request to fetch data for the requested school
+				apiService.serviceRequest({
+					URL: appConfig.requestURL.schoolDetails + $stateParams.schoolId
+				}, function (response) {
+					vm.formData = response;
+					vm.formData.sessionDate = new Date(response.sessionDate);
+					for (var i=0; i<response.schoolDocumentBean.length; i++){
+						response.schoolDocumentBean[i].docPath = response.schoolDocumentBean[i].docPath.split('/').pop();
+					}
+					vm.uploadedDocs = response.schoolDocumentBean;
+					console.log(vm.uploadedDocs)
+					vm.saving = false;
+				}, function (response) {
+
+				});
+			}			
 			varInit();
 		};
 
@@ -21,10 +42,13 @@
 		 * initialize page variables
 		 **/
 		function varInit() {
+			document.body.scrollTop = 0; // to scroll top
 			vm.formData = {};
 			vm.file = [];
 			vm.fileNames = [];
 			vm.saving = false;
+			vm.deleteList = [];
+			vm.uploadedDocs = [];			
 			
 			if(document.getElementById('file-upload'))
 				document.getElementById('file-upload').value="";
@@ -38,11 +62,15 @@
 			}];
 			// session status list
 			vm.sessionStatus = [{
-				value: "Completed"
+				value: "Planned"
 			}, {
 				value: "Pending"
 			}, {
-				value: "TBD"
+				value: "Date to be decided"
+			}, {
+				value: "Completed"
+			}, {
+				value: "Not Attended"
 			}];
 			// district
 			vm.district = [{
@@ -77,9 +105,12 @@
 		 **/
 		vm.onSave = function () {
 			vm.saving = true;
-		
+
 			var fd = new FormData();
 
+			if (vm.deleteList.length > 0){
+				fd.append("deleteList", vm.deleteList);
+			}
 			fd.append("name", vm.formData.name);
 			fd.append("schoolCode", vm.formData.schoolCode);
 			fd.append("address", vm.formData.address);
@@ -93,13 +124,16 @@
 			fd.append("comments", vm.formData.comments);
 			fd.append("districtId", 1);
 			fd.append("districtName", vm.formData.districtName);
-			fd.append("edDistrictName", vm.formData.educationalDistrictName);
-			fd.append("edDistrictId", vm.formData.educationalDistrictName == "Aluva" ? 1 : (vm.formData.educationalDistrictName == "Ernakulam" ? 2 : (vm.formData.educationalDistrictName == "Kothamangalam" ? 3 : 4)));
+			fd.append("educationalDistrictName", vm.formData.educationalDistrictName);
+			fd.append("educationalDistrictId", vm.formData.educationalDistrictName == "Aluva" ? 1 : (vm.formData.educationalDistrictName == "Ernakulam" ? 2 : (vm.formData.educationalDistrictName == "Kothamangalam" ? 3 : 4)));
 
 			for(var i=0; i < vm.file.length; i++){
 				fd.append("schoolDocumentBean[" + i + "].schoolDocs", vm.file[i]);
 			}
 
+			if (vm.editMode){
+				fd.append("id", vm.formData.id);
+			}
 			apiService.serviceRequest({
 				URL: appConfig.requestURL.schoolSave,
 				hideErrMsg: true,
@@ -113,6 +147,7 @@
 				apiService.showAlert({
 					text: "School Saved Successfully !!"
 				}, function () {
+					vm.editMode = false; // flag to indicate edit mode
 					varInit();
 				});           	
 			}, function (response) {
@@ -122,7 +157,22 @@
 					vm.saving = false;
 				}); 				
 			});
-		}
+		};
+		/**
+		 *  function to add file to delete list []
+		 */
+		vm.deleteFile = function (doc){
+			doc.deleted= true;
+			vm.deleteList.push(doc.docId); // inserts the file id to deleteList []
+		};
+		/**
+		 *  function to undo file delete
+		 */
+		vm.undoDelete = function (doc){
+			doc.deleted= false;
+			var index = vm.deleteList.indexOf(doc.docId);
+			vm.deleteList.splice(index,1);
+		};
 	}
 
 })();

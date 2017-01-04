@@ -118,9 +118,25 @@
             <div class="input-box col-xs-12">
                 <label>Additional Comments
                 </label>
-                <input type="text" ng-model="vm.formData.comments" maxlength="100" placeholder="Enter Comments, if any" ng-disabled="vm.saving" />
+                <input type="text" ng-model="vm.formData.comments" maxlength="2000" placeholder="Enter Comments, if any" ng-disabled="vm.saving" />
             </div>
-
+            <div class="input-box col-xs-12 uploadedDocs" ng-show="vm.editMode">
+                <table class="table table-bordered" style="margin-bottom: 0px;">
+                    <th class="col-xs-9">Documents Uploaded</th>
+                    <th class="col-xs-3">Action</th>
+                    <tr ng-repeat="docs in vm.uploadedDocs">
+                        <td class="col-xs-9"><span ng-class="(docs.deleted) ? 'deleted' : ''">{{docs.docPath}}</span></td>
+                        <td class="col-xs-3">
+                            <a href="files/{{docs.docId}}" ng-hide="docs.deleted"><i class="fa fa-arrow-circle-down" aria-hidden="true" ng-hide="docs.deleted"></i></a>
+                            <i class="fa fa-trash" aria-hidden="true" ng-click="vm.deleteFile(docs);" ng-hide="docs.deleted" style="color: #f37373;"></i>
+                            <i class="fa fa-refresh" aria-hidden="true" ng-show="docs.deleted" ng-click="vm.undoDelete(docs);"></i>
+                        </td>
+                    </tr>
+                    <tr ng-show="vm.uploadedDocs.length == 0">
+                        <td colspan="2" class="text-center"> <i>No Files uploaded.</i></td>
+                    </tr>
+                </table>
+            </div>
             <div class="col-xs-12 text-center">
                 <span data-ng-hide="vm.saving">
 	                <button type="submit" class="btn btn-success" style="margin-right: 8px;">
