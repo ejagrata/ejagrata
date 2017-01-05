@@ -40,13 +40,48 @@
     text-decoration: none;
     cursor: pointer;
 }
-.homePage .edu-dist  {
-   outline: none;
+.homePage .edu-dist {
+    outline: none;
 }
 .homePage .edu-dist blockquote {
-    box-shadow: 0px 0px 14px 1px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, .5);
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+    line-height: normal;
+    text-shadow: 0px 2px 12px #000;
+}
+.homePage .edu-dist .aluva {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/aluva.jpg);
+    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/aluva.jpg);
+    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/aluva.jpg);
+    background-image: -ms-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/aluva.jpg);
+    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/aluva.jpg);
+}
+.homePage .edu-dist .ekm {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/ekm.jpg);
+    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/ekm.jpg);
+    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/ekm.jpg);
+    background-image: -ms-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/ekm.jpg);
+    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/ekm.jpg);
+}
+.homePage .edu-dist .koth {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
+    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
+    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
+    background-image: -ms-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
+    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
+}
+
+.homePage .edu-dist .mvp {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
+    background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
+    background-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
+    background-image: -ms-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
+    background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
 }
 .homePage .edu-dist blockquote:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 14px 4px rgba(0, 0, 0, .5);
 }
