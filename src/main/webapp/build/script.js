@@ -40193,13 +40193,13 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
             .state('app.schoolList.aided', {
                 url: '/aided',
                 templateUrl: 'modules/schoolList/aidedSchool/aidedSchool.html',
-                controller: '',
+                controller: 'aidedSchoolController',
                 controllerAs: 'vm'
             })
             .state('app.schoolList.unaided', {
                 url: '/unaided',
                 templateUrl: 'modules/schoolList/unAidedSchool/unAidedSchool.html',
-                controller: '',
+                controller: 'unAidedSchoolController',
                 controllerAs: 'vm'
             })            
             .state('admin', {
@@ -40417,46 +40417,56 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 
 	angular
 	.module('eJag')
-	.controller('govtSchoolController', govtSchoolController);
+	.controller('aidedSchoolController', aidedSchoolController);
 
 	/* ngInject */
-	function govtSchoolController($scope, $state, appConfig, apiService, $timeout) {
+	function aidedSchoolController($scope, $state, appConfig, apiService, $timeout) {
 		var vm = this;
 		init();
 
 		function init() {
-			vm.loading = true;
-			vm.loadMsg = "Fetching data... Please wait..";
+			vm.loading = true; // flag to indicate page is loading
+			vm.loadMsg = "Fetching data... Please wait.."; // message to the user
+			vm.noResult = false; // flag to indicate no result
+			
 			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
 			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
-		
+
 			vm.district = "Ernakulam";
 			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
-			
+
 			apiService.serviceRequest({
-				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Government',
+				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Aided',
 				hideErrMsg: true				
 			}, function (response) {							
 				vm.govtSchool = response;
-				for (var i=0; i<vm.govtSchool.length; i++){
-					vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
-					'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
-				};
-		
-				$timeout(function (){
-					// reaveal these elements when scoll happens            
-					window.sr = ScrollReveal();
-					// for app title
-					sr.reveal('.sr-listImg', {
-						duration: 1000,
-						scale: 0.3,
-						distance: '20px'
-					});
-					vm.loading = false;
-				}, 100);
-				
-			}, function (response) {
+				if (response.length > 0) { // checks if school list is empty
+					for (var i=0; i<vm.govtSchool.length; i++){
+						vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
+								'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
+					};
 
+					$timeout(function (){
+						// reaveal these elements when scoll happens            
+						window.sr = ScrollReveal();
+						// for app title
+						sr.reveal('.sr-listImg', {
+							duration: 1000,
+							scale: 0.3,
+							distance: '20px'
+						});
+						vm.loading = false;
+					}, 100);
+				} else {
+					vm.noResult = true;
+					vm.loading = false;
+					vm.loadMsg = "Seems that School list is empty.";
+				}				
+
+			}, function (response) {
+				vm.noResult = true;
+				vm.loading = false;
+				vm.loadMsg = "Something went wrong... Please try again.";
 			});             
 		}
 		/**
@@ -40469,6 +40479,235 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 		}
 
 	}
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('govtSchoolController', govtSchoolController);
+
+	/* ngInject */
+	function govtSchoolController($scope, $state, appConfig, apiService, $timeout) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.loading = true; // flag to indicate page is loading
+			vm.loadMsg = "Fetching data... Please wait.."; // message to the user
+			vm.noResult = false; // flag to indicate no result
+			
+			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
+			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
+
+			vm.district = "Ernakulam";
+			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
+
+			apiService.serviceRequest({
+				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Government',
+				hideErrMsg: true				
+			}, function (response) {							
+				vm.govtSchool = response;
+				if (response.length > 0) { // checks if school list is empty
+					for (var i=0; i<vm.govtSchool.length; i++){
+						vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
+								'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
+					};
+
+					$timeout(function (){
+						// reaveal these elements when scoll happens            
+						window.sr = ScrollReveal();
+						// for app title
+						sr.reveal('.sr-listImg', {
+							duration: 1000,
+							scale: 0.3,
+							distance: '20px'
+						});
+						vm.loading = false;
+					}, 100);
+				} else {
+					vm.noResult = true;
+					vm.loading = false;
+					vm.loadMsg = "Seems that School list is empty.";
+				}				
+
+			}, function (response) {
+				vm.noResult = true;
+				vm.loading = false;
+				vm.loadMsg = "Something went wrong... Please try again.";
+			});             
+		}
+		/**
+		 * 
+		 */
+		vm.gotoSchool = function (item) {			
+			$state.go('app.schoolDetail', {
+				schoolDetails: JSON.stringify(item)
+			});
+		}
+
+	}
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('unAidedSchoolController', unAidedSchoolController);
+
+	/* ngInject */
+	function unAidedSchoolController($scope, $state, appConfig, apiService, $timeout) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.loading = true; // flag to indicate page is loading
+			vm.loadMsg = "Fetching data... Please wait.."; // message to the user
+			vm.noResult = false; // flag to indicate no result
+			
+			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
+			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
+
+			vm.district = "Ernakulam";
+			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
+
+			apiService.serviceRequest({
+				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/UnAided',
+				hideErrMsg: true				
+			}, function (response) {							
+				vm.govtSchool = response;
+				if (response.length > 0) { // checks if school list is empty
+					for (var i=0; i<vm.govtSchool.length; i++){
+						vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
+								'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
+					};
+
+					$timeout(function (){
+						// reaveal these elements when scoll happens            
+						window.sr = ScrollReveal();
+						// for app title
+						sr.reveal('.sr-listImg', {
+							duration: 1000,
+							scale: 0.3,
+							distance: '20px'
+						});
+						vm.loading = false;
+					}, 100);
+				} else {
+					vm.noResult = true;
+					vm.loading = false;
+					vm.loadMsg = "Seems that School list is empty.";
+				}				
+
+			}, function (response) {
+				vm.noResult = true;
+				vm.loading = false;
+				vm.loadMsg = "Something went wrong... Please try again.";
+			});             
+		}
+		/**
+		 * 
+		 */
+		vm.gotoSchool = function (item) {			
+			$state.go('app.schoolDetail', {
+				schoolDetails: JSON.stringify(item)
+			});
+		}
+
+	}
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
+	.controller('schoolStatusController', schoolStatusController);
+
+	/* ngInject */
+	function schoolStatusController($scope, apiService, appConfig) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.loading = true;
+			vm.loadMsg = "Fetching list... Please wait..";
+
+			var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+			document.getElementById('fh5co-wrapper').style.minHeight = (windowHeight - 225) + 'px';
+			// school type list			
+			vm.schoolType = [{
+				value: "Aided"
+			}, {
+				value: "Government"
+			}, {
+				value: "UnAided"
+			}];
+			// session status list
+			vm.sessionStatus = [{
+				value: "Planned"
+			}, {
+				value: "Pending"
+			}, {
+				value: "Date to be decided"
+			}, {
+				value: "Completed"
+			}, {
+				value: "Not Attended"
+			}];
+			// district
+			vm.district = [{
+				value: "Ernakulam"
+			}];
+			// educational District List
+			vm.educationDist = [{
+				value: "Aluva"
+			}, {
+				value: "Ernakulam"
+			}, {
+				value: "Kothamangalam"
+			}, {
+				value: "Muvattupuzha"
+			}];
+			apiService.serviceRequest({
+				URL: appConfig.requestURL.schoolAllList,
+				hideErrMsg: true
+			}, function (response) {
+				vm.schoolList = response;
+				vm.loading = false;
+			}, function (response) {
+
+			});
+		};
+		/**
+		 * 
+		 */
+		vm.getDetails = function (school){
+			console.log(school)
+			var defalultTxt = 'NA';
+			school.sessionDate = new Date(school.sessionDate) ? new Date(school.sessionDate).toDateString() : null;
+			
+			var body = "<div class='row'>"
+				+ "<div class='col-xs-12 col-md-4'> <b>School Type : </b> " + (school.schoolType || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>District : </b> " + (school.districtName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Educational District : </b> " + (school.educationalDistrictName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Address : </b> " + (school.address || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-8'> <b>Phone : </b> " + (school.phone || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Session Date : </b> " + (school.sessionDate || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-8'> <b>Session Status : </b> " + (school.sessionStatus || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Teacher Name : </b> " + (school.teacherName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Teacher Phone : </b> " + (school.teacherPhone || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12 col-md-4'> <b>Student Representative : </b> " + (school.studentRepName || defalultTxt) + "</div>"
+				+ "<div class='col-xs-12'> <b>Session Comments : </b> " + (school.comments || defalultTxt) + "</div>"
+				+"</div>";
+			var head = school.name + " (Code : " + school.schoolCode + ") " + '<a style="font-size: 14px;text-decoration:underline !important;" href="#/adminHome/schoolUpload/'+school.id+'")><b>edit</></a>';
+			
+			apiService.showPopUp(head, body);
+		};
+	};
+
 
 })();
 (function () {
@@ -40647,97 +40886,6 @@ angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInli
 			vm.deleteList.splice(index,1);
 		};
 	}
-
-})();
-(function () {
-	"use strict";
-
-	angular
-	.module('eJag')
-	.controller('schoolStatusController', schoolStatusController);
-
-	/* ngInject */
-	function schoolStatusController($scope, apiService, appConfig) {
-		var vm = this;
-		init();
-
-		function init() {
-			vm.loading = true;
-			vm.loadMsg = "Fetching list... Please wait..";
-
-			var windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-			document.getElementById('fh5co-wrapper').style.minHeight = (windowHeight - 225) + 'px';
-			// school type list			
-			vm.schoolType = [{
-				value: "Aided"
-			}, {
-				value: "Government"
-			}, {
-				value: "UnAided"
-			}];
-			// session status list
-			vm.sessionStatus = [{
-				value: "Planned"
-			}, {
-				value: "Pending"
-			}, {
-				value: "Date to be decided"
-			}, {
-				value: "Completed"
-			}, {
-				value: "Not Attended"
-			}];
-			// district
-			vm.district = [{
-				value: "Ernakulam"
-			}];
-			// educational District List
-			vm.educationDist = [{
-				value: "Aluva"
-			}, {
-				value: "Ernakulam"
-			}, {
-				value: "Kothamangalam"
-			}, {
-				value: "Muvattupuzha"
-			}];
-			apiService.serviceRequest({
-				URL: appConfig.requestURL.schoolAllList,
-				hideErrMsg: true
-			}, function (response) {
-				vm.schoolList = response;
-				vm.loading = false;
-			}, function (response) {
-
-			});
-		};
-		/**
-		 * 
-		 */
-		vm.getDetails = function (school){
-			console.log(school)
-			var defalultTxt = 'NA';
-			school.sessionDate = new Date(school.sessionDate) ? new Date(school.sessionDate).toDateString() : null;
-			
-			var body = "<div class='row'>"
-				+ "<div class='col-xs-12 col-md-4'> <b>School Type : </b> " + (school.schoolType || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>District : </b> " + (school.districtName || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>Educational District : </b> " + (school.educationalDistrictName || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>Address : </b> " + (school.address || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-8'> <b>Phone : </b> " + (school.phone || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>Session Date : </b> " + (school.sessionDate || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-8'> <b>Session Status : </b> " + (school.sessionStatus || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>Teacher Name : </b> " + (school.teacherName || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>Teacher Phone : </b> " + (school.teacherPhone || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12 col-md-4'> <b>Student Representative : </b> " + (school.studentRepName || defalultTxt) + "</div>"
-				+ "<div class='col-xs-12'> <b>Session Comments : </b> " + (school.comments || defalultTxt) + "</div>"
-				+"</div>";
-			var head = school.name + " (Code : " + school.schoolCode + ") " + '<a style="font-size: 14px;text-decoration:underline !important;" href="#/adminHome/schoolUpload/'+school.id+'")><b>edit</></a>';
-			
-			apiService.showPopUp(head, body);
-		};
-	};
-
 
 })();
 (function () {

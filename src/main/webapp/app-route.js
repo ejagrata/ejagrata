@@ -36,13 +36,13 @@
             .state('app.schoolList.aided', {
                 url: '/aided',
                 templateUrl: 'modules/schoolList/aidedSchool/aidedSchool.html',
-                controller: '',
+                controller: 'aidedSchoolController',
                 controllerAs: 'vm'
             })
             .state('app.schoolList.unaided', {
                 url: '/unaided',
                 templateUrl: 'modules/schoolList/unAidedSchool/unAidedSchool.html',
-                controller: '',
+                controller: 'unAidedSchoolController',
                 controllerAs: 'vm'
             })            
             .state('admin', {

@@ -3,10 +3,10 @@
 
 	angular
 	.module('eJag')
-	.controller('govtSchoolController', govtSchoolController);
+	.controller('unAidedSchoolController', unAidedSchoolController);
 
 	/* ngInject */
-	function govtSchoolController($scope, $state, appConfig, apiService, $timeout) {
+	function unAidedSchoolController($scope, $state, appConfig, apiService, $timeout) {
 		var vm = this;
 		init();
 
@@ -22,7 +22,7 @@
 			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
 
 			apiService.serviceRequest({
-				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/Government',
+				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/UnAided',
 				hideErrMsg: true				
 			}, function (response) {							
 				vm.govtSchool = response;

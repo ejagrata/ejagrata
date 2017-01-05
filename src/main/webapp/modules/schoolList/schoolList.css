@@ -1,64 +1,81 @@
 .schoolList .page-heading {
-    display: table;
-    width: 100%;
+	display: table;
+	width: 100%;
 }
+
 .schoolList .page-heading a {
-    font-size: 20px;
-    display: inline-block;
-    text-decoration: none;
+	font-size: 20px;
+	display: inline-block;
+	text-decoration: none;
 }
+
 .schoolList .page-heading a:hover {
-    font-size: 22px;
+	font-size: 22px;
 }
+
 .schoolList .page-heading {
-    height: 75px;
-    padding: 8px 24px;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
+	height: 75px;
+	padding: 8px 24px;
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
 }
+
 .schoolList .page-heading .appName {
-    font-size: 32px;
+	font-size: 32px;
 }
+
 .schoolList .page-heading .navigation {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: right;
-    outline: none;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+	outline: none;
 }
+
 .schoolList md-content {
-    padding: 12px;
-    background: transparent;
+	padding: 12px;
+	background: transparent;
 }
+
 .schoolList .md-nav-bar {
-    border: none;
-    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
-    background: #fff;
-    width: 75%;
-    margin: 0 auto;
+	border: none;
+	box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
+	background: #fff;
+	width: 75%;
+	margin: 0 auto;
 }
+
 .schoolList .fh5co-section-gray {
-    padding-top: 4em !important;
+	padding-top: 4em !important;
 }
+
 .schoolList .schoolImage {
-    height: 240px;
-    width: 100%;
+	height: 240px;
+	width: 100%;
 }
-.schoolList .government-school {
-    padding-top: 1em;
+
+.schoolList .government-school, .schoolList .aided-school, .schoolList .unaided-school
+	{
+	padding-top: 1em;
 }
+
 .schoolList .props {
-    margin-bottom: 5px;
-    line-height: 20px;
+	margin-bottom: 5px;
+	line-height: 20px;
 }
+
 .schoolList .props .category {
-    color: rgba(0, 0, 0, 0.5);
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 500;
+	color: rgba(0, 0, 0, 0.5);
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 500;
 }
-.schoolList .props .value {}
+
+.schoolList .props .value {
+	
+}
+
 @media screen and (max-width: 768px) {
-    .schoolList .md-nav-bar {
-        width: 95%;
-    }
+	.schoolList .md-nav-bar {
+		width: 95%;
+	}
 }

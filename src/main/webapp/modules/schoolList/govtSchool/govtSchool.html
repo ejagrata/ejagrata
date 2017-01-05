@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
                 <h3>Government Schools</h3>
-                <p ng-hide="vm.loading">These are government schools from {{vm.eduDistrict}} in {{vm.district}} District.</p>
+                <p ng-hide="vm.loading">These are Government schools from {{vm.eduDistrict}} in {{vm.district}} District.</p>
             </div>
         </div>
     </div>
@@ -13,7 +13,11 @@
                 <i class="fa fa-gear fa-spin" aria-hidden="true" style="font-size: 28px;"></i>
                 <div>{{vm.loadMsg}}</div>
             </div>
-            <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool" ng-hide="vm.loading">
+            <div class="loader text-center" ng-show="vm.noResult" style="margin: 3em 0em 5em 0em;">
+                <i class="fa fa-frown-o" aria-hidden="true" style="font-size: 28px;"></i>
+                <div>{{vm.loadMsg}}</div>
+            </div>
+            <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool" ng-hide="vm.loading || vm.noResult">
                 <div class="clearfix fh5co-blog animate-box">
                     <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" alt="">
                     <div class="blog-text">

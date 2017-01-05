@@ -1,3 +1,50 @@
-<div class="text-center" style="margin:10% 0px 20% 0px;">
-    School List is empty.
+<div class="unaided-school">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>Government Schools</h3>
+                <p ng-hide="vm.loading">These are UnAided schools from {{vm.eduDistrict}} in {{vm.district}} District.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="loader text-center" ng-show="vm.loading" style="margin: 3em 0em 5em 0em;">
+                <i class="fa fa-gear fa-spin" aria-hidden="true" style="font-size: 28px;"></i>
+                <div>{{vm.loadMsg}}</div>
+            </div>
+            <div class="loader text-center" ng-show="vm.noResult" style="margin: 3em 0em 5em 0em;">
+                <i class="fa fa-frown-o" aria-hidden="true" style="font-size: 28px;"></i>
+                <div>{{vm.loadMsg}}</div>
+            </div>
+            <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool" ng-hide="vm.loading || vm.noResult">
+                <div class="clearfix fh5co-blog animate-box">
+                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" alt="">
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <h4 style="height: 40px;margin: 0px;">{{item.name}}</h4>
+                            <div class="props">
+                                <div class="category">Session Date</div>
+                                <div class="value">{{item.sessionDate || '--' | date}}</div>
+                            </div>
+                            <div class="props">
+                                <div class="category">Teacher Name</div>
+                                <div class="value">{{item.teacherName}}</div>
+                            </div>                            
+                            <div class="props">
+                                <div class="category">Student Representative</div>
+                                <div class="value">{{item.studentRepName}}</div>
+                            </div>
+                            <div class="props">
+                                <div class="category">Session Status</div>
+                                <div class="value">{{item.sessionStatus}}</div>
+                            </div>
+                            <!-- <span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span> -->
+                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);" style="padding: 4px 12px; font-size: 14px;">View Details</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
