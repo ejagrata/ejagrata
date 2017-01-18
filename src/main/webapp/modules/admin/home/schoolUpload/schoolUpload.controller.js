@@ -22,9 +22,9 @@
 				// service request to fetch data for the requested school
 				apiService.serviceRequest({
 					URL: appConfig.requestURL.schoolDetails + $stateParams.schoolId
-				}, function (response) {
-					vm.formData = response;
-					vm.formData.sessionDate = new Date(response.sessionDate);
+				}, function (response) { 
+					vm.formData = response;					
+					vm.formData.sessionDate = response.sessionDate ?  new Date(response.sessionDate) : null;
 					for (var i=0; i<response.schoolDocumentBean.length; i++){
 						response.schoolDocumentBean[i].docPath = response.schoolDocumentBean[i].docPath.split('/').pop();
 					}
@@ -119,7 +119,8 @@
 			fd.append("teacherName", vm.formData.teacherName);
 			fd.append("teacherPhone", vm.formData.teacherPhone);
 			fd.append("studentRepName", vm.formData.studentRepName);
-			fd.append("sessionDate", vm.formData.sessionDate);
+			if (vm.formData.sessionDate)
+				fd.append("sessionDate", vm.formData.sessionDate);
 			fd.append("sessionStatus", vm.formData.sessionStatus);
 			fd.append("comments", vm.formData.comments);
 			fd.append("districtId", 1);

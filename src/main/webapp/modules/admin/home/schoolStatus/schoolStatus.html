@@ -6,31 +6,64 @@
     </div>
     <div class="col-xs-12">
         <div ng-hide="vm.loading" class="content-holder">
-            <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
-                <input type="text" ng-model="search.name" required maxlength="50" placeholder="Enter School Name" style="border-radius: 4px;"/>
-            </div>
-            <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
-                <select class="form-control" data-ng-model="search.districtName" required>
-                    <option value="">Select District</option>
-                    <option value="{{item.value}}" ng-repeat="item in vm.district">{{item.value}}</option>
-                </select>
-            </div>
-            <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
-                <select class="form-control" data-ng-model="search.educationalDistrictName" required>
-                    <option value="">Select Educational District</option>
-                    <option value="{{item.value}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
-                </select>
-            </div>
-            <div class="input-box col-xs-12 col-md-3" style="padding: 0px 0px 0px 0px;">
-                <select class="form-control" data-ng-model="search.sessionStatus" required>
-                    <option value="">Select Session Status</option>
-                    <option value="{{item.value}}" ng-repeat="item in vm.sessionStatus">{{item.value}}</option>
-                </select>
-            </div>
-            <div class="col-xs-12 filter" style="padding: 6px 0px;    font-size: 12px;">
-                <i class="pull-left">(apply filters to sort the list.)</i>
-                <span style="padding-left: 5px;font-weight: bold;">List count : {{(vm.schoolList|filter:search).length}}</span>
-                <span class="pull-right" ng-click="search = {};" ng-show="search.districtName || search.name || search.educationalDistrictName || search.sessionStatus"> Clear Filters</span>
+            <div class="clearfix">
+                <div class="filter-container">
+                    <div class="filter-header clearfix">
+                        <div class="pull-left" style="padding-top: 10px;">
+                            <span style="font-size: 24px;">Filters</span>
+                        </div>
+                        <div class="input-box pull-right" style="padding: 0px 0px 10px 0px; width:150px;">
+                            <div style="float:left; padding-right: 5px;">
+                                <select class="form-control" data-ng-model="vm.sortCriteria" required style="height: auto;">
+                                    <option value="">-- sort list --</option>
+                                    <option value="{{item.value}}" ng-repeat="item in vm.sortList">
+                                        {{item.text}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div style="padding-top: 10px;">
+                                <i class="fa fa-arrow-down" aria-hidden="true" ng-click="vm.sortOrder = true;" ng-hide="vm.sortOrder"></i>
+                                <i class="fa fa-arrow-up" aria-hidden="true" ng-click="vm.sortOrder = false;" ng-show="vm.sortOrder"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
+                        <input type="text" onkeydown="return false;" ng-model="search.name" required maxlength="50" placeholder="Enter School Name" style="border-radius: 4px;" />
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
+                        <select class="form-control" data-ng-model="search.schoolType" required>
+                            <option value="">Select School Type</option>
+                            <option value="{{item.value}}" ng-repeat="item in vm.schoolType">{{item.value}}</option>
+                        </select>
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
+                        <select class="form-control" data-ng-model="search.districtName" required>
+                            <option value="">Select District</option>
+                            <option value="{{item.value}}" ng-repeat="item in vm.district">{{item.value}}</option>
+                        </select>
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
+                        <select class="form-control" data-ng-model="search.educationalDistrictName" required>
+                            <option value="">Select Educational District</option>
+                            <option value="{{item.value}}" ng-repeat="item in vm.educationDist">{{item.value}}</option>
+                        </select>
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 15px 15px 0px 0px;">
+                        <input type="date" data-ng-model="sortSessionDate" placeholder="Session Date" />
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 15px 15px 0px 0px;">
+                        <select class="form-control" data-ng-model="search.sessionStatus" required>
+                            <option value="">Select Session Status</option>
+                            <option value="{{item.value}}" ng-repeat="item in vm.sessionStatus">{{item.value}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 filter" style="padding: 6px 0px;    font-size: 12px;">
+                    <i class="pull-left">(apply filters to sort the list.)</i>
+                    <span style="padding-left: 5px;font-weight: bold;">List count : {{(vm.schoolList|filter:search).length}}</span>
+                    <span class="pull-right" ng-click="search = {}; sortSessionDate = null;" ng-show="search.sessionDate || search.schoolType || search.districtName || search.name || search.educationalDistrictName || search.sessionStatus"> Clear Filters</span>
+                </div>
             </div>
             <table class="table table-bordered" style="margin-bottom: 0px;margin-top: 10px;">
                 <th class="col-xs-3">School Name</th>
@@ -38,13 +71,13 @@
                 <th class="col-xs-3">Educational District Name</th>
                 <th class="col-xs-2">Session Date</th>
                 <th class="col-xs-2">Session Status</th>
-                <tr ng-repeat="school in vm.schoolList | filter:search | orderBy : 'id'" ng-animate="'animate'">
-                    <td class="col-xs-3"><span ng-click="vm.getDetails(school);" style="outline:none;color: #337ab7;font-weight: 500;">{{school.name}}</span></td>
+                <tr ng-repeat="school in vm.schoolList | filter:search | orderBy:vm.sortCriteria:vm.sortOrder">
+                    <td class="col-xs-3"><span ng-click="vm.getDetails(school);" style="outline:none;color: #337ab7;font-weight: 500;">{{school.name}} ({{school.schoolCode}})</span></td>
                     <td class="col-xs-2">{{school.districtName}}</td>
                     <td class="col-xs-3">{{school.educationalDistrictName}}</td>
                     <td class="col-xs-2">{{school.sessionDate || '--' | date}}</td>
                     <td class="col-xs-2">{{school.sessionStatus}}</td>
-                </tr>               
+                </tr>
                 <tr ng-show="(vm.schoolList | filter:search).length == 0">
                     <td colspan="5" class="text-center"> Your query does not match any item <i class="fa fa-frown-o" aria-hidden="true"></i></td>
                 </tr>

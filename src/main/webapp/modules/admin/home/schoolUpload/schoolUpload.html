@@ -88,9 +88,9 @@
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Session Date
-                    <req>*</req>
+                    <req ng-show="vm.formData.sessionStatus != 'Date to be decided'">*</req>
                 </label>
-                <input type="date" id="sessionDate" ng-model="vm.formData.sessionDate" required onkeydown="return false;" ng-disabled="vm.saving" />
+                <input type="date" id="sessionDate" ng-model="vm.formData.sessionDate" onkeydown="return false;" ng-disabled="vm.saving" ng-required="vm.formData.sessionStatus != 'Date to be decided'""/>
             </div>
             <div class="input-box col-xs-12 col-md-6">
                 <label>Session Status

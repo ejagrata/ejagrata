@@ -72,6 +72,10 @@
 .schoolStatus {
     margin-bottom: 2em;
 }
+.schoolStatus .filter-container .filter-header {
+    border-bottom: 1px solid #ef6249;
+    margin-bottom: 15px;
+}
 .schoolStatus .filter .filterText {
     font-size: 16px;
 }

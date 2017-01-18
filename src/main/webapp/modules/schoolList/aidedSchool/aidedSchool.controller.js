@@ -29,7 +29,7 @@
 				if (response.length > 0) { // checks if school list is empty
 					for (var i=0; i<vm.govtSchool.length; i++){
 						vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
-								'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.jpg";
+								'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.png";
 					};
 
 					$timeout(function (){

@@ -7,27 +7,30 @@
 <!--<![endif]-->
 
 <head>
-<title>E-Jagratha</title>
+    <title>E-Jagratha</title>
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="../images/fav-icon.png">
 
-<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
 
-<!-- Scripts -->
-<script src="build/script.js"></script>
+    <!-- Scripts -->
+    <script src="build/angular.js"></script>
+    <script src="build/vendor.js"></script>
+    <script src="build/material.js"></script>
+    <script src="build/ui-bootstrap.js"></script>
+    <script src="build/app.js"></script>
 
-<!-- CSS -->
-<link rel="stylesheet" href="build/style.css">
-<link rel="stylesheet"
-	href="node_modules/font-awesome/css/font-awesome.min.css" a>
+    <!-- CSS -->
+    <link rel="stylesheet" href="build/style.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" a>
 
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-<script type="text/javascript">
+    <script type="text/javascript">
         angular.element(document).ready(function() {
             angular.bootstrap(document.body, ['eJag']);
         });
@@ -37,17 +40,17 @@
 
 <body>
 
-	<ui-view></ui-view>
-	<div id="myModal" class="pop-up">
-		<!-- Modal content -->
-		<div class="pop-up-container">
-			<div class="pop-up-header clearfix">
-				<div class="pop-up-heading pull-left"></div> 
-				<div class="pop-up-close pull-right">&times;</div>
-			</div>
-			<div class="pop-up-body"></div>
-		</div>
-	</div>
+    <ui-view></ui-view>
+    <div id="myModal" class="pop-up">
+        <!-- Modal content -->
+        <div class="pop-up-container">
+            <div class="pop-up-header clearfix">
+                <div class="pop-up-heading pull-left"></div>
+                <div class="pop-up-close pull-right">&times;</div>
+            </div>
+            <div class="pop-up-body"></div>
+        </div>
+    </div>
 </body>
 
 </html>

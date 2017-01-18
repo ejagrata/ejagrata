@@ -15,18 +15,20 @@
     "gulp": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",
-    "gulp-uglify": "latest"
+    "gulp-minify": "0.0.14",
+    "gulp-uglify": "latest",
+    "pump": "latest"
   },
   "dependencies": {
     "angular": "latest",
     "angular-animate": "latest",
-    "angular-aria": "^1.6.0",
-    "angular-cookies": "^1.6.1",
+    "angular-aria": "latest",
+    "angular-cookies": "latest",
     "angular-material": "latest",
     "angular-ui-bootstrap": "latest",
     "angular-ui-router": "latest",
     "bootstrap": "latest",
-    "font-awesome": "^4.7.0",
-    "scrollreveal": "^3.3.2"
+    "font-awesome": "latest",
+    "scrollreveal": "latest"
   }
 }
