@@ -56,13 +56,13 @@
 			});             
 		}
 		/**
-		 * 
+		 *  to show slider for images
 		 */
-		vm.gotoSchool = function (item) {			
-			$state.go('app.schoolDetail', {
-				schoolDetails: JSON.stringify(item)
-			});
-		}
+		vm.showSlide = function (item) {			
+			if (item && item.schoolDocumentBean && item.schoolDocumentBean.length > 0) {
+				$scope.$parent.vm.showSlideShow(item);
+			}
+		};
 
 	}
 

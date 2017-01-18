@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
-                        <input type="text" onkeydown="return false;" ng-model="search.name" required maxlength="50" placeholder="Enter School Name" style="border-radius: 4px;" />
+                        <input type="text" ng-model="search.name" required maxlength="50" placeholder="Enter School Name" style="border-radius: 4px;" />
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
                         <select class="form-control" data-ng-model="search.schoolType" required>
@@ -49,7 +49,7 @@
                         </select>
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 15px 15px 0px 0px;">
-                        <input type="date" data-ng-model="sortSessionDate" placeholder="Session Date" />
+                        <input type="date" onkeydown="return false;" data-ng-model="sortSessionDate" placeholder="Session Date" />
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 15px 15px 0px 0px;">
                         <select class="form-control" data-ng-model="search.sessionStatus" required>

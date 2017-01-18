@@ -19,7 +19,7 @@
             </div>
             <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool" ng-hide="vm.loading || vm.noResult">
                 <div class="clearfix fh5co-blog animate-box">
-                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" alt="">
+                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" ng-click="vm.showSlide(item);">
                     <div class="blog-text">
                         <div class="prod-title">
                             <h4 style="height: 40px;margin: 0px;">{{item.name}} <i style="font-size: 12px;">({{item.schoolCode}})</i></h4>
@@ -40,7 +40,7 @@
                                 <div class="value">{{item.sessionStatus}}</div>
                             </div>
                             <!-- <span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span> -->
-                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);" style="padding: 4px 12px; font-size: 14px;">View Details</a></div>
+                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.showSlide(item);" style="padding: 4px 12px; font-size: 14px;">View Details</a></div>
                         </div>
                     </div>
                 </div>
