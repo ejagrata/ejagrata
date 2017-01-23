@@ -16,7 +16,7 @@
                             <div style="float:left; padding-right: 5px;">
                                 <select class="form-control" data-ng-model="vm.sortCriteria" required style="height: auto;">
                                     <option value="">-- sort list --</option>
-                                    <option value="{{item.value}}" ng-repeat="item in vm.sortList">
+                                    <option value="{{item.value}}" ng-repeat="item in vm.sortList" ng-selected=true>
                                         {{item.text}}
                                     </option>
                                 </select>
@@ -28,6 +28,9 @@
                         </div>
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
+                        <input type="text" ng-model="search.schoolCode" required maxlength="50" placeholder="Enter School Code" style="border-radius: 4px;" onkeypress="return validNumber(event);"/>
+                    </div>
+                    <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
                         <input type="text" ng-model="search.name" required maxlength="50" placeholder="Enter School Name" style="border-radius: 4px;" />
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
@@ -35,13 +38,7 @@
                             <option value="">Select School Type</option>
                             <option value="{{item.value}}" ng-repeat="item in vm.schoolType">{{item.value}}</option>
                         </select>
-                    </div>
-                    <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
-                        <select class="form-control" data-ng-model="search.districtName" required>
-                            <option value="">Select District</option>
-                            <option value="{{item.value}}" ng-repeat="item in vm.district">{{item.value}}</option>
-                        </select>
-                    </div>
+                    </div>                   
                     <div class="input-box col-xs-12 col-md-3" style="padding: 0px 15px 0px 0px;">
                         <select class="form-control" data-ng-model="search.educationalDistrictName" required>
                             <option value="">Select Educational District</option>
@@ -49,7 +46,7 @@
                         </select>
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 15px 15px 0px 0px;">
-                        <input type="date" onkeydown="return false;" data-ng-model="sortSessionDate" placeholder="Session Date" />
+                        <input type="date" onkeydown="return false;" data-ng-model="sortSessionDate" placeholder="Session Date" style="border-radius: 4px;"/>
                     </div>
                     <div class="input-box col-xs-12 col-md-3" style="padding: 15px 15px 0px 0px;">
                         <select class="form-control" data-ng-model="search.sessionStatus" required>
@@ -62,18 +59,18 @@
                 <div class="col-xs-12 filter" style="padding: 6px 0px;    font-size: 12px;">
                     <i class="pull-left">(apply filters to sort the list.)</i>
                     <span style="padding-left: 5px;font-weight: bold;">List count : {{(vm.schoolList|filter:search).length}}</span>
-                    <span class="pull-right" ng-click="search = {}; sortSessionDate = null;" ng-show="search.sessionDate || search.schoolType || search.districtName || search.name || search.educationalDistrictName || search.sessionStatus"> Clear Filters</span>
+                    <span class="pull-right" ng-click="search = {}; sortSessionDate = null;" ng-show="search.schoolCode || search.sessionDate || search.schoolType || search.districtName || search.name || search.educationalDistrictName || search.sessionStatus"> Clear Filters</span>
                 </div>
             </div>
             <table class="table table-bordered" style="margin-bottom: 0px;margin-top: 10px;">
-                <th class="col-xs-3">School Name</th>
-                <th class="col-xs-2">District Name</th>
+                <th class="col-xs-2">School Code</th>
+                <th class="col-xs-2">School Name</th>
                 <th class="col-xs-3">Educational District Name</th>
                 <th class="col-xs-2">Session Date</th>
                 <th class="col-xs-2">Session Status</th>
                 <tr ng-repeat="school in vm.schoolList | filter:search | orderBy:vm.sortCriteria:vm.sortOrder">
-                    <td class="col-xs-3"><span ng-click="vm.getDetails(school);" style="outline:none;color: #337ab7;font-weight: 500;">{{school.name}} ({{school.schoolCode}})</span></td>
-                    <td class="col-xs-2">{{school.districtName}}</td>
+                    <td class="col-xs-2">{{school.schoolCode}}</td>                
+                    <td class="col-xs-3"><span ng-click="vm.getDetails(school);" style="outline:none;color: #337ab7;font-weight: 500;">{{school.name}}</span></td>
                     <td class="col-xs-3">{{school.educationalDistrictName}}</td>
                     <td class="col-xs-2">{{school.sessionDate || '--' | date}}</td>
                     <td class="col-xs-2">{{school.sessionStatus}}</td>

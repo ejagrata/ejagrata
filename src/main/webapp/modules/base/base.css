@@ -1,0 +1,58 @@
+#footer {
+    position: relative;
+}
+#footer * {
+    outline: none;
+}
+#footer .downloads {
+    padding-top: 8px;
+}
+#footer .downloads .category i {
+    padding-right: 5px;
+}
+#footer .downloads h3 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 8px;
+}
+#footer .downloads .float {
+    width: 25%;
+    padding-right: 8px;
+    margin: 0px !important;
+}
+#footer .fh5co-copyright {
+    line-height: normal;
+}
+#footer .fh5co-copyright p {
+    margin: 0px !important;
+}
+#footer .fh5co-copyright .social-icons i {
+    float: left;
+    margin-right: 12px;
+    font-size: 18px;
+}
+#footer .fh5co-copyright .social-icons a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none !important;
+}
+#footer .fh5co-copyright span {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: 18px;
+}
+#footer .go-top {
+    position: absolute;
+    right: 15px;
+    bottom: 53px;
+    padding: 2px 8px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+}
+@media screen and (max-width: 768px) {
+    #footer .downloads .float {
+        width: 100%;
+        padding-right: 8px;
+        margin: 0px !important;
+    }
+}

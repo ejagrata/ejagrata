@@ -6,7 +6,7 @@
 	.controller('schoolStatusController', schoolStatusController);
 
 	/* ngInject */
-	function schoolStatusController($scope, apiService, appConfig) {
+	function schoolStatusController($scope, apiService, appConfig, $timeout) {
 		var vm = this;
 		init();
 
@@ -52,7 +52,7 @@
 			}, {
 				value: "Muvattupuzha"
 			}];
-			
+
 			// sort list drop-down
 			vm.sortList = [{
 				text : "School Name",
@@ -64,18 +64,28 @@
 				text : "Session Date",
 				value : "sessionDate"
 			}];
-			
+			vm.sortCriteria = "name"; // default sort criteria
+
 			// service request
 			apiService.serviceRequest({
 				URL: appConfig.requestURL.schoolAllList,
 				hideErrMsg: true
 			}, function (response) {
-				vm.schoolList = response;
-				vm.loading = false;
+				vm.schoolList = [];
+				for(var i=0;i<response.length;i++){					
+					vm.schoolList[i] = response[i];
+					if (response[i].sessionDate){
+						var date = new Date(response[i].sessionDate);
+						vm.schoolList[i].sessionDate = date.setHours(0,0,0,0);
+					} 
+				}
+				$timeout(function (){
+					vm.loading = false;
+				}, 100);
 			}, function (response) {
 
 			});
-			
+
 			// to handle sort by date
 			$scope.$watch('sortSessionDate', function (newValue, oldValue, scope) {						
 				if ($scope.search && newValue)
@@ -86,11 +96,10 @@
 		 * 
 		 */
 		vm.getDetails = function (school){
-			console.log(school)
 			var defalultTxt = 'NA',
 			sessionDate = angular.copy(school.sessionDate);
 			sessionDate = sessionDate ? new Date(sessionDate).toDateString() : null;
-			
+
 			var body = "<div class='row'>"
 				+ "<div class='col-xs-12 col-md-4'> <b>School Type : </b> " + (school.schoolType || defalultTxt) + "</div>"
 				+ "<div class='col-xs-12 col-md-4'> <b>District : </b> " + (school.districtName || defalultTxt) + "</div>"
@@ -105,7 +114,7 @@
 				+ "<div class='col-xs-12'> <b>Session Comments : </b> " + (school.comments || defalultTxt) + "</div>"
 				+ "</div>";
 			var head = school.name + " (Code : " + school.schoolCode + ") " + '<a style="font-size: 14px;text-decoration:underline !important;" href="#!/adminHome/schoolUpload/'+school.id+'")><b>edit</></a>';
-			
+
 			apiService.showPopUp(head, body);
 		};
 	};

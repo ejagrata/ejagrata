@@ -36,19 +36,19 @@ gulp.task('compile-html', function () {
  **/
 gulp.task('compile-js', function () {
     gulp.src(vendorJs)
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('build'));
     gulp.src(angularCore)
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('angular.js'))
         .pipe(gulp.dest('build'));
     gulp.src(angularMaterial)
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('material.js'))
         .pipe(gulp.dest('build'));
     gulp.src(angularBootstrap)
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('ui-bootstrap.js'))
         .pipe(gulp.dest('build'));
     gulp.src(appJs)

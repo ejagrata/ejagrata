@@ -111,7 +111,7 @@ figure {
     bottom: 0;
     right: 0;
     z-index: 1;
-    background: rgba(41, 34, 43, 0.5);
+    background: rgba(0, 0, 0, 0.65);
 }
 .fh5co-cover {
     background-image: url(../images/ejabg.jpg), url(../images/ejabg-1.jpg);
@@ -136,14 +136,14 @@ figure {
     }
 }
 .fh5co-cover .desc {
-    top: 35%;
+    top: 15%;
     position: absolute;
     width: 100%;
     z-index: 2;
     color: #fff;
 }
 .fh5co-cover .desc img {
-    width: 50%;
+    width: 60%;
 }
 .fh5co-cover .desc strong {
     text-shadow: 4px 4px 12px #000;
@@ -497,7 +497,6 @@ figure {
     background: rgba(0, 0, 0, 0.04);
 }
 .heading-section {
-    padding-bottom: 1em;
     margin-bottom: 1em;
 }
 .heading-section:after {
@@ -514,12 +513,13 @@ figure {
     font-size: 40px;
     font-weight: 300;
     position: relative;
+    margin-bottom: 0px;
 }
 .heading-section p {
     font-size: 16px;
     font-style: italic;
     font-weight: 500;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 .services {
     padding: 40px 20px 20px 20px;
@@ -1138,7 +1138,7 @@ figure {
 }
 #footer {
     background: #2F3032;
-    padding: 6em 0 0 0;
+    padding: 0;
     width: 100%;
     float: left;
 }
@@ -1194,14 +1194,8 @@ figure {
     width: 40px;
 }
 #footer .fh5co-copyright {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 40px !important;
-    padding: 3em;
-    width: 100%;
-    float: left;
-}
-#footer .fh5co-copyright span {
-    display: block;
+    /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
+    padding: 1em;
 }
 #footer .fh5co-copyright span a {
     color: rgba(255, 255, 255, 0.8);

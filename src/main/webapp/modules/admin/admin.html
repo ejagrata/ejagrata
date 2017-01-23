@@ -1,6 +1,6 @@
 <div class="adminLogin">
     <header>
-        <span>E-Jagratha</span>
+        <span><img class="img-responsive logo" src="../../images/logo-black.png" style="width:20%;"/></span>
     </header>
     <section>
         <form class="loginForm row" ng-submit="vm.login();">
@@ -11,13 +11,13 @@
                 <label>Username
                     <req>*</req>
                 </label>
-                <input type="text" ng-model="vm.formData.username" required maxlength="50" placeholder="Enter username" ng-disabled="vm.logging"/>
+                <input type="text" ng-model="vm.formData.username" required maxlength="50" placeholder="Enter username" ng-disabled="vm.logging" />
             </div>
             <div class="input-box col-xs-12">
                 <label>Password
                     <req>*</req>
                 </label>
-                <input type="password" ng-model="vm.formData.password" required maxlength="10" placeholder="Enter password" ng-disabled="vm.logging"/>
+                <input type="password" ng-model="vm.formData.password" required placeholder="Enter password" ng-disabled="vm.logging" />
             </div>
             <div class="col-xs-12 text-center">
                 <span data-ng-hide="vm.logging">
@@ -35,7 +35,18 @@
         </form>
     </section>
 
-    <footer>
-        &copy; 2016. All Rights Reserved.
+    <footer class="clearfix">
+        <div id="footer">
+            <div class="fh5co-copyright clearfix text-center">
+                <span>e-Jagratha</span>
+                <p class="pull-left">&copy; 2017. All Rights Reserved.</p>
+                <div class="pull-right social-icons">
+                    <a href=""><i class="icon-twitter2"></i></a>
+                    <a href=""> <i class="icon-facebook2"></i></a>
+                    <a href=""> <i class="icon-google-plus2"></i></a>
+                    <a href=""> <i class="icon-instagram2"></i></a>
+                </div>                
+            </div>
+        </div>
     </footer>
 </div>

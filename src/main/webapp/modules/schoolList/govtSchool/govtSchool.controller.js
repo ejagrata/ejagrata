@@ -28,8 +28,12 @@
 				vm.govtSchool = response;
 				if (response.length > 0) { // checks if school list is empty
 					for (var i=0; i<vm.govtSchool.length; i++){
-						vm.govtSchool[i].imageURL = (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) ?
-								'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId: "images/default.png";
+						if (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) {
+							vm.govtSchool[i].imageURL = 'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId;
+						} else {
+							vm.govtSchool[i].imageURL = "images/default.png";
+							vm.govtSchool[i].disableSlide = true;
+						}						
 					};
 
 					$timeout(function (){

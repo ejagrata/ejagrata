@@ -29,7 +29,6 @@
 						response.schoolDocumentBean[i].docPath = response.schoolDocumentBean[i].docPath.split('/').pop();
 					}
 					vm.uploadedDocs = response.schoolDocumentBean;
-					console.log(vm.uploadedDocs)
 					vm.saving = false;
 				}, function (response) {
 

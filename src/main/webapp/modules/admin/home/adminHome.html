@@ -1,6 +1,6 @@
 <div class="adminPage">
     <div class="page-heading" style="display: table;width: 100%;">
-        <span class="pull-left appName">e-Jagratha</span>
+        <span class="pull-left appName"><img class="img-responsive logo" src="../../images/logo-black.png" /></span>
         <span style="display: table-cell;vertical-align: middle;text-align: right;width: 30px; ">
         <span ng-click="vm.logout();" style="background-color: #848484; color: #FFF; padding: 4px 10px; border-radius: 12px; font-size: 14px;outline:none;">Logout</span>
         </span>
@@ -13,7 +13,18 @@
     </md-content>
 
     <ui-view></ui-view>
-    <footer style="color: #fff;">
-        &copy; 2016. All Rights Reserved.
+    <footer class="clearfix">
+        <div id="footer">
+            <div class="fh5co-copyright clearfix text-center">
+                <span>e-Jagratha</span>
+                <p class="pull-left">&copy; 2017. All Rights Reserved.</p>
+                <div class="pull-right social-icons">
+                    <a href=""><i class="icon-twitter2"></i></a>
+                    <a href=""> <i class="icon-facebook2"></i></a>
+                    <a href=""> <i class="icon-google-plus2"></i></a>
+                    <a href=""> <i class="icon-instagram2"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 </div>

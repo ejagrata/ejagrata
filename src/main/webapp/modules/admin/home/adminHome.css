@@ -4,8 +4,12 @@
 .adminPage .page-heading {
     height: 75px;
     padding: 8px 24px;
+    padding-bottom: 0px;
     background: rgba(255, 255, 255, 0.64);
     box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.3);
+}
+.adminPage .page-heading .logo {
+    width: 22%;
 }
 .adminPage .page-heading .appName {
     font-size: 32px;
@@ -65,7 +69,6 @@
     text-align: center;
     line-height: normal;
     color: #fff;
-    padding: 24px;
     background: #2F3032;
     color: #848484;
 }
