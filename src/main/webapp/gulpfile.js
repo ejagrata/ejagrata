@@ -1,13 +1,20 @@
 var gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    minify = require('gulp-minify'),
+    uglify = require('gulp-uglify');
 /**
  *   file list
  **/
 var htmlList = ['*.html', 'modules/*/*.html', 'modules/*/*/*.html', 'modules/*/*/*/*.html'],
 
-    vendorJs = ['js/jquery.min.js', 'node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.min.js', 'node_modules/angular-animate/angular-animate.min.js', 'node_modules/angular-aria/angular-aria.min.js', 'node_modules/angular-material/angular-material.min.js', 'node_modules/angular-cookies/angular-cookies.min.js','node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js', 'node_modules/scrollreveal/dist/scrollreveal.min.js'],
+    vendorJs = ['js/jquery.min.js', 'node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/scrollreveal/dist/scrollreveal.min.js'],
+
+    angularCore = ['node_modules/angular/angular.min.js', 'node_modules/angular-ui-router/release/angular-ui-router.min.js', 'node_modules/angular-animate/angular-animate.min.js', 'node_modules/angular-aria/angular-aria.min.js', 'node_modules/angular-cookies/angular-cookies.min.js'],
+    
+    angularMaterial =  [ 'node_modules/angular-material/angular-material.min.js'],
+    
+    angularBootstrap =  [ 'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'],
 
     appJs = ['*.js', '!gulpfile.js', 'modules/*/*.js', 'modules/*/*/*.js', 'modules/*/*/*/*.js', 'common/*.js'],
 
@@ -28,8 +35,24 @@ gulp.task('compile-html', function () {
  * outputs the concatinated files to build/script.js
  **/
 gulp.task('compile-js', function () {
-    gulp.src(vendorJs.concat(appJs))
-        .pipe(concat('script.js'))
+    gulp.src(vendorJs)
+        .pipe(uglify())
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('build'));
+    gulp.src(angularCore)
+        .pipe(uglify())
+        .pipe(concat('angular.js'))
+        .pipe(gulp.dest('build'));
+    gulp.src(angularMaterial)
+        .pipe(uglify())
+        .pipe(concat('material.js'))
+        .pipe(gulp.dest('build'));
+    gulp.src(angularBootstrap)
+        .pipe(uglify())
+        .pipe(concat('ui-bootstrap.js'))
+        .pipe(gulp.dest('build'));
+    gulp.src(appJs)
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('build'))
         .pipe(connect.reload());
 });

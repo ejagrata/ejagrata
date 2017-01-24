@@ -1,7 +1,7 @@
 --create user 'ejagrata'@'localhost' identified by 'ejagrata123';
 --grant all privileges on ejagrata.* to 'ejagrata'@'localhost' with grant option;
 
-insert into user values (1,'admin','admin','admin@ejagrata.in.net','$2a$10$4ejGG/wQhty2PNacQ710zOtNxPeK2akIsKQSM/z9k5p0NlCHS8EIC', true);
+insert into user values (1,'admin','admin','admin@ejagrata.in.net','$2a$10$EwbKj3nYHzjYPjOpmbmSx.jZg6XfgjZH3G5Xa18MUPbuJ5cTt8Qn2', true);
  
 insert into role(id, name, display_name) values (1,'ROLE_ADMIN', 'Admin');
 insert into role(id, name, display_name) values (2,'ROLE_GUEST', 'Guest');

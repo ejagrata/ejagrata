@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                <h3>Government Schools</h3>
-                <p ng-hide="vm.loading">These are UnAided schools from {{vm.eduDistrict}} in {{vm.district}} District.</p>
+                <h3>Unaided Schools</h3>
+                <p ng-hide="vm.loading">These are unaided schools from {{vm.eduDistrict}} educational district in {{vm.district}}.</p>
             </div>
         </div>
     </div>
@@ -17,12 +17,13 @@
                 <i class="fa fa-frown-o" aria-hidden="true" style="font-size: 28px;"></i>
                 <div>{{vm.loadMsg}}</div>
             </div>
-            <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool" ng-hide="vm.loading || vm.noResult">
+            <div class="col-lg-4 col-md-4 sr-listImg" ng-repeat="item in vm.govtSchool | orderBy:'schoolCode'" ng-hide="vm.loading || vm.noResult">
                 <div class="clearfix fh5co-blog animate-box">
-                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" alt="">
+                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" ng-click="vm.showSlide(item);" ng-hide="item.disableSlide">
+                    <img class="img-responsive schoolImage" ng-src="{{item.imageURL}}" ng-show="item.disableSlide">
                     <div class="blog-text">
                         <div class="prod-title">
-                            <h4 style="height: 40px;margin: 0px;">{{item.name}}</h4>
+                            <h4 style="height: 40px;margin: 0px;">{{item.name}} <i style="font-size: 12px;">({{item.schoolCode}})</i></h4>
                             <div class="props">
                                 <div class="category">Session Date</div>
                                 <div class="value">{{item.sessionDate || '--' | date}}</div>
@@ -40,7 +41,9 @@
                                 <div class="value">{{item.sessionStatus}}</div>
                             </div>
                             <!-- <span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span> -->
-                            <div style="text-align: center;"><a class="btn btn-primary" ng-click="vm.gotoSchool(item);" style="padding: 4px 12px; font-size: 14px;">View Details</a></div>
+                            <div style="text-align: center;height: 36px;" >
+                            	<a class="btn btn-primary" ng-click="vm.showSlide(item);" style="padding: 4px 12px; font-size: 14px;" ng-hide="item.disableSlide">View Images</a>
+                            </div>
                         </div>
                     </div>
                 </div>

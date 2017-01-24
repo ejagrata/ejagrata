@@ -11,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 .pop-up .pop-up-container {
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 20px;
     background: #fff;
     width: 80%;
@@ -43,6 +43,16 @@
 .homePage .edu-dist {
     outline: none;
 }
+.homePage .mainLogo {
+    width: 55% !important;
+}
+.homePage .poweredBy {
+    position: absolute;
+    z-index: 2;
+    width: 25%;
+    right: 5px;
+    bottom: 5px;
+}
 .homePage .edu-dist blockquote {
     box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, .5);
     background-size: cover;
@@ -51,6 +61,12 @@
     font-size: 28px;
     line-height: normal;
     text-shadow: 0px 2px 12px #000;
+}
+.homePage .edu-dist blockquote span {
+    border: 2px solid #ffffff;
+    padding: 2px 16px;
+    border-radius: 10px;
+    font-size: 22px;
 }
 .homePage .edu-dist .aluva {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/aluva.jpg);
@@ -73,7 +89,6 @@
     background-image: -ms-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
     background-image: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/koth.jpg);
 }
-
 .homePage .edu-dist .mvp {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
     background-image: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/mvp.jpg);
@@ -84,4 +99,9 @@
 .homePage .edu-dist blockquote:hover {
     cursor: pointer;
     box-shadow: 0px 0px 14px 4px rgba(0, 0, 0, .5);
+}
+@media screen and (min-width: 1400px) {
+    .homePage .mainLogo {
+        width: 50% !important;
+    }
 }

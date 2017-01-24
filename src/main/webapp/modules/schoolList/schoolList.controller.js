@@ -6,7 +6,7 @@
 	.controller('schoolListController', schoolListController);
 
 	/* ngInject */
-	function schoolListController($scope, $state, $stateParams) {
+	function schoolListController($scope, $state, $stateParams, $rootScope) {
 		var vm = this;
 		init();
 
@@ -24,8 +24,24 @@
 				vm.currentNavItem = "app.schoolList.govt";
 				$state.go("app.schoolList.govt", true);
 			} 
+		};
+		/**
+		 *  function to show the slider
+		 */
+		vm.showSlideShow = function (item){
+			$rootScope.hasSlideShow = true; // flag to indicate slider is active
+			$rootScope.scrollY = window.scrollY; // to save scroll value when slider is opended
+			vm.showSlider = true; // flag to indicate slider is active
+			vm.schoolDetails = item; // save school details to populate in slider
+		};
+		/**
+		 * 
+		 */
+		vm.closeSlideShow = function (){
+			window.scrollTo(0, $rootScope.scrollY); // set the scroll to previous one
+			$rootScope.hasSlideShow = false; // set the slide show active flag
+			vm.showSlider = false;
 		}
-
 	}
 
 })();

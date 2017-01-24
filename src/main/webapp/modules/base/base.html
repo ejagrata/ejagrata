@@ -1,44 +1,39 @@
 <ui-view></ui-view>
-
-<footer>
+<footer class="clearfix">
     <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-                    <h3>About Us</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                    <a ui-sref="admin" target="_blank">Login as Admin?</a>
-                </div>
-                <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-                    <h3>Our Services</h3>
-                    <ul class="float">
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Branding &amp; Identity</a></li>
-                        <li><a href="#">Free HTML5</a></li>
-                        <li><a href="#">HandCrafted Templates</a></li>
-                    </ul>
-                    <ul class="float">
-                        <li><a href="#">Free Bootstrap Template</a></li>
-                        <li><a href="#">Free HTML5 Template</a></li>
-                        <li><a href="#">Free HTML5 &amp; CSS3 Template</a></li>
-                        <li><a href="#">HandCrafted Templates</a></li>
-                    </ul>
-
-                </div>
-
-                <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-                    <h3>Follow Us</h3>
-                    <ul class="fh5co-social"> 
-                        <li><a href="#"><i class="icon-twitter2"></i> Twitter</a></li>
-                        <li><a href="#"><i class="icon-facebook2"></i> Facebook</a></li>
-                        <li><a href="#"><i class="icon-google-plus2"></i> Google Plus</a></li>
-                        <li><a href="#"><i class="icon-instagram2"></i> Instagram</a></li>
-                    </ul>
+        <div style="background: #393b3e;">
+            <div class="container">
+                <div class="row downloads">
+                    <div class="col-md-12" style="padding-right: 0px; padding-left: 0px;">
+                        <h3>Course Material
+                    	<a ui-sref="admin" target="_blank" class="pull-right">Login as Admin?</a>
+                    </h3>
+                        <ul class="float category" ng-repeat="item in vm.downloadCategory">
+                            <li>
+                                <i class="fa fa-plus-square" aria-hidden="true" ng-show="!item.open" ng-click="vm.action(item);"></i>
+                                <i class="fa fa-minus-square" aria-hidden="true" ng-show="item.open" ng-click="vm.action(item);"></i>
+                                <a style="color: rgba(255, 255, 255, 0.8) !important;" ng-click="vm.action(item);">{{item.value}}</a>
+                            </li>
+                            <ul class="float" id="{{item.id}}" style="width:100%;">
+                                <li ng-repeat="item in vm.downloadCategory[$index].list">
+                                    <a href="{{item.href}}" target="_blank" download>{{item.value}}</a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="fh5co-copyright text-center">
-            <p>&copy; 2016. All Rights Reserved.</p>
+        <div class="fh5co-copyright clearfix text-center container">
+            <span>e-Jagratha</span>
+            <p class="pull-left">&copy; 2017. All Rights Reserved.</p>
+            <div class="pull-right social-icons">
+                <a href=""><i class="icon-twitter2"></i></a>
+                <a href=""> <i class="icon-facebook2"></i></a>
+                <a href=""> <i class="icon-google-plus2"></i></a>
+                <a href=""> <i class="icon-instagram2"></i></a>
+            </div>
+            <div class="go-top" ng-click="vm.goTop();">Top<i class="fa fa-arrow-up" aria-hidden="true" style="padding-left:5px;"></i></div>
         </div>
     </div>
 </footer>
