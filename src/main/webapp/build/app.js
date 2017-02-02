@@ -291,51 +291,50 @@
 
 		vm.showPopUp = function (popHeading) {
 			if (popHeading == 'tcs') {
-				var body = "<p>TCS <b>(TATA Consultancy Services Ltd.)</b> is a global leader in IT services, digital and business"
+				var body = "<p>TCS <b>(TATA Consultancy Services Ltd.)</b> is a global leader in IT services, digital and business "
 					+"solutions that partners with its clients to simplify, strengthen and transform their businesses."
-					+"TCS has been recognized by Brand Finance as one of the Big 4 Global IT Services Brands. Along"
-					+"with ensuring the highest levels of certainty and satisfaction to the clients, TCS always believes in"
+					+"TCS has been recognized by Brand Finance as one of the Big 4 Global IT Services Brands. Along "
+					+"with ensuring the highest levels of certainty and satisfaction to the clients, TCS always believes in "
 					+"giving back to society and has created a strong CSR (Corporate Social Responsibility) foot print.<br><br>"
-					+"TCS’ commitment to CSR stems from Tata Group’s abiding concern for society and environment. At TCS,"
-					+"CSR programs seek to create sustainable well-being. The guiding principle is 'Impact through Empowerment',"
-					+"where outcomes and measureable impacts are delivered through a long term sustained effort.<br>"
-					+"TCS team was involved in the e-Jagratha pro​ject from its initial days of conceptualization. The core team formed worked"
-					+"closely with the honorable District Collector​ Mr.​ K. Mohammed Y. Safirulla ​ IAS, ​to​wards​ understand​ing​ his"
+					+"TCS’ commitment to CSR stems from Tata Group’s abiding concern for society and environment. At TCS, "
+					+"CSR programs seek to create sustainable well-being. The guiding principle is 'Impact through Empowerment', "
+					+"where outcomes and measureable impacts are delivered through a long term sustained effort.<br><br>"
+					+"TCS team was involved in the e-Jagratha pro​ject from its initial days of conceptualization. The core team formed worked "
+					+"closely with the honorable District Collector​ Mr.​ K. Mohammed Y. Safirulla ​ IAS, ​to​wards​ understand​ing​ his "
 					+"vision and implement​ing​ it. <br><br>"
-					+"Once the pro​ject was defined​,​ the team started working on the course content, coming up with detailed"
-					+"training documentation in both English and Malayalam and presentations. The entire content was created"
-					+"from scratch and this course content was reviewed with the IT mission representatives to ensure that the"
-					+"course is indeed covering all the required focus areas. Handouts and other supporting documents were prepared"
+					+"Once the pro​ject was defined​,​ the team started working on the course content, coming up with detailed "
+					+"training documentation in both English and Malayalam and presentations. The entire content was created "
+					+"from scratch and this course content was reviewed with the IT mission representatives to ensure that the "
+					+"course is indeed covering all the required focus areas. Handouts and other supporting documents were prepared "
 					+"for ensuring that the master trainers are not missing any information which they need.<br><br>"
-					+"The TCS team ​worked in parallel with the district administration for the master training for Phase 1." 
-					+"The training was conducted in TCS premises in two separate sessions and the trainings were conducted by the"
-					+"TCS team on 12th and 19th of November 2016 ​covering​ 101 government high schools. Mr. Francis Perera (Ex. Cyber Cell Officer)"
+					+"The TCS team ​worked in parallel with the district administration for the master training for Phase 1. " 
+					+"The training was conducted in TCS premises in two separate sessions and the trainings were conducted by the "
+					+"TCS team on 12th and 19th of November 2016 ​covering​ 101 government high schools. Mr. Francis Perera (Ex. Cyber Cell Officer) "
 					+"from TCS Admin has shared his experience with the attendees, which was a highlight for the master training.<br><br>"
-					+"Once the ​'​​Train the Trainer' ​event ​was concluded for Phase 1, the immense task before the TCS team was to support the in​- school"
-					+"training ​for all the 101 schools by th​e​s​e​ master trainers. The team tracked the trainings in individual schools and TCS volunteers"
-					+"were present to support the master trainers when they were spreading the awareness on internet to their school mates."
+					+"Once the ​'​​Train the Trainer' ​event ​was concluded for Phase 1, the immense task before the TCS team was to support the in​- school  "
+					+"were present to support the master trainers when they were spreading the awareness on internet to their school mates. "
 					+"After the conclusion of the Phase 1, the team regrouped for the preparation and execution of Phase 2 master training. The Phase 2 trainings were executed on 5th and 6th of January 2017.<br><br>"
-					+"Around close to 75 associates have contributed their efforts towards e-jagratha till now and this count is keeping on increasing​."
-					+"Associates involved in the ejagratha pro​ject has always expressed their happiness and satisfaction on"
+					+"Around close to 75 associates have contributed their efforts towards e-jagratha till now and this count is keeping on increasing​. "
+					+"Associates involved in the ejagratha pro​ject has always expressed their happiness and satisfaction on "
 					+"how they are helping the next generation to be more aware on the consequences of increased internet and mobile usage.</p>";
 				apiService.showPopUp("Team TCS", body);
 			} else {
-				var body = "<p>e-Jagratha, the internet awareness project was launched by Ernakulam District Administration under the"
+				var body = "<p>e-Jagratha, the internet awareness project was launched by Ernakulam District Administration under the "
 					+"meticulous guidance of honorable District Collector Mr. K. Mohammed Y. Safirulla IAS.<br><br>"
-					+"With more digitalization, the world is becoming small today. Access to information and communication"
-					+"across the world is becoming easier. Internet is influencing today’s society in all aspects of life, be it"
-					+"education, shopping, banking or any other activity. But at the same time, the crime rate in the web"
-					+"world is also growing. What can be done to create a society which use internet to bring out the"
+					+"With more digitalization, the world is becoming small today. Access to information and communication "
+					+"across the world is becoming easier. Internet is influencing today’s society in all aspects of life, be it "
+					+"education, shopping, banking or any other activity. But at the same time, the crime rate in the web "
+					+"world is also growing. What can be done to create a society which use internet to bring out the "
 					+"advantages it offers and at the same time keep the dangers at bay.<br><br>"
-					+"With this thought, our respected District Collector Mr. K. Mohammed Y. Safirulla IAS, came up with the"
-					+"idea of eJagratha. Today’s students are tomorrow’s citizen. If the students are educated of the"
-					+"intricacies involved in internet usage, we believe that we can create a society that is more aware on"
+					+"With this thought, our respected District Collector Mr. K. Mohammed Y. Safirulla IAS, came up with the "
+					+"idea of eJagratha. Today’s students are tomorrow’s citizen. If the students are educated of the "
+					+"intricacies involved in internet usage, we believe that we can create a society that is more aware on "
 					+"where to pause in internet.<br><br>"
-					+"eJagratha focuses on bringing the basic awareness on internet usage among High School students. The"
+					+"eJagratha focuses on bringing the basic awareness on internet usage among High School students. The "
 					+"program along with bringing out the possibilities of e-world, creates awareness on the cyber threats and the cyber laws.<br><br>"
 					+"This program was conceptualized in September 2016 and currently Phase 2 activities are going on.<br><br>"
 					+"<b><u>Phase 1</u></b><br>"
-					+"Phase 1 spanned from October to December 2016. Phase 1 was launched by our respected Revenue"
+					+"Phase 1 spanned from October to December 2016. Phase 1 was launched by our respected Revenue "
 					+"Principal Secretary Mr. P.H. Kurian IAS, on 21 st October 2016.<br><br>"
 					+"Phase 1 included the below activities:<br><br>"
 					+"1) Creating the course content<br>"
@@ -343,8 +342,8 @@
 					+"3) Propagation of the training to rest of the school students by Master trainers in TCS volunteer presence<br><br>"
 					+"The master training by TCS was conducted on 12 th and 19 th of November 2016, at TCS Center.<br><br>"
 					+"<b><u>Phase 2</u></b><br>"
-					+"The second phase focuses on extending the eJagratha training to 175 aided schools in Ernakulam"
-					+"District. The unaided schools attended the master training conducted, at TCS Center, on 5th and 6th"
+					+"The second phase focuses on extending the eJagratha training to 175 aided schools in Ernakulam "
+					+"District. The unaided schools attended the master training conducted, at TCS Center, on 5th and 6th "
 					+"January 2017. The trainings in schools by the master trainers are planned to be completed by the end of February.<br><br>"
 					+"The Phase 2 activities also include:<br><br>"
 					+"1) Awarding cash prize (Rs. 1000) for 3 best performing students identified from the schools involved in both phases<br>"
@@ -519,6 +518,78 @@
 
 	angular
 	.module('eJag')
+	.controller('unAidedSchoolController', unAidedSchoolController);
+
+	/* ngInject */
+	function unAidedSchoolController($scope, $state, appConfig, apiService, $timeout) {
+		var vm = this;
+		init();
+
+		function init() {
+			vm.loading = true; // flag to indicate page is loading
+			vm.loadMsg = "Fetching data... Please wait.."; // message to the user
+			vm.noResult = false; // flag to indicate no result
+			
+			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
+			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
+
+			vm.district = "Ernakulam";
+			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
+
+			apiService.serviceRequest({
+				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/UnAided',
+				hideErrMsg: true				
+			}, function (response) {							
+				vm.govtSchool = response;
+				if (response.length > 0) { // checks if school list is empty
+					for (var i=0; i<vm.govtSchool.length; i++){
+						if (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) {
+							vm.govtSchool[i].imageURL = 'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId;
+						} else {
+							vm.govtSchool[i].imageURL = "images/default.png";
+							vm.govtSchool[i].disableSlide = true;
+						}						
+					};
+
+					$timeout(function (){
+						// reaveal these elements when scoll happens            
+						window.sr = ScrollReveal();
+						// for app title
+						sr.reveal('.sr-listImg', {
+							duration: 1000,
+							scale: 0.3,
+							distance: '20px'
+						});
+						vm.loading = false;
+					}, 100);
+				} else {
+					vm.noResult = true;
+					vm.loading = false;
+					vm.loadMsg = "Seems that School list is empty.";
+				}				
+
+			}, function (response) {
+				vm.noResult = true;
+				vm.loading = false;
+				vm.loadMsg = "Something went wrong... Please try again.";
+			});             
+		}
+		/**
+		 *  to show slider for images
+		 */
+		vm.showSlide = function (item) {			
+			if (item && item.schoolDocumentBean && item.schoolDocumentBean.length > 0) {
+				$scope.$parent.vm.showSlideShow(item);
+			}
+		};
+	}
+
+})();
+(function () {
+	"use strict";
+
+	angular
+	.module('eJag')
 	.controller('aidedSchoolController', aidedSchoolController);
 
 	/* ngInject */
@@ -584,78 +655,6 @@
 			}
 		};
 
-	}
-
-})();
-(function () {
-	"use strict";
-
-	angular
-	.module('eJag')
-	.controller('unAidedSchoolController', unAidedSchoolController);
-
-	/* ngInject */
-	function unAidedSchoolController($scope, $state, appConfig, apiService, $timeout) {
-		var vm = this;
-		init();
-
-		function init() {
-			vm.loading = true; // flag to indicate page is loading
-			vm.loadMsg = "Fetching data... Please wait.."; // message to the user
-			vm.noResult = false; // flag to indicate no result
-			
-			var schoolDist = $scope.$parent.vm.currentDist; // gets the current district id
-			var eduDist = $scope.$parent.vm.currentEdDist; // gets the current eduDist id                        
-
-			vm.district = "Ernakulam";
-			vm.eduDistrict = (eduDist == "1") ? "Aluva" : ((eduDist == "2") ? "Ernakulam" : (eduDist == "3") ? "Kothamangalam" : "Muvattupuzha");
-
-			apiService.serviceRequest({
-				URL: appConfig.requestURL.schoolDistList + schoolDist + '/' + eduDist + '/UnAided',
-				hideErrMsg: true				
-			}, function (response) {							
-				vm.govtSchool = response;
-				if (response.length > 0) { // checks if school list is empty
-					for (var i=0; i<vm.govtSchool.length; i++){
-						if (vm.govtSchool[i].schoolDocumentBean && vm.govtSchool[i].schoolDocumentBean.length > 0) {
-							vm.govtSchool[i].imageURL = 'files/' + vm.govtSchool[i].schoolDocumentBean[0].docId;
-						} else {
-							vm.govtSchool[i].imageURL = "images/default.png";
-							vm.govtSchool[i].disableSlide = true;
-						}						
-					};
-
-					$timeout(function (){
-						// reaveal these elements when scoll happens            
-						window.sr = ScrollReveal();
-						// for app title
-						sr.reveal('.sr-listImg', {
-							duration: 1000,
-							scale: 0.3,
-							distance: '20px'
-						});
-						vm.loading = false;
-					}, 100);
-				} else {
-					vm.noResult = true;
-					vm.loading = false;
-					vm.loadMsg = "Seems that School list is empty.";
-				}				
-
-			}, function (response) {
-				vm.noResult = true;
-				vm.loading = false;
-				vm.loadMsg = "Something went wrong... Please try again.";
-			});             
-		}
-		/**
-		 *  to show slider for images
-		 */
-		vm.showSlide = function (item) {			
-			if (item && item.schoolDocumentBean && item.schoolDocumentBean.length > 0) {
-				$scope.$parent.vm.showSlideShow(item);
-			}
-		};
 	}
 
 })();
