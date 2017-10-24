@@ -162,6 +162,32 @@ public class SchoolServiceImpl implements SchoolService {
 		return schoolBeanList;
 	}
 	
+	@Override
+	public List<SchoolBean> getSchoolByPhase(Integer districtId, Integer edDistrictId, String schoolType, String phase) {
+
+		List<School> schoolList = schoolRepository.getSchoolsByPhase(districtId,
+				edDistrictId, schoolType, phase);
+		List<SchoolBean> schoolBeanList = new ArrayList<>();
+		for (School school : schoolList) {
+			SchoolBean schoolBean = new SchoolBean();
+			BeanUtils.copyProperties(school, schoolBean);
+
+			List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(school.getId());
+			List<SchoolDocumentBean> schoolDocumentBeanList = new ArrayList<>();
+			for (SchoolDocument schoolDocument : schoolDocumentList) {
+				SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
+				BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
+				schoolDocumentBeanList.add(schoolDocumentBean);
+			}
+			schoolBean.setSchoolDocumentBean(schoolDocumentBeanList);
+
+			schoolBeanList.add(schoolBean);
+		}
+		return schoolBeanList;
+	}
+	
+	
+	
 	public Date setHours(Date date){
 		
 		Calendar cal = Calendar.getInstance();

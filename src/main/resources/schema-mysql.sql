@@ -124,3 +124,12 @@ create table user_role (
 	doc_path varchar(250),
 	school_id int(10) references school(id)
 );
+
+create table phase (
+	phase varchar(20) primary key
+);
+
+create table phase_schools (
+	phase varchar(20) references phase(phase),
+	school_id number(10) references school(id)
+);

@@ -18,4 +18,6 @@ public interface SchoolService {
 	public Iterable<School> getAllSchool();
 
 	List<SchoolBean> getSchoolByType(Integer districtId, Integer edDistrictId, String schoolType);
+
+	List<SchoolBean> getSchoolByPhase(Integer districtId, Integer edDistrictId, String schoolType, String phase);
 }
