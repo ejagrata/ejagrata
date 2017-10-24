@@ -131,5 +131,6 @@ create table phase (
 
 create table phase_schools (
 	phase varchar(20) references phase(phase),
-	school_id number(10) references school(id)
+	school_id int(10) references school(id),
+	CONSTRAINT uniqueschoolandphase unique(phase, school_id)
 );
