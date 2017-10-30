@@ -1,9 +1,8 @@
 package org.ejagrata.beans;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Column;
 
 public class SchoolBean {
 
@@ -26,7 +25,8 @@ public class SchoolBean {
     private String educationalDistrictName;
     private List<SchoolDocumentBean> schoolDocumentBean;
     private List<Integer> deleteList;
-
+    private List<Integer> phases = new ArrayList<>();
+    
     public Integer getId() {
         return id;
     }
@@ -179,4 +179,11 @@ public class SchoolBean {
 		this.deleteList = deleteList;
 	}
 
+	public List<Integer> getPhases() {
+		return phases;
+	}
+
+	public void addPhase(Integer phase) {
+		this.phases.add(phase);
+	}
 }

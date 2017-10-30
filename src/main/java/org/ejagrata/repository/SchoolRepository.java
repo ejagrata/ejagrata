@@ -14,6 +14,7 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
     
     List<School> findByDistrictIdAndEducationalDistrictIdAndSchoolType(Integer districtId , Integer educationalDistrictId, String schoolType);
 
-    @Query("select s from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 and s.educationalDistrictId = ?2 and s.schoolType = ?3 and ps.id.phase = ?4 ")
-    List<School> getSchoolsByPhase(Integer districtId , Integer educationalDistrictId, String schoolType, String phase);
+    @Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 " +
+    " and s.educationalDistrictId = ?2 and s.schoolType = ?3 ")
+    List<Object[]> getSchoolsByPhase(Integer districtId , Integer educationalDistrictId, String schoolType);
 }

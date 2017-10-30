@@ -4,12 +4,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
 import org.ejagrata.beans.SchoolBean;
 import org.ejagrata.beans.SchoolDocumentBean;
+import org.ejagrata.entity.PhaseSchools;
 import org.ejagrata.entity.School;
 import org.ejagrata.entity.SchoolDocument;
 import org.ejagrata.repository.SchoolDocumentRepository;
@@ -141,51 +144,41 @@ public class SchoolServiceImpl implements SchoolService {
 	@Override
 	public List<SchoolBean> getSchoolByType(Integer districtId, Integer edDistrictId, String schoolType) {
 
-		List<School> schoolList = schoolRepository.findByDistrictIdAndEducationalDistrictIdAndSchoolType(districtId,
+		/*List<School> schoolList = schoolRepository.findByDistrictIdAndEducationalDistrictIdAndSchoolType(districtId,
+				edDistrictId, schoolType);*/
+		List<Object[]> schoolList = schoolRepository.getSchoolsByPhase(districtId,
 				edDistrictId, schoolType);
+		
 		List<SchoolBean> schoolBeanList = new ArrayList<>();
-		for (School school : schoolList) {
-			SchoolBean schoolBean = new SchoolBean();
-			BeanUtils.copyProperties(school, schoolBean);
-
-			List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(school.getId());
-			List<SchoolDocumentBean> schoolDocumentBeanList = new ArrayList<>();
-			for (SchoolDocument schoolDocument : schoolDocumentList) {
-				SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
-				BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
-				schoolDocumentBeanList.add(schoolDocumentBean);
+		Map<Integer, SchoolBean> mapOfSchools = new HashMap<>();
+		for (Object[] schoolAndPhase : schoolList) {
+			School school = (School)schoolAndPhase[0];
+			PhaseSchools phase = (PhaseSchools)schoolAndPhase[1];
+			
+			SchoolBean schoolBean = mapOfSchools.get(school.getId());
+			if (schoolBean != null) {
+				schoolBean.addPhase(Integer.parseInt(phase.getId().getPhase()));
+			} else {
+			
+				schoolBean = new SchoolBean();
+				BeanUtils.copyProperties(school, schoolBean);
+	
+				List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(school.getId());
+				List<SchoolDocumentBean> schoolDocumentBeanList = new ArrayList<>();
+				for (SchoolDocument schoolDocument : schoolDocumentList) {
+					SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
+					BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
+					schoolDocumentBeanList.add(schoolDocumentBean);
+				}
+				schoolBean.setSchoolDocumentBean(schoolDocumentBeanList);
+				
+				schoolBean.addPhase(Integer.parseInt(phase.getId().getPhase()));
+				mapOfSchools.put(school.getId(), schoolBean);
+				schoolBeanList.add(schoolBean);
 			}
-			schoolBean.setSchoolDocumentBean(schoolDocumentBeanList);
-
-			schoolBeanList.add(schoolBean);
 		}
 		return schoolBeanList;
 	}
-	
-	@Override
-	public List<SchoolBean> getSchoolByPhase(Integer districtId, Integer edDistrictId, String schoolType, String phase) {
-
-		List<School> schoolList = schoolRepository.getSchoolsByPhase(districtId,
-				edDistrictId, schoolType, phase);
-		List<SchoolBean> schoolBeanList = new ArrayList<>();
-		for (School school : schoolList) {
-			SchoolBean schoolBean = new SchoolBean();
-			BeanUtils.copyProperties(school, schoolBean);
-
-			List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(school.getId());
-			List<SchoolDocumentBean> schoolDocumentBeanList = new ArrayList<>();
-			for (SchoolDocument schoolDocument : schoolDocumentList) {
-				SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
-				BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
-				schoolDocumentBeanList.add(schoolDocumentBean);
-			}
-			schoolBean.setSchoolDocumentBean(schoolDocumentBeanList);
-
-			schoolBeanList.add(schoolBean);
-		}
-		return schoolBeanList;
-	}
-	
 	
 	
 	public Date setHours(Date date){
