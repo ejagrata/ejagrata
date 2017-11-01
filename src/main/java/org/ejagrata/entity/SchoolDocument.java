@@ -21,6 +21,18 @@ public class SchoolDocument {
     
     @Column(name="school_id")
     private Integer schoolId;
+    
+    @Column(name="phase")
+	private String phase;
+
+	public String getPhase() {
+		return phase;
+	}
+
+	public void setPhase(String phase) {
+		this.phase = phase;
+	}
+
 
     public Integer getDocId() {
         return docId;
