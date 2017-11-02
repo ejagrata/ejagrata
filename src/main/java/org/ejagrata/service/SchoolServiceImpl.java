@@ -41,13 +41,8 @@ public class SchoolServiceImpl implements SchoolService {
 		SchoolBean bean = new SchoolBean();
 		BeanUtils.copyProperties(entity, bean);
 		List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(id);
-		List<SchoolDocumentBean> schoolDocumentBeanList = new ArrayList<>();
-		for (SchoolDocument schoolDocument : schoolDocumentList) {
-			SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
-			BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
-			schoolDocumentBeanList.add(schoolDocumentBean);
-		}
-		bean.setSchoolDocumentBean(schoolDocumentBeanList);
+		
+		addSchoolDoc(bean, schoolDocumentList);
 		return bean;
 	}
 
@@ -57,7 +52,7 @@ public class SchoolServiceImpl implements SchoolService {
 		School school = new School();
 		BeanUtils.copyProperties(schoolBean, school);
 		schoolRepository.save(school);
-		if (schoolBean.getSchoolDocumentBean() != null && !schoolBean.getSchoolDocumentBean().isEmpty()) {
+		/*if (schoolBean.getSchoolDocumentBean() != null && !schoolBean.getSchoolDocumentBean().isEmpty()) {
 			List<SchoolDocumentBean> schoolDocBeanList = schoolBean.getSchoolDocumentBean();
 			new File(fileSavePath + "/" + school.getId()).mkdirs();
 
@@ -76,7 +71,7 @@ public class SchoolServiceImpl implements SchoolService {
 				}
 			}
 
-		}
+		}*/
 		if (schoolBean.getDeleteList() != null) {
 			for (Integer docId : schoolBean.getDeleteList()) {
 				schoolDocRepo.delete(docId);
@@ -136,15 +131,6 @@ public class SchoolServiceImpl implements SchoolService {
 			if (schoolBean == null) {
 				schoolBean = new SchoolBean();
 				BeanUtils.copyProperties(school, schoolBean);
-	
-				List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(school.getId());
-				List<SchoolDocumentBean> schoolDocumentBeanList = new ArrayList<>();
-				for (SchoolDocument schoolDocument : schoolDocumentList) {
-					SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
-					BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
-					schoolDocumentBeanList.add(schoolDocumentBean);
-				}
-				schoolBean.setSchoolDocumentBean(schoolDocumentBeanList);
 				
 				mapOfSchools.put(school.getId(), schoolBean);
 				schoolBeanList.add(schoolBean);
@@ -159,7 +145,27 @@ public class SchoolServiceImpl implements SchoolService {
 			psb.setComments(phase.getComments());
 			schoolBean.addPhasesDetails(psb);
 		}
+		
+		for (SchoolBean school : schoolBeanList) {
+			List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(school.getId());
+			addSchoolDoc(school, schoolDocumentList);
+		}
+		
 		return schoolBeanList;
+	}
+
+	private void addSchoolDoc(SchoolBean school, List<SchoolDocument> schoolDocumentList) {
+		for (SchoolDocument schoolDocument : schoolDocumentList) {
+			SchoolDocumentBean schoolDocumentBean = new SchoolDocumentBean();
+			BeanUtils.copyProperties(schoolDocument, schoolDocumentBean);
+			
+			for (PhaseSchoolsBean psb : school.getPhasesDetails()) {
+				if (psb.getPhase().equals(schoolDocument.getPhase())) {
+					psb.addSchoolDocumentBean(schoolDocumentBean);
+					break;
+				}
+			}
+		}
 	}
 	
 	

@@ -20,7 +20,6 @@ public class SchoolBean {
     private Integer educationalDistrictId;
     private String districtName;
     private String educationalDistrictName;
-    private List<SchoolDocumentBean> schoolDocumentBean;
     private List<Integer> deleteList;
     private List<Integer> phases = new ArrayList<>();
     private List<PhaseSchoolsBean> phasesDetails = new ArrayList<>();
@@ -114,14 +113,6 @@ public class SchoolBean {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public List<SchoolDocumentBean> getSchoolDocumentBean() {
-        return schoolDocumentBean;
-    }
-
-    public void setSchoolDocumentBean(List<SchoolDocumentBean> schoolDocumentBean) {
-        this.schoolDocumentBean = schoolDocumentBean;
     }
 
     public Integer getDistrictId() {

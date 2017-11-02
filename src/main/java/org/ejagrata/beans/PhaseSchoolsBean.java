@@ -1,6 +1,8 @@
 package org.ejagrata.beans;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PhaseSchoolsBean {
 
@@ -9,8 +11,16 @@ public class PhaseSchoolsBean {
     private String comments;
     private String phase;
     private Integer schoolId;
-
-    public Date getSessionDate() {
+    private List<SchoolDocumentBean> schoolDocumentBean = new ArrayList<>();
+    
+    public void addSchoolDocumentBean(SchoolDocumentBean bean) {
+    	schoolDocumentBean.add(bean);
+    }
+    
+    public List<SchoolDocumentBean> getSchoolDocumentBean() {
+		return schoolDocumentBean;
+	}
+	public Date getSessionDate() {
 		return sessionDate;
 	}
 	public void setSessionDate(Date sessionDate) {
