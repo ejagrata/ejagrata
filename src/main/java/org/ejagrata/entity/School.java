@@ -44,14 +44,6 @@ public class School {
 	@Column(name="student_rep_name")
 	private String studentRepName;
 	
-	@Column(name="session_date")
-	private Date sessionDate;
-	
-	@Column(name="session_status")
-	private String sessionStatus;
-	
-	private String comments;
-	
 	@Column(name="enabled")
 	private Boolean enabled;
 	
@@ -139,22 +131,6 @@ public class School {
 		this.studentRepName = studentRepName;
 	}
 
-	public Date getSessionDate() {
-		return sessionDate;
-	}
-
-	public void setSessionDate(Date sessionDate) {
-		this.sessionDate = sessionDate;
-	}
-
-	public String getSessionStatus() {
-		return sessionStatus;
-	}
-
-	public void setSessionStatus(String sessionStatus) {
-		this.sessionStatus = sessionStatus;
-	}
-
 	public Boolean getEnabled() {
 		return enabled;
 	}
@@ -178,14 +154,6 @@ public class School {
     public void setEducationalDistrictId(Integer educationalDistrictId) {
         this.educationalDistrictId = educationalDistrictId;
     }
-
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
 
 	public String getDistrictName() {
 		return districtName;

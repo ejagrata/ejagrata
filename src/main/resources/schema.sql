@@ -106,9 +106,6 @@ create table user_role (
 	teacher_name varchar(100),
 	teacher_phone varchar(20),
 	student_rep_name varchar(100),
-	session_date date,
-	session_status varchar(20),
-	comments varchar(2000),
     district_id number(5) references district(id),
     district_name varchar(100),
  	educational_district_id number(5) references educational_district(id),
@@ -119,7 +116,8 @@ create table user_role (
  create table school_document (
 	doc_id number(10) primary key auto_increment,
 	doc_path varchar(250),
-	school_id number(10) references school(id)
+	school_id number(10) references school(id),
+	phase varchar(20) references phase(phase)
 );
 
 create table phase (
@@ -129,5 +127,8 @@ create table phase (
 create table phase_schools (
 	phase varchar(20) references phase(phase),
 	school_id number(10) references school(id),
-	unique(phase, school_id)	
+	session_date date,
+	session_status varchar(20),
+	comments varchar(2000),
+	unique(phase, school_id)
 );

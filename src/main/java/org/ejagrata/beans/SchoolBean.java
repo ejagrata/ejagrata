@@ -1,9 +1,8 @@
 package org.ejagrata.beans;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Column;
 
 public class SchoolBean {
 
@@ -16,18 +15,28 @@ public class SchoolBean {
     private String teacherName;
     private String teacherPhone;
     private String studentRepName;
-    private Date sessionDate;
-    private String sessionStatus;
-    private String comments;
     private Boolean enabled;
     private Integer districtId;
     private Integer educationalDistrictId;
     private String districtName;
     private String educationalDistrictName;
-    private List<SchoolDocumentBean> schoolDocumentBean;
     private List<Integer> deleteList;
+    private List<Integer> phases = new ArrayList<>();
+    private List<PhaseSchoolsBean> phasesDetails = new ArrayList<>();
+    
+    public List<PhaseSchoolsBean> getPhasesDetails() {
+		return phasesDetails;
+	}
 
-    public Integer getId() {
+	public void addPhasesDetails(PhaseSchoolsBean phasesDetails) {
+		this.phasesDetails.add(phasesDetails);
+	}
+
+	public void setPhases(List<Integer> phases) {
+		this.phases = phases;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -98,37 +107,12 @@ public class SchoolBean {
     public void setStudentRepName(String studentRepName) {
         this.studentRepName = studentRepName;
     }
-
-    public Date getSessionDate() {
-        return sessionDate;
-    }
-
-    public void setSessionDate(Date sessionDate) {
-        this.sessionDate = sessionDate;
-    }
-
-    public String getSessionStatus() {
-        return sessionStatus;
-    }
-
-    public void setSessionStatus(String sessionStatus) {
-        this.sessionStatus = sessionStatus;
-    }
-
     public Boolean getEnabled() {
         return enabled;
     }
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public List<SchoolDocumentBean> getSchoolDocumentBean() {
-        return schoolDocumentBean;
-    }
-
-    public void setSchoolDocumentBean(List<SchoolDocumentBean> schoolDocumentBean) {
-        this.schoolDocumentBean = schoolDocumentBean;
     }
 
     public Integer getDistrictId() {
@@ -138,14 +122,6 @@ public class SchoolBean {
     public void setDistrictId(Integer districtId) {
         this.districtId = districtId;
     }
-
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
 
 	public String getDistrictName() {
 		return districtName;
@@ -179,4 +155,11 @@ public class SchoolBean {
 		this.deleteList = deleteList;
 	}
 
+	public List<Integer> getPhases() {
+		return phases;
+	}
+
+	public void addPhase(Integer phase) {
+		this.phases.add(phase);
+	}
 }

@@ -19,5 +19,5 @@ public interface SchoolService {
 
 	List<SchoolBean> getSchoolByType(Integer districtId, Integer edDistrictId, String schoolType);
 
-	List<SchoolBean> getSchoolByPhase(Integer districtId, Integer edDistrictId, String schoolType, String phase);
+	//List<SchoolBean> getSchoolByPhase(Integer districtId, Integer edDistrictId, String schoolType, String phase);
 }

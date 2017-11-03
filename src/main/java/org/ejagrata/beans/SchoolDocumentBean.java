@@ -10,7 +10,17 @@ public class SchoolDocumentBean {
 
     private Integer schoolId;
     
-    private MultipartFile schoolDocs;
+    private String phase;
+    
+    public String getPhase() {
+		return phase;
+	}
+
+	public void setPhase(String phase) {
+		this.phase = phase;
+	}
+
+	private MultipartFile schoolDocs;
 
     public Integer getDocId() {
         return docId;

@@ -48,10 +48,4 @@ public class SchoolController {
     		,@PathVariable("schoolType") String schoolType) {
         return schoolService.getSchoolByType(districtId, edDistrictId, schoolType);
     }
-    
-    @RequestMapping("/school/district/{districtId}/{edDistrictId}/{schoolType}/{phase}")
-    public List<SchoolBean> getSchoolByType(@PathVariable("districtId") Integer districtId , @PathVariable("edDistrictId") Integer edDistrictId 
-    		,@PathVariable("schoolType") String schoolType, @PathVariable("phase") String phase) {
-        return schoolService.getSchoolByPhase(districtId, edDistrictId, schoolType, phase);
-    }
 }

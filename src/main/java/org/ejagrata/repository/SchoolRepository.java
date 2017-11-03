@@ -8,12 +8,17 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SchoolRepository extends CrudRepository<School, Integer> {
 
-    List<School> findByDistrictId(Integer districtId);
+	@Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.id= ?1 ")
+	List<Object[]> getSchool(Integer id);
+	
+	@Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 ")
+    List<Object[]> getByDistrictId(Integer districtId);
     
-    List<School> findByDistrictIdAndEducationalDistrictId(Integer districtId , Integer educationalDistrictId);
-    
-    List<School> findByDistrictIdAndEducationalDistrictIdAndSchoolType(Integer districtId , Integer educationalDistrictId, String schoolType);
+    @Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 " +
+    	    " and s.educationalDistrictId = ?2 ")
+    List<Object[]> getByDistrictIdAndEducationalDistrictId(Integer districtId , Integer educationalDistrictId);
 
-    @Query("select s from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 and s.educationalDistrictId = ?2 and s.schoolType = ?3 and ps.id.phase = ?4 ")
-    List<School> getSchoolsByPhase(Integer districtId , Integer educationalDistrictId, String schoolType, String phase);
+    @Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 " +
+    " and s.educationalDistrictId = ?2 and s.schoolType = ?3 ")
+    List<Object[]> getSchoolsByPhase(Integer districtId , Integer educationalDistrictId, String schoolType);
 }
