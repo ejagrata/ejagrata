@@ -8,6 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SchoolRepository extends CrudRepository<School, Integer> {
 
+	@Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.id= ?1 ")
+	List<Object[]> getSchool(Integer id);
+	
 	@Query("select s, ps from School s, PhaseSchools ps where s.id = ps.id.schoolId and s.districtId = ?1 ")
     List<Object[]> getByDistrictId(Integer districtId);
     

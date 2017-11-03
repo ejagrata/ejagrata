@@ -2,6 +2,7 @@ package org.ejagrata.service;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,13 +38,12 @@ public class SchoolServiceImpl implements SchoolService {
 
 	@Override
 	public SchoolBean getSchool(Integer id) {
-		School entity = schoolRepository.findOne(id);
-		SchoolBean bean = new SchoolBean();
-		BeanUtils.copyProperties(entity, bean);
-		List<SchoolDocument> schoolDocumentList = schoolDocRepo.findBySchoolId(id);
-		
-		addSchoolDoc(bean, schoolDocumentList);
-		return bean;
+		List<Object[]> schoolAndPhase = schoolRepository.getSchool(id);
+		if (schoolAndPhase != null && !schoolAndPhase.isEmpty() ) {
+			List<SchoolBean> schoolBeanList = schoolEntityToBean(schoolAndPhase);
+			return schoolBeanList.get(0);
+		}
+		return null;
 	}
 
 	@Transactional
