@@ -46,6 +46,7 @@
 							distance: '20px'
 						});
 						vm.loading = false;
+						vm.masterList = angular.copy(vm.govtSchool); // maintiain a copy of server response
 					}, 100);
 				} else {
 					vm.noResult = true;
@@ -67,6 +68,31 @@
 				$scope.$parent.vm.showSlideShow(item);
 			}
 		};
+		
+		/**
+         * filters the list based on filter type
+         */
+        vm.filterList = function (type) {
+            if (vm.masterList.length == 0) return;
+            
+            vm.loading = true; // flag to indicate page is loading
+            vm.loadMsg = "Processing... Please wait.."; // message to the user
+            vm.govtSchool = [];
+            $timeout();
+            var phaseInt = parseInt(vm.phase);
+            if (type == "phases") {
+                for (var i = 0; i < vm.masterList.length; i++) {
+                	if (vm.masterList[i].phases.indexOf(phaseInt) >= 0) { // checks if phase selected is in the phase []
+                        vm.govtSchool.push(vm.masterList[i]); // pushes item from masterList to govtList
+                    }
+                    
+                    if (i + 1 == vm.masterList.length) {
+                        vm.loading = false;
+                        $timeout();
+                    }
+                }
+            }
+		}
 
 	}
 
