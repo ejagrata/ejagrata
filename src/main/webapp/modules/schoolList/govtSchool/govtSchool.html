@@ -1,12 +1,25 @@
 <div class="government-school">
     <div class="container">
-        <div class="row">
+    	<div class="row">
             <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
                 <h3>Government Schools</h3>
                 <p ng-hide="vm.loading">These are Government schools from {{vm.eduDistrict}} educational district in {{vm.district}}.</p>
             </div>
         </div>
+        <div class="row">
+    		<div class="col-lg-1 col-md-1" style="text-align:right">Phase : </div>
+    		<div class="col-lg-4 col-md-4">
+    			<select ng-model="vm.phase" ng-change="vm.filterList('phases')" style="width: 200px; height:30px">
+				     <option value="1">Phase 1</options>
+				     <option value="2">Phase 2</options>
+				     <option value="3">Phase 3</options>
+				     <option value="4">Phase 4</options>
+				</select>
+    		</div>
+    	</div>
+    	<div class="row">&nbsp;</div>
     </div>
+    
     <div class="container">
         <div class="row">
             <div class="loader text-center" ng-show="vm.loading" style="margin: 3em 0em 5em 0em;">
